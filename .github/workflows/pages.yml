@@ -1,0 +1,50 @@
+name: Deploy Kotoba no Ki to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Test and syntax-check
+        run: |
+          npm test
+          node --check app.mjs
+          node --check src/core.mjs
+          node --check src/cloud-sync.mjs
+          node --check firebase-config.mjs
+          node --check sw.js
+      - name: Build static artifact
+        run: |
+          mkdir -p _site/src _site/data _site/icons
+          cp index.html app.mjs styles.css manifest.webmanifest sw.js DATA_SOURCES.md _site/
+          cp src/core.mjs src/cloud-sync.mjs _site/src/
+          cp data/words.json data/diagnostic.json data/katakana.json _site/data/
+          cp icons/kotoba-no-ki-192.png icons/kotoba-no-ki-512.png _site/icons/
+          if [ -f firebase-config.mjs ]; then cp firebase-config.mjs _site/; fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,158 @@
+[
+  {
+    "id": "kata-long-01",
+    "skill": "reading",
+    "subskill": "long-vowel",
+    "responseMode": "choice",
+    "prompt": "「コーヒー」의 소리를 히라가나로 고르세요.",
+    "choices": ["こーひー", "こひー", "こーびー", "こおひ"],
+    "answer": "こーひー",
+    "explanationKo": "「ー」는 앞소리를 길게 읽는 장음 표시예요. コーヒー는 '코오히이'에 가깝게 읽어요."
+  },
+  {
+    "id": "kata-long-02",
+    "skill": "reading",
+    "subskill": "long-vowel",
+    "responseMode": "choice",
+    "prompt": "'슈퍼마켓'에 해당하는 가타카나를 고르세요.",
+    "choices": ["スーパー", "スパー", "スーバー", "ソーパー"],
+    "answer": "スーパー",
+    "explanationKo": "スーパー에는 장음 「ー」가 두 번 들어가요."
+  },
+  {
+    "id": "kata-long-03",
+    "skill": "reading",
+    "subskill": "long-vowel",
+    "responseMode": "typing",
+    "prompt": "'택시'를 가타카나로 입력하세요.",
+    "answer": "タクシー",
+    "explanationKo": "택시는 「タクシー」이며 마지막 「シ」 뒤에 장음 「ー」를 써요."
+  },
+  {
+    "id": "kata-small-tsu-01",
+    "skill": "reading",
+    "subskill": "small-tsu",
+    "responseMode": "choice",
+    "prompt": "「ベッド」의 소리를 히라가나로 고르세요.",
+    "choices": ["べっど", "べつど", "べっと", "へっど"],
+    "answer": "べっど",
+    "explanationKo": "작은 「ッ」는 뒤 자음을 한 번 막아 읽어요. ベッド는 '벳도'에 가까워요."
+  },
+  {
+    "id": "kata-small-tsu-02",
+    "skill": "reading",
+    "subskill": "small-tsu",
+    "responseMode": "choice",
+    "prompt": "'표, 티켓'에 해당하는 표기를 고르세요.",
+    "choices": ["チケット", "チケト", "チッケト", "ジケット"],
+    "answer": "チケット",
+    "explanationKo": "チケット는 「ケ」 뒤에 작은 「ッ」가 들어가요."
+  },
+  {
+    "id": "kata-small-tsu-03",
+    "skill": "reading",
+    "subskill": "small-tsu",
+    "responseMode": "typing",
+    "prompt": "'애완동물, 펫'을 가타카나로 입력하세요.",
+    "answer": "ペット",
+    "explanationKo": "펫은 「ペット」라고 쓰며 작은 「ッ」에 주의해요."
+  },
+  {
+    "id": "kata-contracted-01",
+    "skill": "reading",
+    "subskill": "contracted-sound",
+    "responseMode": "choice",
+    "prompt": "「シャツ」의 소리를 히라가나로 고르세요.",
+    "choices": ["しゃつ", "しやつ", "ちゃつ", "しゅつ"],
+    "answer": "しゃつ",
+    "explanationKo": "「シャ」는 シ와 작은 ャ가 만나 '샤'가 돼요."
+  },
+  {
+    "id": "kata-contracted-02",
+    "skill": "reading",
+    "subskill": "contracted-sound",
+    "responseMode": "choice",
+    "prompt": "'주스'에 해당하는 가타카나를 고르세요.",
+    "choices": ["ジュース", "ジユース", "チュース", "ジュス"],
+    "answer": "ジュース",
+    "explanationKo": "「ジュ」는 ジ와 작은 ュ로 만들고, 뒤의 「ー」로 길게 읽어요."
+  },
+  {
+    "id": "kata-contracted-03",
+    "skill": "reading",
+    "subskill": "contracted-sound",
+    "responseMode": "typing",
+    "prompt": "'셔츠'를 가타카나로 입력하세요.",
+    "answer": "シャツ",
+    "explanationKo": "셔츠는 「シャツ」예요. ャ를 작게 쓰는 것이 중요해요."
+  },
+  {
+    "id": "kata-lookalike-01",
+    "skill": "reading",
+    "subskill": "lookalike-shi-tsu",
+    "responseMode": "choice",
+    "prompt": "히라가나 「し」에 해당하는 가타카나를 고르세요.",
+    "choices": ["シ", "ツ", "ソ", "ン"],
+    "answer": "シ",
+    "explanationKo": "「シ」의 짧은 두 획은 옆으로 나란하고 긴 획은 아래에서 위로 올라가요."
+  },
+  {
+    "id": "kata-lookalike-02",
+    "skill": "reading",
+    "subskill": "lookalike-shi-tsu",
+    "responseMode": "choice",
+    "prompt": "히라가나 「つ」에 해당하는 가타카나를 고르세요.",
+    "choices": ["ツ", "シ", "ン", "ソ"],
+    "answer": "ツ",
+    "explanationKo": "「ツ」의 짧은 두 획은 위에서 아래로 놓여 있어요."
+  },
+  {
+    "id": "kata-lookalike-03",
+    "skill": "reading",
+    "subskill": "lookalike-so-n",
+    "responseMode": "choice",
+    "prompt": "히라가나 「そ」에 해당하는 가타카나를 고르세요.",
+    "choices": ["ソ", "ン", "シ", "ツ"],
+    "answer": "ソ",
+    "explanationKo": "「ソ」의 짧은 획은 위에서 아래 방향이고, 긴 획은 위에서 시작해요."
+  },
+  {
+    "id": "kata-lookalike-04",
+    "skill": "reading",
+    "subskill": "lookalike-so-n",
+    "responseMode": "choice",
+    "prompt": "히라가나 「ん」에 해당하는 가타카나를 고르세요.",
+    "choices": ["ン", "ソ", "ツ", "シ"],
+    "answer": "ン",
+    "explanationKo": "「ン」의 짧은 획은 옆 방향이고, 긴 획은 아래에서 위로 올라가요."
+  },
+  {
+    "id": "kata-daily-01",
+    "skill": "reading",
+    "subskill": "daily-loanword",
+    "responseMode": "choice",
+    "prompt": "「コンビニ」의 소리를 히라가나로 고르세요.",
+    "choices": ["こんびに", "こびんに", "こんぴに", "こんびり"],
+    "answer": "こんびに",
+    "explanationKo": "「コンビニ」는 convenience store를 줄인 일본식 표현이에요."
+  },
+  {
+    "id": "kata-daily-02",
+    "skill": "reading",
+    "subskill": "daily-loanword",
+    "responseMode": "choice",
+    "prompt": "「パソコン」의 소리를 히라가나로 고르세요.",
+    "choices": ["ぱそこん", "はそこん", "ぱそこし", "ぱぞこん"],
+    "answer": "ぱそこん",
+    "explanationKo": "「パソコン」은 personal computer를 줄인 일본식 표현이에요."
+  },
+  {
+    "id": "kata-daily-03",
+    "skill": "reading",
+    "subskill": "daily-loanword",
+    "responseMode": "typing",
+    "prompt": "'호텔'을 가타카나로 입력하세요.",
+    "answer": "ホテル",
+    "explanationKo": "호텔은 「ホテル」라고 써요."
+  }
+]

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#276749">
+  <title>ことばの木 · Kotoba no Ki</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/png" href="./icons/kotoba-no-ki-192.png">
+  <link rel="apple-touch-icon" href="./icons/kotoba-no-ki-192.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="brand" id="home-button" type="button" aria-label="홈으로">
+      <img class="brand-icon" src="./icons/kotoba-no-ki-192.png" alt="" width="44" height="44">
+      <span><strong>ことばの木</strong><small>Kotoba no Ki</small></span>
+    </button>
+    <div class="account-area">
+      <span id="sync-status" class="sync-status" role="status">로컬 저장</span>
+      <button id="account-button" class="account-button" type="button" disabled>로그인 준비 중…</button>
+    </div>
+  </header>
+  <main id="app" tabindex="-1" aria-live="polite">
+    <section class="panel loading"><p>학습 나무를 준비하고 있어요…</p></section>
+  </main>
+  <footer class="site-footer"><a href="./DATA_SOURCES.md">데이터 출처·라이선스</a></footer>
+  <dialog id="account-dialog" aria-labelledby="account-title">
+    <form method="dialog" class="dialog-close"><button value="cancel" aria-label="닫기">✕</button></form>
+    <h2 id="account-title">학습 계정</h2>
+    <p class="muted">같은 아이디와 PIN으로 여러 기기에서 이어서 공부할 수 있어요.</p>
+    <p class="muted"><strong>학습 진도만 저장됩니다.</strong> 다른 서비스에서 사용하는 PIN과 같게 만들지 마세요.</p>
+    <form id="account-form" class="answer-form">
+      <label for="account-id">아이디</label>
+      <input id="account-id" name="accountId" autocomplete="username" minlength="4" maxlength="20" pattern="[A-Za-z0-9_]+" autocapitalize="none" required>
+      <label for="account-pin">6자리 PIN</label>
+      <input id="account-pin" name="pin" type="password" inputmode="numeric" autocomplete="current-password" pattern="[0-9]{6}" minlength="6" maxlength="6" required>
+      <div class="actions two">
+        <button class="secondary" name="accountAction" value="sign-up" type="submit">새 계정 만들기</button>
+        <button class="primary" name="accountAction" value="sign-in" type="submit">로그인</button>
+      </div>
+    </form>
+    <div id="account-message" class="muted" role="status" aria-live="polite"></div>
+    <button id="sign-out-button" class="secondary hidden" type="button">로그아웃</button>
+  </dialog>
+  <noscript>이 앱은 JavaScript가 필요합니다.</noscript>
+  <script type="module" src="./app.mjs"></script>
+</body>
+</html>

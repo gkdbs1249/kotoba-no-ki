@@ -1,0 +1,38 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function owns(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    function validProgress(data) {
+      return data.keys().hasOnly([
+          'version', 'schemaVersion', 'resetAt', 'updatedAt', 'studyStartDate',
+          'diagnostic', 'days', 'reviews', 'nextIndex', 'cohorts', 'settings',
+          'carryWordIds'
+        ])
+        && (!('version' in data) || data.version is int)
+        && (!('schemaVersion' in data) || data.schemaVersion is int)
+        && (!('resetAt' in data) || data.resetAt is int || data.resetAt is timestamp)
+        && (!('studyStartDate' in data) || data.studyStartDate == null || data.studyStartDate is string)
+        && (!('days' in data) || (data.days is map && data.days.size() <= 400))
+        && (!('reviews' in data) || (data.reviews is map && data.reviews.size() <= 5000))
+        && (!('nextIndex' in data) || (data.nextIndex is int && data.nextIndex >= 0))
+        && (!('cohorts' in data) || (data.cohorts is list && data.cohorts.size() <= 400))
+        && (!('carryWordIds' in data) || (data.carryWordIds is list && data.carryWordIds.size() <= 5000))
+        && (!('settings' in data) || data.settings is map);
+    }
+
+    match /users/{userId}/progress/{documentId} {
+      allow read: if documentId == 'current' && owns(userId);
+      allow create, update: if documentId == 'current'
+        && owns(userId)
+        && validProgress(request.resource.data);
+      allow delete: if documentId == 'current' && owns(userId);
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

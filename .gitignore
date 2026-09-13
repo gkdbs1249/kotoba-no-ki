@@ -1,0 +1,7 @@
+.DS_Store
+node_modules/
+_site/
+firebase-debug.log*
+.firebase/
+test-results/
+playwright-report/

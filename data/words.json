@@ -1,0 +1,2206 @@
+[
+  {
+    "id": "j-n5-0001",
+    "level": "N5",
+    "written": "私",
+    "reading": "わたし",
+    "meaningKo": "나, 저",
+    "partOfSpeech": "대명사",
+    "acceptedAnswers": [
+      "私",
+      "わたし"
+    ],
+    "example": {
+      "japanese": "私は韓国人です。",
+      "reading": "わたしはかんこくじんです。",
+      "korean": "저는 한국인입니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0002",
+    "level": "N5",
+    "written": "あなた",
+    "reading": "あなた",
+    "meaningKo": "당신",
+    "partOfSpeech": "대명사",
+    "acceptedAnswers": [
+      "あなた"
+    ],
+    "example": {
+      "japanese": "あなたは学生ですか。",
+      "reading": "あなたはがくせいですか。",
+      "korean": "당신은 학생입니까?"
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0003",
+    "level": "N5",
+    "written": "これ",
+    "reading": "これ",
+    "meaningKo": "이것",
+    "partOfSpeech": "대명사",
+    "acceptedAnswers": [
+      "これ"
+    ],
+    "example": {
+      "japanese": "これは私の本です。",
+      "reading": "これはわたしのほんです。",
+      "korean": "이것은 제 책입니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0004",
+    "level": "N5",
+    "written": "それ",
+    "reading": "それ",
+    "meaningKo": "그것",
+    "partOfSpeech": "대명사",
+    "acceptedAnswers": [
+      "それ"
+    ],
+    "example": {
+      "japanese": "それを見せてください。",
+      "reading": "それをみせてください。",
+      "korean": "그것을 보여 주세요."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0005",
+    "level": "N5",
+    "written": "あれ",
+    "reading": "あれ",
+    "meaningKo": "저것",
+    "partOfSpeech": "대명사",
+    "acceptedAnswers": [
+      "あれ"
+    ],
+    "example": {
+      "japanese": "あれは駅です。",
+      "reading": "あれはえきです。",
+      "korean": "저것은 역입니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0006",
+    "level": "N5",
+    "written": "ここ",
+    "reading": "ここ",
+    "meaningKo": "여기",
+    "partOfSpeech": "대명사",
+    "acceptedAnswers": [
+      "ここ"
+    ],
+    "example": {
+      "japanese": "ここに名前を書いてください。",
+      "reading": "ここになまえをかいてください。",
+      "korean": "여기에 이름을 써 주세요."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0007",
+    "level": "N5",
+    "written": "そこ",
+    "reading": "そこ",
+    "meaningKo": "거기",
+    "partOfSpeech": "대명사",
+    "acceptedAnswers": [
+      "そこ"
+    ],
+    "example": {
+      "japanese": "そこにいすがあります。",
+      "reading": "そこにいすがあります。",
+      "korean": "거기에 의자가 있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0008",
+    "level": "N5",
+    "written": "どこ",
+    "reading": "どこ",
+    "meaningKo": "어디",
+    "partOfSpeech": "의문사",
+    "acceptedAnswers": [
+      "どこ"
+    ],
+    "example": {
+      "japanese": "トイレはどこですか。",
+      "reading": "といれはどこですか。",
+      "korean": "화장실은 어디입니까?"
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0009",
+    "level": "N5",
+    "written": "何",
+    "reading": "なに",
+    "meaningKo": "무엇",
+    "partOfSpeech": "의문사",
+    "acceptedAnswers": [
+      "何",
+      "なに"
+    ],
+    "example": {
+      "japanese": "何を食べますか。",
+      "reading": "なにをたべますか。",
+      "korean": "무엇을 먹습니까?"
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0010",
+    "level": "N5",
+    "written": "誰",
+    "reading": "だれ",
+    "meaningKo": "누구",
+    "partOfSpeech": "의문사",
+    "acceptedAnswers": [
+      "誰",
+      "だれ"
+    ],
+    "example": {
+      "japanese": "あの人は誰ですか。",
+      "reading": "あのひとはだれですか。",
+      "korean": "저 사람은 누구입니까?"
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0011",
+    "level": "N5",
+    "written": "人",
+    "reading": "ひと",
+    "meaningKo": "사람",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "人",
+      "ひと"
+    ],
+    "example": {
+      "japanese": "駅に人がたくさんいます。",
+      "reading": "えきにひとがたくさんいます。",
+      "korean": "역에 사람이 많이 있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0012",
+    "level": "N5",
+    "written": "先生",
+    "reading": "せんせい",
+    "meaningKo": "선생님",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "先生",
+      "せんせい"
+    ],
+    "example": {
+      "japanese": "日本語について先生に聞きます。",
+      "reading": "にほんごについてせんせいにききます。",
+      "korean": "일본어에 관해 선생님께 물어봅니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0013",
+    "level": "N5",
+    "written": "学生",
+    "reading": "がくせい",
+    "meaningKo": "학생",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "学生",
+      "がくせい"
+    ],
+    "example": {
+      "japanese": "妹は大学の学生です。",
+      "reading": "いもうとはだいがくのがくせいです。",
+      "korean": "여동생은 대학생입니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0014",
+    "level": "N5",
+    "written": "会社",
+    "reading": "かいしゃ",
+    "meaningKo": "회사",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "会社",
+      "かいしゃ"
+    ],
+    "example": {
+      "japanese": "父は会社へ行きます。",
+      "reading": "ちちはかいしゃへいきます。",
+      "korean": "아버지는 회사에 갑니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0015",
+    "level": "N5",
+    "written": "学校",
+    "reading": "がっこう",
+    "meaningKo": "학교",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "学校",
+      "がっこう"
+    ],
+    "example": {
+      "japanese": "学校は八時からです。",
+      "reading": "がっこうははちじからです。",
+      "korean": "학교는 8시부터입니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0016",
+    "level": "N5",
+    "written": "家",
+    "reading": "いえ",
+    "meaningKo": "집",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "家",
+      "いえ"
+    ],
+    "example": {
+      "japanese": "今日は家にいます。",
+      "reading": "きょうはいえにいます。",
+      "korean": "오늘은 집에 있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0017",
+    "level": "N5",
+    "written": "今日",
+    "reading": "きょう",
+    "meaningKo": "오늘",
+    "partOfSpeech": "명사·부사",
+    "acceptedAnswers": [
+      "今日",
+      "きょう"
+    ],
+    "example": {
+      "japanese": "今日はいい天気です。",
+      "reading": "きょうはいいてんきです。",
+      "korean": "오늘은 날씨가 좋습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0018",
+    "level": "N5",
+    "written": "明日",
+    "reading": "あした",
+    "meaningKo": "내일",
+    "partOfSpeech": "명사·부사",
+    "acceptedAnswers": [
+      "明日",
+      "あした"
+    ],
+    "example": {
+      "japanese": "明日、友達に会います。",
+      "reading": "あした、ともだちにあいます。",
+      "korean": "내일 친구를 만납니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0019",
+    "level": "N5",
+    "written": "昨日",
+    "reading": "きのう",
+    "meaningKo": "어제",
+    "partOfSpeech": "명사·부사",
+    "acceptedAnswers": [
+      "昨日",
+      "きのう"
+    ],
+    "example": {
+      "japanese": "昨日、本を買いました。",
+      "reading": "きのう、ほんをかいました。",
+      "korean": "어제 책을 샀습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0020",
+    "level": "N5",
+    "written": "今",
+    "reading": "いま",
+    "meaningKo": "지금",
+    "partOfSpeech": "명사·부사",
+    "acceptedAnswers": [
+      "今",
+      "いま"
+    ],
+    "example": {
+      "japanese": "今、何時ですか。",
+      "reading": "いま、なんじですか。",
+      "korean": "지금 몇 시입니까?"
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0021",
+    "level": "N5",
+    "written": "時間",
+    "reading": "じかん",
+    "meaningKo": "시간",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "時間",
+      "じかん"
+    ],
+    "example": {
+      "japanese": "朝は時間がありません。",
+      "reading": "あさはじかんがありません。",
+      "korean": "아침에는 시간이 없습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0022",
+    "level": "N5",
+    "written": "朝",
+    "reading": "あさ",
+    "meaningKo": "아침",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "朝",
+      "あさ"
+    ],
+    "example": {
+      "japanese": "朝、水を飲みます。",
+      "reading": "あさ、みずをのみます。",
+      "korean": "아침에 물을 마십니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0023",
+    "level": "N5",
+    "written": "昼",
+    "reading": "ひる",
+    "meaningKo": "낮, 점심때",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "昼",
+      "ひる"
+    ],
+    "example": {
+      "japanese": "昼に御飯を食べます。",
+      "reading": "ひるにごはんをたべます。",
+      "korean": "점심때 밥을 먹습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0024",
+    "level": "N5",
+    "written": "夜",
+    "reading": "よる",
+    "meaningKo": "밤",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "夜",
+      "よる"
+    ],
+    "example": {
+      "japanese": "夜、本を読みます。",
+      "reading": "よる、ほんをよみます。",
+      "korean": "밤에 책을 읽습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0025",
+    "level": "N5",
+    "written": "毎日",
+    "reading": "まいにち",
+    "meaningKo": "매일",
+    "partOfSpeech": "명사·부사",
+    "acceptedAnswers": [
+      "毎日",
+      "まいにち"
+    ],
+    "example": {
+      "japanese": "毎日、日本語を勉強します。",
+      "reading": "まいにち、にほんごをべんきょうします。",
+      "korean": "매일 일본어를 공부합니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0026",
+    "level": "N5",
+    "written": "行く",
+    "reading": "いく",
+    "meaningKo": "가다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "行く",
+      "いく"
+    ],
+    "example": {
+      "japanese": "電車で会社へ行きます。",
+      "reading": "でんしゃでかいしゃへいきます。",
+      "korean": "전철로 회사에 갑니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0027",
+    "level": "N5",
+    "written": "来る",
+    "reading": "くる",
+    "meaningKo": "오다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "来る",
+      "くる"
+    ],
+    "example": {
+      "japanese": "友達が家に来ます。",
+      "reading": "ともだちがいえにきます。",
+      "korean": "친구가 집에 옵니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0028",
+    "level": "N5",
+    "written": "帰る",
+    "reading": "かえる",
+    "meaningKo": "돌아가다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "帰る",
+      "かえる"
+    ],
+    "example": {
+      "japanese": "六時に家へ帰ります。",
+      "reading": "ろくじにいえへかえります。",
+      "korean": "6시에 집에 돌아갑니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0029",
+    "level": "N5",
+    "written": "食べる",
+    "reading": "たべる",
+    "meaningKo": "먹다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "食べる",
+      "たべる"
+    ],
+    "example": {
+      "japanese": "朝、パンを食べます。",
+      "reading": "あさ、ぱんをたべます。",
+      "korean": "아침에 빵을 먹습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0030",
+    "level": "N5",
+    "written": "飲む",
+    "reading": "のむ",
+    "meaningKo": "마시다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "飲む",
+      "のむ"
+    ],
+    "example": {
+      "japanese": "水をたくさん飲んでください。",
+      "reading": "みずをたくさんのんでください。",
+      "korean": "물을 많이 마셔 주세요."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0031",
+    "level": "N5",
+    "written": "聞く",
+    "reading": "きく",
+    "meaningKo": "듣다, 묻다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "聞く",
+      "きく"
+    ],
+    "example": {
+      "japanese": "電車の中で音楽を聞きます。",
+      "reading": "でんしゃのなかでおんがくをききます。",
+      "korean": "전철 안에서 음악을 듣습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0032",
+    "level": "N5",
+    "written": "読む",
+    "reading": "よむ",
+    "meaningKo": "읽다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "読む",
+      "よむ"
+    ],
+    "example": {
+      "japanese": "毎朝、新聞を読みます。",
+      "reading": "まいあさ、しんぶんをよみます。",
+      "korean": "매일 아침 신문을 읽습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0033",
+    "level": "N5",
+    "written": "書く",
+    "reading": "かく",
+    "meaningKo": "쓰다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "書く",
+      "かく"
+    ],
+    "example": {
+      "japanese": "紙に住所を書きます。",
+      "reading": "かみにじゅうしょをかきます。",
+      "korean": "종이에 주소를 씁니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0034",
+    "level": "N5",
+    "written": "話す",
+    "reading": "はなす",
+    "meaningKo": "말하다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "話す",
+      "はなす"
+    ],
+    "example": {
+      "japanese": "友達と日本語で話します。",
+      "reading": "ともだちとにほんごではなします。",
+      "korean": "친구와 일본어로 이야기합니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0035",
+    "level": "N5",
+    "written": "買う",
+    "reading": "かう",
+    "meaningKo": "사다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "買う",
+      "かう"
+    ],
+    "example": {
+      "japanese": "駅で水を買いました。",
+      "reading": "えきでみずをかいました。",
+      "korean": "역에서 물을 샀습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0036",
+    "level": "N5",
+    "written": "会う",
+    "reading": "あう",
+    "meaningKo": "만나다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "会う",
+      "あう"
+    ],
+    "example": {
+      "japanese": "日曜日に先生に会います。",
+      "reading": "にちようびにせんせいにあいます。",
+      "korean": "일요일에 선생님을 만납니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0037",
+    "level": "N5",
+    "written": "ある",
+    "reading": "ある",
+    "meaningKo": "있다(무생물)",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "ある"
+    ],
+    "example": {
+      "japanese": "机の上に本があります。",
+      "reading": "つくえのうえにほんがあります。",
+      "korean": "책상 위에 책이 있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0038",
+    "level": "N5",
+    "written": "居る",
+    "reading": "いる",
+    "meaningKo": "있다(사람·동물)",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "居る",
+      "いる"
+    ],
+    "example": {
+      "japanese": "部屋に猫がいます。",
+      "reading": "へやにねこがいます。",
+      "korean": "방에 고양이가 있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0039",
+    "level": "N5",
+    "written": "する",
+    "reading": "する",
+    "meaningKo": "하다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "する"
+    ],
+    "example": {
+      "japanese": "週末に何をしますか。",
+      "reading": "しゅうまつになにをしますか。",
+      "korean": "주말에 무엇을 합니까?"
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0040",
+    "level": "N5",
+    "written": "分かる",
+    "reading": "わかる",
+    "meaningKo": "알다, 이해하다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "分かる",
+      "わかる"
+    ],
+    "example": {
+      "japanese": "この言葉の意味が分かります。",
+      "reading": "このことばのいみがわかります。",
+      "korean": "이 말의 뜻을 압니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0041",
+    "level": "N5",
+    "written": "好き",
+    "reading": "すき",
+    "meaningKo": "좋아함, 좋아하는",
+    "partOfSpeech": "형용동사",
+    "acceptedAnswers": [
+      "好き",
+      "すき"
+    ],
+    "example": {
+      "japanese": "私は映画が好きです。",
+      "reading": "わたしはえいががすきです。",
+      "korean": "저는 영화를 좋아합니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0042",
+    "level": "N5",
+    "written": "大きい",
+    "reading": "おおきい",
+    "meaningKo": "크다",
+    "partOfSpeech": "형용사",
+    "acceptedAnswers": [
+      "大きい",
+      "おおきい"
+    ],
+    "example": {
+      "japanese": "駅の前に大きい店があります。",
+      "reading": "えきのまえにおおきいみせがあります。",
+      "korean": "역 앞에 큰 가게가 있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0043",
+    "level": "N5",
+    "written": "小さい",
+    "reading": "ちいさい",
+    "meaningKo": "작다",
+    "partOfSpeech": "형용사",
+    "acceptedAnswers": [
+      "小さい",
+      "ちいさい"
+    ],
+    "example": {
+      "japanese": "小さいかばんを買いました。",
+      "reading": "ちいさいかばんをかいました。",
+      "korean": "작은 가방을 샀습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0044",
+    "level": "N5",
+    "written": "新しい",
+    "reading": "あたらしい",
+    "meaningKo": "새롭다",
+    "partOfSpeech": "형용사",
+    "acceptedAnswers": [
+      "新しい",
+      "あたらしい"
+    ],
+    "example": {
+      "japanese": "これは新しい携帯電話です。",
+      "reading": "これはあたらしいけいたいでんわです。",
+      "korean": "이것은 새 휴대전화입니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0045",
+    "level": "N5",
+    "written": "古い",
+    "reading": "ふるい",
+    "meaningKo": "오래되다, 낡다",
+    "partOfSpeech": "형용사",
+    "acceptedAnswers": [
+      "古い",
+      "ふるい"
+    ],
+    "example": {
+      "japanese": "この建物は古いです。",
+      "reading": "このたてものはふるいです。",
+      "korean": "이 건물은 오래되었습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0046",
+    "level": "N5",
+    "written": "高い",
+    "reading": "たかい",
+    "meaningKo": "비싸다, 높다",
+    "partOfSpeech": "형용사",
+    "acceptedAnswers": [
+      "高い",
+      "たかい"
+    ],
+    "example": {
+      "japanese": "このホテルは少し高いです。",
+      "reading": "このほてるはすこしたかいです。",
+      "korean": "이 호텔은 조금 비쌉니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0047",
+    "level": "N5",
+    "written": "安い",
+    "reading": "やすい",
+    "meaningKo": "싸다",
+    "partOfSpeech": "형용사",
+    "acceptedAnswers": [
+      "安い",
+      "やすい"
+    ],
+    "example": {
+      "japanese": "この店の野菜は安いです。",
+      "reading": "このみせのやさいはやすいです。",
+      "korean": "이 가게의 채소는 쌉니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0048",
+    "level": "N5",
+    "written": "水",
+    "reading": "みず",
+    "meaningKo": "물",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "水",
+      "みず"
+    ],
+    "example": {
+      "japanese": "冷たい水をください。",
+      "reading": "つめたいみずをください。",
+      "korean": "찬물을 주세요."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0049",
+    "level": "N5",
+    "written": "電車",
+    "reading": "でんしゃ",
+    "meaningKo": "전철, 기차",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "電車",
+      "でんしゃ"
+    ],
+    "example": {
+      "japanese": "電車で学校へ行きます。",
+      "reading": "でんしゃでがっこうへいきます。",
+      "korean": "전철로 학교에 갑니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0050",
+    "level": "N5",
+    "written": "駅",
+    "reading": "えき",
+    "meaningKo": "역",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "駅",
+      "えき"
+    ],
+    "example": {
+      "japanese": "駅で友達を待ちます。",
+      "reading": "えきでともだちをまちます。",
+      "korean": "역에서 친구를 기다립니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0051",
+    "level": "N5",
+    "written": "友達",
+    "reading": "ともだち",
+    "meaningKo": "친구",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "友達",
+      "ともだち"
+    ],
+    "example": {
+      "japanese": "友達と映画を見ました。",
+      "reading": "ともだちとえいがをみました。",
+      "korean": "친구와 영화를 봤습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0052",
+    "level": "N5",
+    "written": "名前",
+    "reading": "なまえ",
+    "meaningKo": "이름",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "名前",
+      "なまえ"
+    ],
+    "example": {
+      "japanese": "お名前は何ですか。",
+      "reading": "おなまえはなんですか。",
+      "korean": "성함이 어떻게 되십니까?"
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0053",
+    "level": "N5",
+    "written": "お金",
+    "reading": "おかね",
+    "meaningKo": "돈",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "お金",
+      "おかね"
+    ],
+    "example": {
+      "japanese": "お金を持っていますか。",
+      "reading": "おかねをもっていますか。",
+      "korean": "돈을 가지고 있습니까?"
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0054",
+    "level": "N5",
+    "written": "トイレ",
+    "reading": "トイレ",
+    "meaningKo": "화장실",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "トイレ"
+    ],
+    "example": {
+      "japanese": "トイレは二階です。",
+      "reading": "トイレはにかいです。",
+      "korean": "화장실은 2층입니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0055",
+    "level": "N5",
+    "written": "ホテル",
+    "reading": "ホテル",
+    "meaningKo": "호텔",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "ホテル"
+    ],
+    "example": {
+      "japanese": "駅の近くのホテルに泊まります。",
+      "reading": "えきのちかくのホテルにとまります。",
+      "korean": "역 근처 호텔에 묵습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0056",
+    "level": "N5",
+    "written": "男",
+    "reading": "おとこ",
+    "meaningKo": "남자",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "男",
+      "おとこ"
+    ],
+    "example": {
+      "japanese": "あの男の人は田中さんです。",
+      "reading": "あのおとこのひとはたなかさんです。",
+      "korean": "저 남자는 다나카 씨입니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0057",
+    "level": "N5",
+    "written": "女",
+    "reading": "おんな",
+    "meaningKo": "여자",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "女",
+      "おんな"
+    ],
+    "example": {
+      "japanese": "女の人が道を聞きました。",
+      "reading": "おんなのひとがみちをききました。",
+      "korean": "여자가 길을 물었습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0058",
+    "level": "N5",
+    "written": "子供",
+    "reading": "こども",
+    "meaningKo": "아이",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "子供",
+      "こども"
+    ],
+    "example": {
+      "japanese": "公園で子供が遊んでいます。",
+      "reading": "こうえんでこどもがあそんでいます。",
+      "korean": "공원에서 아이가 놀고 있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0059",
+    "level": "N5",
+    "written": "本",
+    "reading": "ほん",
+    "meaningKo": "책",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "本",
+      "ほん"
+    ],
+    "example": {
+      "japanese": "この本はおもしろいです。",
+      "reading": "このほんはおもしろいです。",
+      "korean": "이 책은 재미있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0060",
+    "level": "N5",
+    "written": "車",
+    "reading": "くるま",
+    "meaningKo": "자동차",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "車",
+      "くるま"
+    ],
+    "example": {
+      "japanese": "父の車は白いです。",
+      "reading": "ちちのくるまはしろいです。",
+      "korean": "아버지 차는 흰색입니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n5-0061",
+    "level": "N5",
+    "written": "自転車",
+    "reading": "じてんしゃ",
+    "meaningKo": "자전거",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "自転車",
+      "じてんしゃ"
+    ],
+    "example": {
+      "japanese": "自転車で駅まで行きます。",
+      "reading": "じてんしゃでえきまでいきます。",
+      "korean": "자전거로 역까지 갑니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0001",
+    "level": "N4",
+    "written": "これから",
+    "reading": "これから",
+    "meaningKo": "이제부터, 앞으로",
+    "partOfSpeech": "부사",
+    "acceptedAnswers": [
+      "これから"
+    ],
+    "example": {
+      "japanese": "これから仕事を始めます。",
+      "reading": "これからしごとをはじめます。",
+      "korean": "이제부터 일을 시작합니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0002",
+    "level": "N4",
+    "written": "もうすぐ",
+    "reading": "もうすぐ",
+    "meaningKo": "곧",
+    "partOfSpeech": "부사",
+    "acceptedAnswers": [
+      "もうすぐ"
+    ],
+    "example": {
+      "japanese": "電車はもうすぐ来ます。",
+      "reading": "でんしゃはもうすぐきます。",
+      "korean": "전철이 곧 옵니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0003",
+    "level": "N4",
+    "written": "ぜひ",
+    "reading": "ぜひ",
+    "meaningKo": "꼭, 부디",
+    "partOfSpeech": "부사",
+    "acceptedAnswers": [
+      "ぜひ"
+    ],
+    "example": {
+      "japanese": "ぜひ韓国に来てください。",
+      "reading": "ぜひかんこくにきてください。",
+      "korean": "꼭 한국에 와 주세요."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0004",
+    "level": "N4",
+    "written": "もちろん",
+    "reading": "もちろん",
+    "meaningKo": "물론",
+    "partOfSpeech": "부사",
+    "acceptedAnswers": [
+      "もちろん"
+    ],
+    "example": {
+      "japanese": "もちろん参加します。",
+      "reading": "もちろんさんかします。",
+      "korean": "물론 참가합니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0005",
+    "level": "N4",
+    "written": "たいてい",
+    "reading": "たいてい",
+    "meaningKo": "대개, 보통",
+    "partOfSpeech": "부사",
+    "acceptedAnswers": [
+      "たいてい"
+    ],
+    "example": {
+      "japanese": "朝はたいていパンを食べます。",
+      "reading": "あさはたいていぱんをたべます。",
+      "korean": "아침에는 대개 빵을 먹습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0006",
+    "level": "N4",
+    "written": "そろそろ",
+    "reading": "そろそろ",
+    "meaningKo": "슬슬, 이제 곧",
+    "partOfSpeech": "부사",
+    "acceptedAnswers": [
+      "そろそろ"
+    ],
+    "example": {
+      "japanese": "そろそろ帰りましょう。",
+      "reading": "そろそろかえりましょう。",
+      "korean": "슬슬 돌아갑시다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0007",
+    "level": "N4",
+    "written": "アルバイト",
+    "reading": "アルバイト",
+    "meaningKo": "아르바이트",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "アルバイト"
+    ],
+    "example": {
+      "japanese": "週末はカフェでアルバイトをしています。",
+      "reading": "しゅうまつはカフェでアルバイトをしています。",
+      "korean": "주말에는 카페에서 아르바이트를 합니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0008",
+    "level": "N4",
+    "written": "予定",
+    "reading": "よてい",
+    "meaningKo": "예정, 계획",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "予定",
+      "よてい"
+    ],
+    "example": {
+      "japanese": "明日の予定を教えてください。",
+      "reading": "あしたのよていをおしえてください。",
+      "korean": "내일 일정을 알려 주세요."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0009",
+    "level": "N4",
+    "written": "予約",
+    "reading": "よやく",
+    "meaningKo": "예약",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "予約",
+      "よやく"
+    ],
+    "example": {
+      "japanese": "ホテルを二泊予約しました。",
+      "reading": "ホテルをにはくよやくしました。",
+      "korean": "호텔을 2박 예약했습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0010",
+    "level": "N4",
+    "written": "約束",
+    "reading": "やくそく",
+    "meaningKo": "약속",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "約束",
+      "やくそく"
+    ],
+    "example": {
+      "japanese": "友達と会う約束があります。",
+      "reading": "ともだちとあうやくそくがあります。",
+      "korean": "친구를 만나기로 한 약속이 있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0011",
+    "level": "N4",
+    "written": "連絡",
+    "reading": "れんらく",
+    "meaningKo": "연락",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "連絡",
+      "れんらく"
+    ],
+    "example": {
+      "japanese": "着いたら連絡してください。",
+      "reading": "ついたられんらくしてください。",
+      "korean": "도착하면 연락해 주세요."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0012",
+    "level": "N4",
+    "written": "住所",
+    "reading": "じゅうしょ",
+    "meaningKo": "주소",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "住所",
+      "じゅうしょ"
+    ],
+    "example": {
+      "japanese": "この紙に住所を書いてください。",
+      "reading": "このかみにじゅうしょをかいてください。",
+      "korean": "이 종이에 주소를 써 주세요."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0013",
+    "level": "N4",
+    "written": "場所",
+    "reading": "ばしょ",
+    "meaningKo": "장소",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "場所",
+      "ばしょ"
+    ],
+    "example": {
+      "japanese": "待ち合わせの場所は駅の前です。",
+      "reading": "まちあわせのばしょはえきのまえです。",
+      "korean": "만날 장소는 역 앞입니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0014",
+    "level": "N4",
+    "written": "会議",
+    "reading": "かいぎ",
+    "meaningKo": "회의",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "会議",
+      "かいぎ"
+    ],
+    "example": {
+      "japanese": "午後三時から会議があります。",
+      "reading": "ごごさんじからかいぎがあります。",
+      "korean": "오후 3시부터 회의가 있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0015",
+    "level": "N4",
+    "written": "会話",
+    "reading": "かいわ",
+    "meaningKo": "회화, 대화",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "会話",
+      "かいわ"
+    ],
+    "example": {
+      "japanese": "日本語の会話を練習しています。",
+      "reading": "にほんごのかいわをれんしゅうしています。",
+      "korean": "일본어 회화를 연습하고 있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0016",
+    "level": "N4",
+    "written": "食事",
+    "reading": "しょくじ",
+    "meaningKo": "식사",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "食事",
+      "しょくじ"
+    ],
+    "example": {
+      "japanese": "家族と食事をしました。",
+      "reading": "かぞくとしょくじをしました。",
+      "korean": "가족과 식사했습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0017",
+    "level": "N4",
+    "written": "生活",
+    "reading": "せいかつ",
+    "meaningKo": "생활",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "生活",
+      "せいかつ"
+    ],
+    "example": {
+      "japanese": "日本の生活に慣れました。",
+      "reading": "にほんのせいかつになれました。",
+      "korean": "일본 생활에 익숙해졌습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0018",
+    "level": "N4",
+    "written": "文化",
+    "reading": "ぶんか",
+    "meaningKo": "문화",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "文化",
+      "ぶんか"
+    ],
+    "example": {
+      "japanese": "日本の文化に興味があります。",
+      "reading": "にほんのぶんかにきょうみがあります。",
+      "korean": "일본 문화에 관심이 있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0019",
+    "level": "N4",
+    "written": "経験",
+    "reading": "けいけん",
+    "meaningKo": "경험",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "経験",
+      "けいけん"
+    ],
+    "example": {
+      "japanese": "海外で働いた経験があります。",
+      "reading": "かいがいではたらいたけいけんがあります。",
+      "korean": "해외에서 일한 경험이 있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0020",
+    "level": "N4",
+    "written": "意見",
+    "reading": "いけん",
+    "meaningKo": "의견",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "意見",
+      "いけん"
+    ],
+    "example": {
+      "japanese": "みんなの意見を聞きましょう。",
+      "reading": "みんなのいけんをききましょう。",
+      "korean": "모두의 의견을 들어 봅시다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0021",
+    "level": "N4",
+    "written": "理由",
+    "reading": "りゆう",
+    "meaningKo": "이유",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "理由",
+      "りゆう"
+    ],
+    "example": {
+      "japanese": "遅れた理由を説明しました。",
+      "reading": "おくれたりゆうをせつめいしました。",
+      "korean": "늦은 이유를 설명했습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0022",
+    "level": "N4",
+    "written": "必要",
+    "reading": "ひつよう",
+    "meaningKo": "필요함, 필요한",
+    "partOfSpeech": "형용동사",
+    "acceptedAnswers": [
+      "必要",
+      "ひつよう"
+    ],
+    "example": {
+      "japanese": "申し込みには写真が必要です。",
+      "reading": "もうしこみにはしゃしんがひつようです。",
+      "korean": "신청에는 사진이 필요합니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0023",
+    "level": "N4",
+    "written": "大事",
+    "reading": "だいじ",
+    "meaningKo": "중요함, 소중함",
+    "partOfSpeech": "형용동사",
+    "acceptedAnswers": [
+      "大事",
+      "だいじ"
+    ],
+    "example": {
+      "japanese": "健康がいちばん大事です。",
+      "reading": "けんこうがいちばんだいじです。",
+      "korean": "건강이 가장 중요합니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0024",
+    "level": "N4",
+    "written": "安心",
+    "reading": "あんしん",
+    "meaningKo": "안심",
+    "partOfSpeech": "명사·동사",
+    "acceptedAnswers": [
+      "安心",
+      "あんしん"
+    ],
+    "example": {
+      "japanese": "無事だと聞いて安心しました。",
+      "reading": "ぶじだときいてあんしんしました。",
+      "korean": "무사하다고 들어서 안심했습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0025",
+    "level": "N4",
+    "written": "心配",
+    "reading": "しんぱい",
+    "meaningKo": "걱정",
+    "partOfSpeech": "명사·동사",
+    "acceptedAnswers": [
+      "心配",
+      "しんぱい"
+    ],
+    "example": {
+      "japanese": "明日の試験が心配です。",
+      "reading": "あしたのしけんがしんぱいです。",
+      "korean": "내일 시험이 걱정됩니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0026",
+    "level": "N4",
+    "written": "具合",
+    "reading": "ぐあい",
+    "meaningKo": "상태, 몸 상태",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "具合",
+      "ぐあい"
+    ],
+    "example": {
+      "japanese": "今日は少し具合が悪いです。",
+      "reading": "きょうはすこしぐあいがわるいです。",
+      "korean": "오늘은 몸 상태가 조금 안 좋습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0027",
+    "level": "N4",
+    "written": "興味",
+    "reading": "きょうみ",
+    "meaningKo": "관심, 흥미",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "興味",
+      "きょうみ"
+    ],
+    "example": {
+      "japanese": "歴史に興味があります。",
+      "reading": "れきしにきょうみがあります。",
+      "korean": "역사에 관심이 있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0028",
+    "level": "N4",
+    "written": "趣味",
+    "reading": "しゅみ",
+    "meaningKo": "취미",
+    "partOfSpeech": "명사",
+    "acceptedAnswers": [
+      "趣味",
+      "しゅみ"
+    ],
+    "example": {
+      "japanese": "私の趣味は写真です。",
+      "reading": "わたしのしゅみはしゃしんです。",
+      "korean": "제 취미는 사진 촬영입니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0029",
+    "level": "N4",
+    "written": "準備",
+    "reading": "じゅんび",
+    "meaningKo": "준비",
+    "partOfSpeech": "명사·동사",
+    "acceptedAnswers": [
+      "準備",
+      "じゅんび"
+    ],
+    "example": {
+      "japanese": "旅行の準備はできましたか。",
+      "reading": "りょこうのじゅんびはできましたか。",
+      "korean": "여행 준비는 되었습니까?"
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0030",
+    "level": "N4",
+    "written": "運転",
+    "reading": "うんてん",
+    "meaningKo": "운전",
+    "partOfSpeech": "명사·동사",
+    "acceptedAnswers": [
+      "運転",
+      "うんてん"
+    ],
+    "example": {
+      "japanese": "父は毎日車を運転します。",
+      "reading": "ちちはまいにちくるまをうんてんします。",
+      "korean": "아버지는 매일 차를 운전합니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0031",
+    "level": "N4",
+    "written": "乗り換える",
+    "reading": "のりかえる",
+    "meaningKo": "갈아타다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "乗り換える",
+      "のりかえる"
+    ],
+    "example": {
+      "japanese": "新宿で地下鉄に乗り換えます。",
+      "reading": "しんじゅくでちかてつにのりかえます。",
+      "korean": "신주쿠에서 지하철로 갈아탑니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0032",
+    "level": "N4",
+    "written": "間に合う",
+    "reading": "まにあう",
+    "meaningKo": "시간에 맞다, 늦지 않다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "間に合う",
+      "まにあう"
+    ],
+    "example": {
+      "japanese": "急げば電車に間に合います。",
+      "reading": "いそげばでんしゃにまにあいます。",
+      "korean": "서두르면 전철 시간에 맞출 수 있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0033",
+    "level": "N4",
+    "written": "遅れる",
+    "reading": "おくれる",
+    "meaningKo": "늦다, 지각하다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "遅れる",
+      "おくれる"
+    ],
+    "example": {
+      "japanese": "電車が十分遅れています。",
+      "reading": "でんしゃがじゅっぷんおくれています。",
+      "korean": "전철이 10분 늦고 있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0034",
+    "level": "N4",
+    "written": "始める",
+    "reading": "はじめる",
+    "meaningKo": "시작하다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "始める",
+      "はじめる"
+    ],
+    "example": {
+      "japanese": "来月から運動を始めます。",
+      "reading": "らいげつからうんどうをはじめます。",
+      "korean": "다음 달부터 운동을 시작합니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0035",
+    "level": "N4",
+    "written": "続ける",
+    "reading": "つづける",
+    "meaningKo": "계속하다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "続ける",
+      "つづける"
+    ],
+    "example": {
+      "japanese": "毎日勉強を続けています。",
+      "reading": "まいにちべんきょうをつづけています。",
+      "korean": "매일 공부를 계속하고 있습니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0036",
+    "level": "N4",
+    "written": "決める",
+    "reading": "きめる",
+    "meaningKo": "정하다, 결정하다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "決める",
+      "きめる"
+    ],
+    "example": {
+      "japanese": "旅行の日を決めましょう。",
+      "reading": "りょこうのひをきめましょう。",
+      "korean": "여행 날짜를 정합시다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0037",
+    "level": "N4",
+    "written": "考える",
+    "reading": "かんがえる",
+    "meaningKo": "생각하다, 검토하다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "考える",
+      "かんがえる"
+    ],
+    "example": {
+      "japanese": "もう一度よく考えてください。",
+      "reading": "もういちどよくかんがえてください。",
+      "korean": "한 번 더 잘 생각해 주세요."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0038",
+    "level": "N4",
+    "written": "思う",
+    "reading": "おもう",
+    "meaningKo": "생각하다, 느끼다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "思う",
+      "おもう"
+    ],
+    "example": {
+      "japanese": "この方法がいいと思います。",
+      "reading": "このほうほうがいいとおもいます。",
+      "korean": "이 방법이 좋다고 생각합니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0039",
+    "level": "N4",
+    "written": "調べる",
+    "reading": "しらべる",
+    "meaningKo": "조사하다, 찾아보다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "調べる",
+      "しらべる"
+    ],
+    "example": {
+      "japanese": "分からない言葉を辞書で調べます。",
+      "reading": "わからないことばをじしょでしらべます。",
+      "korean": "모르는 말을 사전에서 찾아봅니다."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  },
+  {
+    "id": "j-n4-0040",
+    "level": "N4",
+    "written": "手伝う",
+    "reading": "てつだう",
+    "meaningKo": "돕다",
+    "partOfSpeech": "동사",
+    "acceptedAnswers": [
+      "手伝う",
+      "てつだう"
+    ],
+    "example": {
+      "japanese": "引っ越しを手伝ってください。",
+      "reading": "ひっこしをてつだってください。",
+      "korean": "이사를 도와주세요."
+    },
+    "source": {
+      "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",
+      "upstream": "JMdict/EDICT (reading and gloss), Jonathan Waller JLPT Resources (level)",
+      "example": "Kotoba no Ki original; manually authored and reviewed"
+    }
+  }
+]

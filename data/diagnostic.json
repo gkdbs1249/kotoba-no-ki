@@ -1,0 +1,475 @@
+[
+  {
+    "id": "diag-vocabulary-01",
+    "skill": "vocabulary",
+    "subskill": "daily-greeting",
+    "responseMode": "choice",
+    "prompt": "아침에 만났을 때 하는 인사는 무엇입니까?",
+    "choices": [
+      "おはようございます",
+      "こんばんは",
+      "さようなら",
+      "いただきます"
+    ],
+    "answer": "おはようございます",
+    "explanationKo": "「おはようございます」는 아침에 쓰는 공손한 인사입니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-vocabulary-02",
+    "skill": "vocabulary",
+    "subskill": "demonstratives",
+    "responseMode": "choice",
+    "prompt": "말하는 사람 가까이에 있는 물건을 가리키는 말은 무엇입니까?",
+    "choices": [
+      "これ",
+      "それ",
+      "あれ",
+      "どれ"
+    ],
+    "answer": "これ",
+    "explanationKo": "「これ」는 말하는 사람 가까이에 있는 사물을 가리킵니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-vocabulary-03",
+    "skill": "vocabulary",
+    "subskill": "time-expression",
+    "responseMode": "choice",
+    "prompt": "「昨日（きのう）」의 뜻을 고르세요.",
+    "choices": [
+      "어제",
+      "오늘",
+      "내일",
+      "모레"
+    ],
+    "answer": "어제",
+    "explanationKo": "「昨日（きのう）」는 오늘의 바로 전날인 '어제'입니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-vocabulary-04",
+    "skill": "vocabulary",
+    "subskill": "daily-verb",
+    "responseMode": "choice",
+    "prompt": "「飲む（のむ）」의 뜻을 고르세요.",
+    "choices": [
+      "마시다",
+      "먹다",
+      "읽다",
+      "듣다"
+    ],
+    "answer": "마시다",
+    "explanationKo": "「飲む（のむ）」는 물이나 차 등을 '마시다'라는 뜻입니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-vocabulary-05",
+    "skill": "vocabulary",
+    "subskill": "location",
+    "responseMode": "choice",
+    "prompt": "「駅（えき）」의 뜻을 고르세요.",
+    "choices": [
+      "역",
+      "학교",
+      "회사",
+      "병원"
+    ],
+    "answer": "역",
+    "explanationKo": "「駅（えき）」는 전철이나 기차를 타고 내리는 '역'입니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-vocabulary-06",
+    "skill": "vocabulary",
+    "subskill": "adjective",
+    "responseMode": "choice",
+    "prompt": "「安い（やすい）」의 뜻을 고르세요.",
+    "choices": [
+      "싸다",
+      "비싸다",
+      "크다",
+      "새롭다"
+    ],
+    "answer": "싸다",
+    "explanationKo": "「安い（やすい）」는 가격이 '싸다'라는 뜻입니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-vocabulary-07",
+    "skill": "vocabulary",
+    "subskill": "weather",
+    "responseMode": "choice",
+    "prompt": "「天気（てんき）」의 뜻을 고르세요.",
+    "choices": [
+      "날씨",
+      "전기",
+      "휴일",
+      "시간"
+    ],
+    "answer": "날씨",
+    "explanationKo": "「天気（てんき）」는 맑음·비 같은 날씨 상태를 뜻합니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-vocabulary-08",
+    "skill": "vocabulary",
+    "subskill": "transit-verb",
+    "responseMode": "choice",
+    "prompt": "「乗る（のる）」의 뜻을 고르세요.",
+    "choices": [
+      "타다",
+      "내리다",
+      "걷다",
+      "돌아가다"
+    ],
+    "answer": "타다",
+    "explanationKo": "「乗る（のる）」는 전철·버스·자동차 등을 타다는 뜻입니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-reading-01",
+    "skill": "reading",
+    "subskill": "basic-kanji-reading",
+    "responseMode": "choice",
+    "prompt": "「学校」의 읽기를 고르세요.",
+    "choices": [
+      "がっこう",
+      "がこう",
+      "がくこ",
+      "がっこ"
+    ],
+    "answer": "がっこう",
+    "explanationKo": "「学校」는 「がっこう」라고 읽으며, 작은 「っ」와 장음 「う」에 주의합니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-reading-02",
+    "skill": "reading",
+    "subskill": "basic-kanji-reading",
+    "responseMode": "typing",
+    "prompt": "「友達」의 읽기를 히라가나로 입력하세요.",
+    "answer": "ともだち",
+    "explanationKo": "「友達」의 읽기는 「ともだち」입니다. 한자를 쓰는 문제가 아니라 읽기를 확인하는 문제입니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-reading-03",
+    "skill": "reading",
+    "subskill": "basic-kanji-reading",
+    "responseMode": "choice",
+    "prompt": "「先生」의 읽기를 고르세요.",
+    "choices": [
+      "せんせい",
+      "せんせ",
+      "せいせん",
+      "せんぜい"
+    ],
+    "answer": "せんせい",
+    "explanationKo": "「先生」는 「せんせい」라고 읽으며, 마지막 장음 「い」에 주의합니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-reading-04",
+    "skill": "reading",
+    "subskill": "katakana-loanword",
+    "responseMode": "typing",
+    "prompt": "「ホテル」의 읽기를 히라가나로 입력하세요.",
+    "answer": "ほてる",
+    "explanationKo": "「ホテル」는 「ほてる」라고 읽습니다. 가타카나 ホ・テ・ル의 소리를 확인하는 문제입니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-reading-05",
+    "skill": "reading",
+    "subskill": "katakana-loanword",
+    "responseMode": "choice",
+    "prompt": "「あるばいと」에 해당하는 가타카나 표기를 고르세요.",
+    "choices": [
+      "アルバイト",
+      "アルパイト",
+      "アールバイト",
+      "アルバット"
+    ],
+    "answer": "アルバイト",
+    "explanationKo": "「あるばいと」는 가타카나로 「アルバイト」라고 씁니다. 「バ」의 탁점과 「イ」를 확인하세요.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-particle-01",
+    "skill": "particle",
+    "subskill": "topic-wa",
+    "responseMode": "choice",
+    "prompt": "私（わたし）（　）韓国人（かんこくじん）です。",
+    "choices": [
+      "は",
+      "を",
+      "で",
+      "に"
+    ],
+    "answer": "は",
+    "explanationKo": "문장의 화제인 「私」 뒤에는 화제 조사 「は」를 씁니다. 이때 「は」는 '와'로 읽습니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-particle-02",
+    "skill": "particle",
+    "subskill": "object-o",
+    "responseMode": "choice",
+    "prompt": "水（みず）（　）飲（の）みます。",
+    "choices": [
+      "を",
+      "が",
+      "へ",
+      "と"
+    ],
+    "answer": "を",
+    "explanationKo": "마시는 대상인 「水」는 목적어이므로 목적격 조사 「を」를 씁니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-particle-03",
+    "skill": "particle",
+    "subskill": "destination-ni",
+    "responseMode": "choice",
+    "prompt": "七時（しちじ）に会社（かいしゃ）（　）行（い）きます。",
+    "choices": [
+      "に",
+      "で",
+      "を",
+      "と"
+    ],
+    "answer": "に",
+    "explanationKo": "이동의 도착점인 「会社」 뒤에는 조사 「に」를 쓸 수 있습니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-particle-04",
+    "skill": "particle",
+    "subskill": "location-de",
+    "responseMode": "choice",
+    "prompt": "駅（えき）（　）友達（ともだち）に会（あ）いました。",
+    "choices": [
+      "で",
+      "に",
+      "を",
+      "へ"
+    ],
+    "answer": "で",
+    "explanationKo": "친구를 만난 행위가 일어난 장소이므로 「駅」 뒤에 「で」를 씁니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-particle-05",
+    "skill": "particle",
+    "subskill": "existence-ga",
+    "responseMode": "choice",
+    "prompt": "机（つくえ）の上（うえ）に本（ほん）（　）あります。",
+    "choices": [
+      "が",
+      "を",
+      "で",
+      "へ"
+    ],
+    "answer": "が",
+    "explanationKo": "존재하는 대상 「本」을 나타낼 때 「本があります」처럼 주격 조사 「が」를 씁니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-particle-06",
+    "skill": "particle",
+    "subskill": "companion-to",
+    "responseMode": "choice",
+    "prompt": "友達（ともだち）（　）映画（えいが）を見（み）ました。",
+    "choices": [
+      "と",
+      "から",
+      "まで",
+      "の"
+    ],
+    "answer": "と",
+    "explanationKo": "함께 행동한 상대는 「友達と」처럼 조사 「と」로 나타냅니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-conjugation-01",
+    "skill": "conjugation",
+    "subskill": "polite-present",
+    "responseMode": "choice",
+    "prompt": "「食べる（たべる）」의 정중한 현재·미래형을 고르세요.",
+    "choices": [
+      "食べます（たべます）",
+      "食べました（たべました）",
+      "食べません（たべません）",
+      "食べて（たべて）"
+    ],
+    "answer": "食べます（たべます）",
+    "explanationKo": "「食べる」는 2그룹(一段) 동사이므로 「る」를 빼고 「ます」를 붙여 「食べます」가 됩니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-conjugation-02",
+    "skill": "conjugation",
+    "subskill": "polite-past",
+    "responseMode": "choice",
+    "prompt": "어제 갔다는 뜻이 되도록 「行く（いく）」를 정중한 과거형으로 바꾸세요.",
+    "choices": [
+      "行きました（いきました）",
+      "行きます（いきます）",
+      "行きません（いきません）",
+      "行って（いって）"
+    ],
+    "answer": "行きました（いきました）",
+    "explanationKo": "「行く」의 정중한 과거형은 「行きました（いきました）」입니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-conjugation-03",
+    "skill": "conjugation",
+    "subskill": "polite-negative",
+    "responseMode": "typing",
+    "prompt": "「飲む（のむ）」의 정중한 부정형을 히라가나로 입력하세요.",
+    "answer": "のみません",
+    "explanationKo": "「飲む」는 1그룹 동사로, 정중한 부정형은 「飲みません（のみません）」입니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-conjugation-04",
+    "skill": "conjugation",
+    "subskill": "te-form",
+    "responseMode": "typing",
+    "prompt": "「書く（かく）」의 て형을 히라가나로 입력하세요.",
+    "answer": "かいて",
+    "explanationKo": "「書く」처럼 「く」로 끝나는 1그룹 동사는 보통 「いて」로 바뀌어 「書いて（かいて）」가 됩니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-conjugation-05",
+    "skill": "conjugation",
+    "subskill": "i-adjective-negative",
+    "responseMode": "choice",
+    "prompt": "「高い（たかい）」의 정중한 부정형을 고르세요.",
+    "choices": [
+      "高くないです（たかくないです）",
+      "高いないです（たかいないです）",
+      "高くありませんでした（たかくありませんでした）",
+      "高かったです（たかかったです）"
+    ],
+    "answer": "高くないです（たかくないです）",
+    "explanationKo": "い형용사의 현재 부정은 끝의 「い」를 「くない」로 바꾸어 「高くないです」라고 합니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-conjugation-06",
+    "skill": "conjugation",
+    "subskill": "na-adjective-past",
+    "responseMode": "choice",
+    "prompt": "「静かです（しずかです）」의 정중한 과거형을 고르세요.",
+    "choices": [
+      "静かでした（しずかでした）",
+      "静かかったです（しずかかったです）",
+      "静かですた（しずかですた）",
+      "静かではありません（しずかではありません）"
+    ],
+    "answer": "静かでした（しずかでした）",
+    "explanationKo": "な형용사 「静か」의 정중한 과거형은 「静かでした（しずかでした）」입니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-sentence-01",
+    "skill": "sentence",
+    "subskill": "basic-sov-order",
+    "responseMode": "ordering",
+    "prompt": "'저는 책을 읽습니다'가 되도록 어절을 배열하세요.",
+    "choices": [
+      "私（わたし）は",
+      "本（ほん）を",
+      "読（よ）みます"
+    ],
+    "answer": [
+      "私（わたし）は",
+      "本（ほん）を",
+      "読（よ）みます"
+    ],
+    "explanationKo": "화제·주어 + 목적어 + 동사 순으로 「私は本を読みます」입니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-sentence-02",
+    "skill": "sentence",
+    "subskill": "time-destination-order",
+    "responseMode": "ordering",
+    "prompt": "'내일 학교에 갑니다'가 되도록 어절을 배열하세요.",
+    "choices": [
+      "明日（あした）",
+      "学校（がっこう）へ",
+      "行（い）きます"
+    ],
+    "answer": [
+      "明日（あした）",
+      "学校（がっこう）へ",
+      "行（い）きます"
+    ],
+    "explanationKo": "시간을 앞에 두고 목적지 + 이동 동사 순으로 「明日学校へ行きます」입니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-sentence-03",
+    "skill": "sentence",
+    "subskill": "location-action-order",
+    "responseMode": "ordering",
+    "prompt": "'역에서 물을 샀습니다'가 되도록 어절을 배열하세요.",
+    "choices": [
+      "駅（えき）で",
+      "水（みず）を",
+      "買（か）いました"
+    ],
+    "answer": [
+      "駅（えき）で",
+      "水（みず）を",
+      "買（か）いました"
+    ],
+    "explanationKo": "행위 장소 + 목적어 + 동사 순으로 「駅で水を買いました」입니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-sentence-04",
+    "skill": "sentence",
+    "subskill": "reason-clause",
+    "responseMode": "ordering",
+    "prompt": "'학교에서 일본어를 공부합니다'가 되도록 어절을 배열하세요.",
+    "choices": [
+      "学校（がっこう）で",
+      "日本語（にほんご）を",
+      "勉強（べんきょう）します"
+    ],
+    "answer": [
+      "学校（がっこう）で",
+      "日本語（にほんご）を",
+      "勉強（べんきょう）します"
+    ],
+    "explanationKo": "행위 장소 + 목적어 + 동사 순으로 「学校で日本語を勉強します」입니다.",
+    "level": "N5"
+  },
+  {
+    "id": "diag-sentence-05",
+    "skill": "sentence",
+    "subskill": "quoted-thought",
+    "responseMode": "ordering",
+    "prompt": "'어제 친구와 영화를 봤습니다'가 되도록 어절을 배열하세요.",
+    "choices": [
+      "昨日（きのう）",
+      "友達（ともだち）と",
+      "映画（えいが）を",
+      "見（み）ました"
+    ],
+    "answer": [
+      "昨日（きのう）",
+      "友達（ともだち）と",
+      "映画（えいが）を",
+      "見（み）ました"
+    ],
+    "explanationKo": "시간 + 함께한 사람 + 목적어 + 동사 순으로 「昨日友達と映画を見ました」입니다.",
+    "level": "N5"
+  }
+]

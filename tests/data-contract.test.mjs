@@ -41,9 +41,34 @@ test('placement diagnostic has exactly 30 balanced questions', async () => {
   for (const question of questions) {
     assert.ok(!ids.has(question.id), `duplicate id: ${question.id}`);
     ids.add(question.id);
+    assert.equal(typeof question.prompt, 'string');
     assert.ok(question.prompt.trim());
+    assert.equal(question.level, 'N5');
     assert.ok(['choice', 'typing', 'ordering'].includes(question.responseMode));
     assert.ok(question.answer !== undefined);
     assert.ok(question.explanationKo.trim());
+  }
+  const katakanaReading = questions.find(({ id }) => id === 'diag-reading-04');
+  assert.equal(katakanaReading.responseMode, 'typing');
+  assert.equal(katakanaReading.answer, 'ほてる');
+  const katakanaWriting = questions.find(({ id }) => id === 'diag-reading-05');
+  assert.equal(katakanaWriting.answer, 'アルバイト');
+  assert.ok(katakanaWriting.choices.every((choice) => /[ァ-ヶー]/u.test(choice)));
+});
+
+test('katakana supplement covers long vowels, small tsu, contracted sounds, and lookalikes', async () => {
+  const questions = await loadJson('../data/katakana.json');
+  assert.ok(questions.length >= 12);
+  const subskills = new Set(questions.map((question) => question.subskill));
+  for (const required of ['long-vowel', 'small-tsu', 'contracted-sound', 'lookalike-shi-tsu', 'lookalike-so-n']) {
+    assert.ok(subskills.has(required), `missing katakana subskill: ${required}`);
+  }
+  assert.ok(questions.some((question) => question.responseMode === 'typing'));
+  for (const question of questions) {
+    assert.equal(question.skill, 'reading');
+    assert.ok(question.prompt?.trim());
+    assert.ok(!question.prompt.includes('뜻'), `${question.id} must test reading rather than meaning recall`);
+    assert.ok(question.answer !== undefined);
+    assert.ok(question.explanationKo?.trim());
   }
 });

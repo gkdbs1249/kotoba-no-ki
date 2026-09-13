@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import {
   accountEmail,
+  anonymousStorageKey,
   createCloudSync,
   createFirebaseAdapters,
   mergeProgress,
@@ -71,6 +72,51 @@ test('current days/reviews schema merges by date with union and monotonic comple
   assert.deepEqual(merged.reviews.a.completedIntervals, [1, 3, 7]);
 });
 
+test('malformed root and nested collection shapes collapse to Firestore-safe maps', () => {
+  assert.deepEqual(mergeProgress([null], {}), { resetAt: 0, nextIndex: 0 });
+  const merged = mergeProgress({
+    bogus: true,
+    version: 1.5,
+    schemaVersion: '2',
+    resetAt: 1.5,
+    nextIndex: -2,
+    studyStartDate: 42,
+    settings: null,
+    carryWordIds: [['x']],
+    days: { bad: 42, '2026-01-01': [['x']] },
+    reviews: { a: 42, b: [['x']] },
+    cohorts: [['x']],
+  }, {});
+  assert.equal('bogus' in merged, false);
+  assert.equal(Number.isInteger(merged.version), true);
+  assert.equal(Number.isInteger(merged.schemaVersion), true);
+  assert.equal(Number.isInteger(merged.resetAt), true);
+  assert.equal(merged.nextIndex, 0);
+  assert.equal('studyStartDate' in merged, false);
+  assert.equal('settings' in merged, false);
+  assert.deepEqual(merged.carryWordIds, []);
+  assert.deepEqual(merged.days, {});
+  assert.deepEqual(merged.reviews, {});
+  assert.deepEqual(merged.cohorts, []);
+
+  const nested = mergeProgress({
+    studyStartDate: '2026-02-30',
+    cohorts: [{
+      id: 'legacy', learnedDate: '2026-02-30', extra: [['nested']],
+      attempts: [{ id: 'a', extra: [['nested']], results: [{ wordId: 'w', extra: [['nested']] }] }],
+    }],
+    days: { '2026-01-01': { extra: [['nested']], wordIds: ['w'] } },
+    reviews: { w: { learnedDate: '2026-01-01', extra: [['nested']], completedIntervals: [1] } },
+  }, {});
+  assert.equal('studyStartDate' in nested, false);
+  assert.equal('learnedDate' in nested.cohorts[0], false);
+  assert.deepEqual(nested.cohorts[0].extra, []);
+  assert.deepEqual(nested.cohorts[0].attempts[0].extra, []);
+  assert.deepEqual(nested.cohorts[0].attempts[0].results[0].extra, []);
+  assert.deepEqual(nested.days['2026-01-01'].extra, []);
+  assert.deepEqual(nested.reviews.w.extra, []);
+});
+
 test('merge output omits absent optional fields instead of sending undefined to Firestore', () => {
   const merged = mergeProgress({ version: 1, days: {}, reviews: {} }, {});
   assert.equal(Object.hasOwn(merged, 'settings'), false);
@@ -107,6 +153,165 @@ test('same attempt merged from two devices is commutative and preserves correct 
   const rightLeft = mergeProgress(right, left);
   assert.deepEqual(leftRight, rightLeft);
   assert.equal(leftRight.days['2026-09-12'].recallAttempts[0].results[0].correct, true);
+});
+
+test('malformed fields on the same attempt are sanitized before deterministic comparison', () => {
+  const attempt = (extra) => ({
+    id: 'same-attempt',
+    completed: false,
+    completedAt: '',
+    wordIds: ['w'],
+    results: [],
+    extra,
+  });
+  const left = { days: { '2026-09-12': { recallAttempts: [attempt([])] } } };
+  const right = { days: { '2026-09-12': { recallAttempts: [attempt([[{}], true])] } } };
+
+  const forward = mergeProgress(left, right);
+  const reverse = mergeProgress(right, left);
+
+  assert.deepEqual(forward, reverse);
+  assert.deepEqual(forward.days['2026-09-12'].recallAttempts[0].extra, [true]);
+});
+
+test('malformed attempt identifiers are discarded without breaking commutativity', () => {
+  const attempt = (marker) => ({ id: { x: 1 }, marker });
+  const left = { days: { '2026-09-12': { recallAttempts: [attempt('A')] } } };
+  const right = { days: { '2026-09-12': { recallAttempts: [attempt('B')] } } };
+
+  const forward = mergeProgress(left, right);
+  const reverse = mergeProgress(right, left);
+
+  assert.deepEqual(forward, reverse);
+  assert.deepEqual(forward.days['2026-09-12'].recallAttempts, []);
+});
+
+test('duplicate same-ID attempts merge associatively after sanitization', () => {
+  const malformed = {
+    id: 'b',
+    wordIds: [['bad']],
+    results: [{ wordId: 'w', correct: false, extra: [[1]] }],
+  };
+  const completed = { id: 'b', completed: true, extra: [true], wordIds: ['x'], results: [] };
+  const left = { days: { '2026-09-12': { recallAttempts: [malformed, malformed] } } };
+  const right = { days: { '2026-09-12': { recallAttempts: [completed] } } };
+
+  const forward = mergeProgress(left, right);
+  const reverse = mergeProgress(right, left);
+
+  assert.deepEqual(forward, reverse);
+  assert.deepEqual(forward.days['2026-09-12'].recallAttempts[0].extra, [true]);
+});
+
+test('invalid-date reviews cannot influence valid review metadata across merge grouping', () => {
+  const valid = { reviews: { w: { learnedDate: '2026-01-02', completedIntervals: [1], extra: 'valid' } } };
+  const invalidA = { reviews: { w: { learnedDate: '2026-02-30', completedIntervals: [3], extra: 16 } } };
+  const invalidB = { reviews: { w: { learnedDate: 'bad', completedIntervals: [7], extra: 'x' } } };
+
+  const leftGrouped = mergeProgress(mergeProgress(valid, invalidA), invalidB);
+  const rightGrouped = mergeProgress(valid, mergeProgress(invalidA, invalidB));
+
+  assert.deepEqual(leftGrouped, rightGrouped);
+  assert.deepEqual(leftGrouped.reviews.w, { learnedDate: '2026-01-02', completedIntervals: [1], extra: 'valid' });
+});
+
+test('all progress fields are sanitized before comparisons across reset grouping', () => {
+  const day = (extra) => ({ resetAt: 2, days: { '2026-01-02': { extra } } });
+  const a = day([[{}], true]);
+  const older = { resetAt: 0 };
+  const c = day([]);
+
+  const leftGrouped = mergeProgress(mergeProgress(a, older), c);
+  const rightGrouped = mergeProgress(a, mergeProgress(older, c));
+
+  assert.deepEqual(leftGrouped, rightGrouped);
+  assert.deepEqual(leftGrouped.days['2026-01-02'].extra, [true]);
+});
+
+test('malformed attempt timestamps cannot influence merge direction', () => {
+  const a = { id: 'x', completed: '2026-01-02T00:00:00Z', startedAt: [[]], completedAt: { x: 1 }, finishedAt: { x: 1 }, results: [{ wordId: 'w', correct: false }] };
+  const b = { id: 'x', completed: '', startedAt: { x: 1 }, completedAt: {}, finishedAt: 0, results: [{ wordId: 'w', correct: true }] };
+  const wrap = (attempt) => ({ days: { '2026-01-01': { recallAttempts: [attempt] } } });
+
+  const forward = mergeProgress(wrap(a), wrap(b));
+  const reverse = mergeProgress(wrap(b), wrap(a));
+
+  assert.deepEqual(forward, reverse);
+  const merged = forward.days['2026-01-01'].recallAttempts[0];
+  assert.equal(merged.startedAt, undefined);
+  assert.equal(merged.completedAt, undefined);
+  assert.equal(merged.finishedAt, undefined);
+  assert.equal(merged.results[0].correct, true);
+});
+
+test('attempt alias chains keep a stable canonical key across repeated merges', () => {
+  const source = {
+    days: {
+      '2026-01-01': {
+        recallAttempts: [
+          { id: null, attemptId: 'a' },
+          { id: 'a', attemptId: 'b' },
+          { id: 'b', attemptId: 'b' },
+        ],
+      },
+    },
+  };
+  const empty = {};
+
+  const leftGrouped = mergeProgress(mergeProgress(source, empty), empty);
+  const rightGrouped = mergeProgress(source, mergeProgress(empty, empty));
+
+  assert.deepEqual(leftGrouped, rightGrouped);
+  assert.deepEqual(leftGrouped.days['2026-01-01'].recallAttempts.map(({ id }) => id), ['a', 'b']);
+  assert.equal(leftGrouped.days['2026-01-01'].recallAttempts.some(({ attemptId }) => attemptId !== undefined), false);
+});
+
+test('singleton attempts receive the same timestamp canonicalization as merged attempts', () => {
+  const source = {
+    days: {
+      '2026-01-01': {
+        recallAttempts: [{ id: 'same', startedAt: { bad: 1 }, completedAt: [], finishedAt: 0 }],
+      },
+    },
+  };
+
+  const merged = mergeProgress(source, {});
+  const attempt = merged.days['2026-01-01'].recallAttempts[0];
+  assert.equal(attempt.startedAt, undefined);
+  assert.equal(attempt.completedAt, undefined);
+  assert.equal(attempt.finishedAt, undefined);
+});
+
+test('legacy cohort merge resolves schema, metadata, and partial keys deterministically', () => {
+  const left = {
+    schemaVersion: 1,
+    cohorts: [{ id: 'same', level: 'N4', wordIds: ['a'] }],
+    days: { '2026-09-12': { date: 'wrong-left', note: 'z', wordIds: ['a'] } },
+    reviews: { a: { learnedDate: '2026-09-12', strength: 'z' } },
+  };
+  const right = {
+    schemaVersion: 2,
+    cohorts: [{ id: 'same', learnedDate: '2026-09-12', level: 'N5', wordIds: ['b'] }],
+    days: { '2026-09-12': { date: 'wrong-right', note: 'a', wordIds: ['b'] } },
+    reviews: { a: { learnedDate: '2026-09-12', strength: 'a' } },
+  };
+  const forward = mergeProgress(left, right);
+  const reverse = mergeProgress(right, left);
+  assert.deepEqual(forward, reverse);
+  assert.equal(forward.schemaVersion, 2);
+  assert.equal(forward.cohorts.length, 1);
+  assert.equal(forward.cohorts[0].learnedDate, '2026-09-12');
+  assert.deepEqual(forward.cohorts[0].wordIds, ['a', 'b']);
+  assert.equal(forward.days['2026-09-12'].date, '2026-09-12');
+});
+
+test('legacy cohort merge chooses a deterministic ID regardless of device order', () => {
+  const left = { cohorts: [{ id: 'z-device', learnedDate: '2026-09-12', wordIds: ['b'] }] };
+  const right = { cohorts: [{ id: 'a-device', learnedDate: '2026-09-12', wordIds: ['a'] }] };
+  const leftRight = mergeProgress(left, right);
+  const rightLeft = mergeProgress(right, left);
+  assert.deepEqual(leftRight, rightLeft);
+  assert.equal(leftRight.cohorts[0].id, 'a-device');
 });
 
 test('whole progress merge is commutative for word order and diagnostic conflicts', () => {
@@ -151,6 +356,36 @@ function fakeAuth() {
     signOut: async () => {},
   };
 }
+
+test('sign-up credential selects its UID before a delayed auth observer so claim reaches cloud', async () => {
+  let observer;
+  const auth = {
+    onAuthStateChanged(callback) { observer = callback; return () => {}; },
+    async createUser() { return { user: { uid: 'new-user' } }; },
+    async signIn() { return { user: { uid: 'new-user' } }; },
+    async signOut() {},
+  };
+  let writtenUid;
+  let remote = {};
+  const cloud = {
+    async runTransaction(uid, update) { writtenUid = uid; remote = update(remote); return remote; },
+    subscribe: () => () => {},
+  };
+  const storage = memoryStorage({ [anonymousStorageKey]: JSON.stringify({ nextIndex: 7, days: {} }) });
+  const sync = createCloudSync({ auth, cloud, storage, applyState: () => {} });
+  const starting = sync.start();
+  observer(null);
+  await starting;
+
+  await sync.signUp('mother1', '123456');
+  await sync.save({ nextIndex: 7, days: {} });
+  await sync.whenIdle();
+
+  assert.equal(sync.currentUid, 'new-user');
+  assert.equal(writtenUid, 'new-user');
+  assert.equal(remote.nextIndex, 7);
+  sync.stop();
+});
 
 test('startup waits for the first auth callback but not a stalled Firestore merge', async () => {
   const auth = fakeAuth();
@@ -303,7 +538,7 @@ test('PWA, Firebase rules, config example, and Pages workflow keep the static ap
   assert.equal(manifest.name, 'ことばの木 / Kotoba no Ki');
   assert.equal(manifest.start_url, './');
   assert.equal(manifest.display, 'standalone');
-  assert.match(worker, /kotoba-no-ki-v2/);
+  assert.match(worker, /kotoba-no-ki-v3/);
   for (const asset of ['./index.html', './app.mjs', './src/core.mjs', './src/cloud-sync.mjs', './styles.css', './data/words.json', './data/katakana.json']) {
     assert.ok(worker.includes(asset), `service worker must cache ${asset}`);
   }
@@ -312,6 +547,7 @@ test('PWA, Firebase rules, config example, and Pages workflow keep the static ap
   assert.doesNotMatch(worker, /firebase-config\.mjs['"]/i, 'optional config must not make precache installation fail');
   assert.match(rules, /request\.auth\.uid == userId/);
   assert.match(rules, /progress\/\{documentId\}/);
+  assert.doesNotMatch(rules, /resetAt[^\n]+timestamp/);
   assert.match(config, /REPLACE_WITH_/);
   assert.doesNotMatch(config, /AIza[0-9A-Za-z_-]{20,}/);
   assert.match(workflow, /actions\/deploy-pages@v4/);

@@ -2,14 +2,61 @@ const ACCOUNT_ID_PATTERN = /^[a-z0-9_]{4,20}$/;
 const PIN_PATTERN = /^\d{6}$/;
 const DEFAULT_EMAIL_DOMAIN = 'accounts.kotoba-no-ki.invalid';
 const STORAGE_PREFIX = 'kotoba-no-ki:progress';
+const ROOT_PROGRESS_KEYS = new Set([
+  'version', 'schemaVersion', 'resetAt', 'updatedAt', 'studyStartDate',
+  'diagnostic', 'days', 'reviews', 'nextIndex', 'cohorts', 'settings', 'carryWordIds',
+]);
 
 const clone = (value) => value === undefined ? undefined : JSON.parse(JSON.stringify(value));
 const finiteNumber = (value, fallback = 0) => Number.isFinite(value) ? value : fallback;
+const nonNegativeInteger = (value, fallback = 0) => Number.isInteger(value) && value >= 0 ? value : fallback;
 const unique = (values = []) => [...new Set(Array.isArray(values) ? values : [])];
+const asRecord = (value) => value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+const isRecord = (value) => Boolean(value && typeof value === 'object' && !Array.isArray(value));
+const isValidDateString = (value) => {
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const parsed = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
+};
+
+function sanitizeFirestoreValue(value) {
+  if (value === null || typeof value === 'string' || typeof value === 'boolean') return value;
+  if (typeof value === 'number') return Number.isFinite(value) ? value : undefined;
+  if (Array.isArray(value)) {
+    return value.flatMap((item) => {
+      if (Array.isArray(item)) return [];
+      const sanitized = sanitizeFirestoreValue(item);
+      return sanitized === undefined ? [] : [sanitized];
+    });
+  }
+  if (isRecord(value)) {
+    return Object.fromEntries(Object.entries(value).flatMap(([key, item]) => {
+      const sanitized = sanitizeFirestoreValue(item);
+      return sanitized === undefined ? [] : [[key, sanitized]];
+    }));
+  }
+  return undefined;
+}
 const stableStringify = (value) => JSON.stringify(value, (_, item) => {
   if (!item || typeof item !== 'object' || Array.isArray(item)) return item;
   return Object.fromEntries(Object.entries(item).sort(([a], [b]) => a.localeCompare(b)));
 });
+
+function mergeFieldsDeterministically(left = {}, right = {}) {
+  const result = {};
+  const keys = [...new Set([...Object.keys(left || {}), ...Object.keys(right || {})])].sort();
+  for (const key of keys) {
+    const hasLeft = Object.prototype.hasOwnProperty.call(left, key);
+    const hasRight = Object.prototype.hasOwnProperty.call(right, key);
+    let selected;
+    if (!hasLeft) selected = right[key];
+    else if (!hasRight) selected = left[key];
+    else selected = stableStringify(left[key]) >= stableStringify(right[key]) ? left[key] : right[key];
+    const sanitized = sanitizeFirestoreValue(selected);
+    if (sanitized !== undefined) result[key] = sanitized;
+  }
+  return result;
+}
 
 export function normalizeAccountId(value) {
   const normalized = String(value ?? '').trim().toLowerCase();
@@ -60,34 +107,49 @@ function chooseDiagnostic(left, right) {
   return clone(stableStringify(left) >= stableStringify(right) ? left : right);
 }
 
-function cohortKey(cohort, index) {
-  return cohort?.learnedDate || cohort?.id || `unknown:${index}`;
+function attemptKey(attempt) {
+  if (typeof attempt?.id === 'string' && attempt.id) return attempt.id;
+  if (typeof attempt?.attemptId === 'string' && attempt.attemptId) return attempt.attemptId;
+  return '';
 }
 
-function mergeAttempt(left, right) {
-  if (!left) return clone(right);
-  if (!right) return clone(left);
-  const leftTime = String(left.completedAt || left.finishedAt || left.updatedAt || '');
-  const rightTime = String(right.completedAt || right.finishedAt || right.updatedAt || '');
-  const preferred = leftTime === rightTime
-    ? (stableStringify(left) >= stableStringify(right) ? left : right)
-    : (leftTime > rightTime ? left : right);
-  const result = { ...clone(preferred), completed: Boolean(left.completed || right.completed) };
-  const starts = [left.startedAt, right.startedAt].filter(Boolean).sort();
-  const finishes = [left.completedAt || left.finishedAt, right.completedAt || right.finishedAt].filter(Boolean).sort();
+function mergeAttempt(left, right, key = '') {
+  left = asRecord(sanitizeFirestoreValue(left));
+  right = asRecord(sanitizeFirestoreValue(right));
+  const canonicalKey = key || attemptKey(left) || attemptKey(right);
+  if (!canonicalKey) return undefined;
+  const result = mergeFieldsDeterministically(left, right);
+  result.id = canonicalKey;
+  delete result.attemptId;
+  result.completed = Boolean(left.completed || right.completed);
+  const isTimestamp = (value) => typeof value === 'string' && value.length > 0;
+  const starts = [left.startedAt, right.startedAt].filter(isTimestamp).sort();
+  const finishes = [left.completedAt, left.finishedAt, right.completedAt, right.finishedAt]
+    .filter(isTimestamp)
+    .sort();
+  delete result.startedAt;
+  delete result.completedAt;
+  delete result.finishedAt;
   if (starts.length) result.startedAt = starts[0];
   if (finishes.length) result.completedAt = finishes.at(-1);
-  result.wordIds = unique([...(left.wordIds || []), ...(right.wordIds || [])]).sort();
+  result.wordIds = unique([
+    ...(Array.isArray(left.wordIds) ? left.wordIds : []),
+    ...(Array.isArray(right.wordIds) ? right.wordIds : []),
+  ]).filter((value) => typeof value === 'string').sort();
   const byWord = new Map();
-  for (const entry of [...(left.results || []), ...(right.results || [])]) {
-    if (!entry?.wordId) continue;
+  const hadResults = left.results !== undefined || right.results !== undefined;
+  for (const entry of [...(Array.isArray(left.results) ? left.results : []), ...(Array.isArray(right.results) ? right.results : [])]) {
+    if (!isRecord(entry) || typeof entry.wordId !== 'string' || !entry.wordId) continue;
     const previous = byWord.get(entry.wordId);
     if (!previous || Boolean(entry.correct) > Boolean(previous.correct)
       || (Boolean(entry.correct) === Boolean(previous.correct) && stableStringify(entry) > stableStringify(previous))) {
-      byWord.set(entry.wordId, clone(entry));
+      byWord.set(entry.wordId, sanitizeFirestoreValue(entry));
     }
   }
-  if (byWord.size) {
+  delete result.results;
+  delete result.totalCount;
+  delete result.correctCount;
+  if (hadResults) {
     result.results = [...byWord.values()].sort((a, b) => String(a.wordId).localeCompare(String(b.wordId)));
     result.totalCount = result.results.length;
     result.correctCount = result.results.filter((entry) => entry.correct).length;
@@ -98,21 +160,38 @@ function mergeAttempt(left, right) {
 function mergeAttempts(left = [], right = []) {
   const attempts = new Map();
   for (const attempt of [...(Array.isArray(left) ? left : []), ...(Array.isArray(right) ? right : [])]) {
-    if (!attempt || typeof attempt !== 'object') continue;
-    const key = attempt.id || attempt.attemptId;
+    if (!isRecord(attempt)) continue;
+    const sanitized = asRecord(sanitizeFirestoreValue(attempt));
+    const key = attemptKey(sanitized);
     if (!key) continue;
-    attempts.set(key, mergeAttempt(attempts.get(key), attempt));
+    attempts.set(key, mergeAttempt(attempts.get(key), sanitized, key));
   }
-  return [...attempts.values()].sort((a, b) => String(a.id || a.attemptId).localeCompare(String(b.id || b.attemptId)));
+  return [...attempts.values()].sort((a, b) => a.id.localeCompare(b.id));
 }
 
+const cohortIds = (cohort) => unique([cohort?.id, ...(Array.isArray(cohort?.legacyIds) ? cohort.legacyIds : [])])
+  .filter((value) => typeof value === 'string' && value).sort();
+const cohortDates = (cohort) => unique([cohort?.learnedDate, ...(Array.isArray(cohort?.legacyDates) ? cohort.legacyDates : [])])
+  .filter(isValidDateString).sort();
+
 function mergeCohort(left, right) {
-  if (!left) return clone(right);
-  if (!right) return clone(left);
-  const result = { ...clone(left), ...clone(right) };
-  result.id = left.id || right.id;
-  result.learnedDate = left.learnedDate || right.learnedDate;
-  result.wordIds = unique([...(left.wordIds || []), ...(right.wordIds || [])]).sort();
+  left = asRecord(left);
+  right = asRecord(right);
+  const result = mergeFieldsDeterministically(left, right);
+  const ids = unique([...cohortIds(left), ...cohortIds(right)]).sort();
+  const learnedDates = unique([...cohortDates(left), ...cohortDates(right)]).sort();
+  if (ids.length) result.id = ids[0];
+  else delete result.id;
+  if (ids.length > 1) result.legacyIds = ids;
+  else delete result.legacyIds;
+  if (learnedDates.length) result.learnedDate = learnedDates[0];
+  else delete result.learnedDate;
+  if (learnedDates.length > 1) result.legacyDates = learnedDates;
+  else delete result.legacyDates;
+  result.wordIds = unique([
+    ...(Array.isArray(left.wordIds) ? left.wordIds : []),
+    ...(Array.isArray(right.wordIds) ? right.wordIds : []),
+  ]).filter((value) => typeof value === 'string').sort();
   if (left.attempts || right.attempts) result.attempts = mergeAttempts(left.attempts, right.attempts);
   for (const field of ['completed', 'mastered', 'learningCompleted', 'reviewCompleted']) {
     if (field in left || field in right) result[field] = Boolean(left[field] || right[field]);
@@ -124,27 +203,45 @@ function mergeCohort(left, right) {
 }
 
 function mergeCohorts(left = [], right = []) {
-  const byKey = new Map();
-  [...(Array.isArray(left) ? left : []), ...(Array.isArray(right) ? right : [])].forEach((cohort, index) => {
-    if (!cohort || typeof cohort !== 'object') return;
-    const key = cohortKey(cohort, index);
-    byKey.set(key, mergeCohort(byKey.get(key), cohort));
-  });
-  return [...byKey.values()].sort((a, b) => String(a.learnedDate || a.id).localeCompare(String(b.learnedDate || b.id)));
+  const merged = [];
+  const source = [...(Array.isArray(left) ? left : []), ...(Array.isArray(right) ? right : [])]
+    .filter(isRecord)
+    .sort((a, b) => stableStringify(a).localeCompare(stableStringify(b)));
+  const matches = (a, b) => Boolean(
+    cohortIds(a).some((id) => cohortIds(b).includes(id))
+    || cohortDates(a).some((date) => cohortDates(b).includes(date))
+    || (!a.id && !b.id && !a.learnedDate && !b.learnedDate && stableStringify(a) === stableStringify(b))
+  );
+  for (const cohort of source) {
+    let candidate = mergeCohort(cohort, {});
+    let matchIndex = merged.findIndex((existing) => matches(existing, candidate));
+    while (matchIndex >= 0) {
+      candidate = mergeCohort(merged.splice(matchIndex, 1)[0], candidate);
+      matchIndex = merged.findIndex((existing) => matches(existing, candidate));
+    }
+    merged.push(candidate);
+  }
+  return merged.sort((a, b) => stableStringify(a).localeCompare(stableStringify(b)));
 }
 
 function mergeDays(left = {}, right = {}) {
+  left = asRecord(left);
+  right = asRecord(right);
   const result = {};
-  for (const date of [...new Set([...Object.keys(left || {}), ...Object.keys(right || {})])].sort()) {
-    const a = left?.[date];
-    const b = right?.[date];
-    if (!a) { result[date] = clone(b); continue; }
-    if (!b) { result[date] = clone(a); continue; }
+  for (const date of [...new Set([...Object.keys(left), ...Object.keys(right)])].sort()) {
+    if (!isValidDateString(date)) continue;
+    const leftDay = left[date];
+    const rightDay = right[date];
+    if (!isRecord(leftDay) && !isRecord(rightDay)) continue;
+    const a = asRecord(leftDay);
+    const b = asRecord(rightDay);
     result[date] = {
-      ...clone(a),
-      ...clone(b),
-      date: a.date || b.date || date,
-      wordIds: unique([...(a.wordIds || []), ...(b.wordIds || [])]).sort(),
+      ...mergeFieldsDeterministically(a, b),
+      date,
+      wordIds: unique([
+        ...(Array.isArray(a.wordIds) ? a.wordIds : []),
+        ...(Array.isArray(b.wordIds) ? b.wordIds : []),
+      ]).filter((value) => typeof value === 'string').sort(),
       learned: Boolean(a.learned || b.learned),
       coverageComplete: Boolean(a.coverageComplete || b.coverageComplete),
       recallAttempts: mergeAttempts(a.recallAttempts, b.recallAttempts),
@@ -154,51 +251,72 @@ function mergeDays(left = {}, right = {}) {
 }
 
 function mergeReviews(left = {}, right = {}) {
+  left = asRecord(left);
+  right = asRecord(right);
   const result = {};
-  for (const wordId of [...new Set([...Object.keys(left || {}), ...Object.keys(right || {})])].sort()) {
-    const a = left?.[wordId];
-    const b = right?.[wordId];
-    if (!a) { result[wordId] = clone(b); continue; }
-    if (!b) { result[wordId] = clone(a); continue; }
+  for (const wordId of [...new Set([...Object.keys(left), ...Object.keys(right)])].sort()) {
+    const leftReview = left[wordId];
+    const rightReview = right[wordId];
+    if (!isRecord(leftReview) && !isRecord(rightReview)) continue;
+    const a = isRecord(leftReview) && isValidDateString(leftReview.learnedDate) ? leftReview : {};
+    const b = isRecord(rightReview) && isValidDateString(rightReview.learnedDate) ? rightReview : {};
+    const learnedDates = [a.learnedDate, b.learnedDate].filter(isValidDateString).sort();
+    if (!learnedDates.length) continue;
     result[wordId] = {
-      ...clone(a),
-      ...clone(b),
-      learnedDate: [a.learnedDate, b.learnedDate].filter(Boolean).sort()[0],
-      completedIntervals: unique([...(a.completedIntervals || []), ...(b.completedIntervals || [])]).sort((x, y) => x - y),
+      ...mergeFieldsDeterministically(a, b),
+      learnedDate: learnedDates[0],
+      completedIntervals: unique([
+        ...(Array.isArray(a.completedIntervals) ? a.completedIntervals : []),
+        ...(Array.isArray(b.completedIntervals) ? b.completedIntervals : []),
+      ]).filter(Number.isFinite).sort((x, y) => x - y),
     };
   }
   return result;
 }
 
 export function mergeProgress(left = {}, right = {}) {
-  const a = left && typeof left === 'object' ? left : {};
-  const b = right && typeof right === 'object' ? right : {};
-  const aReset = finiteNumber(a.resetAt, 0);
-  const bReset = finiteNumber(b.resetAt, 0);
-  if (aReset !== bReset) return clone(aReset > bReset ? a : b);
+  let a = asRecord(sanitizeFirestoreValue(left));
+  let b = asRecord(sanitizeFirestoreValue(right));
+  const aReset = nonNegativeInteger(a.resetAt, 0);
+  const bReset = nonNegativeInteger(b.resetAt, 0);
+  if (aReset < bReset) a = {};
+  if (bReset < aReset) b = {};
 
-  const result = { ...clone(a), ...clone(b), resetAt: Math.max(aReset, bReset) };
-  result.nextIndex = Math.max(finiteNumber(a.nextIndex), finiteNumber(b.nextIndex));
-  if (a.version !== undefined || b.version !== undefined) {
-    result.version = Math.max(finiteNumber(a.version), finiteNumber(b.version));
+  const mergedFields = mergeFieldsDeterministically(a, b);
+  const result = Object.fromEntries(Object.entries(mergedFields).filter(([key]) => ROOT_PROGRESS_KEYS.has(key)));
+  result.resetAt = Math.max(aReset, bReset);
+  result.nextIndex = Math.max(nonNegativeInteger(a.nextIndex), nonNegativeInteger(b.nextIndex));
+  if (a.schemaVersion !== undefined || b.schemaVersion !== undefined) {
+    result.schemaVersion = Math.max(nonNegativeInteger(a.schemaVersion), nonNegativeInteger(b.schemaVersion));
   }
-  const startDates = [a.studyStartDate, b.studyStartDate].filter(Boolean).sort();
+  if (a.version !== undefined || b.version !== undefined) {
+    result.version = Math.max(nonNegativeInteger(a.version), nonNegativeInteger(b.version));
+  }
+  const startDates = [a.studyStartDate, b.studyStartDate].filter(isValidDateString).sort();
   if (startDates.length) result.studyStartDate = startDates[0];
-  if (a.cohorts || b.cohorts) result.cohorts = mergeCohorts(a.cohorts, b.cohorts);
-  if (a.days || b.days) result.days = mergeDays(a.days, b.days);
-  if (a.reviews || b.reviews) result.reviews = mergeReviews(a.reviews, b.reviews);
-  if (a.diagnostic !== undefined || b.diagnostic !== undefined) result.diagnostic = chooseDiagnostic(a.diagnostic, b.diagnostic);
-  if (a.settings !== undefined || b.settings !== undefined) {
-    result.settings = chooseRevisioned(a.settings, b.settings);
+  else delete result.studyStartDate;
+  if (a.cohorts !== undefined || b.cohorts !== undefined) result.cohorts = mergeCohorts(a.cohorts, b.cohorts);
+  if (a.days !== undefined || b.days !== undefined) result.days = mergeDays(a.days, b.days);
+  if (a.reviews !== undefined || b.reviews !== undefined) result.reviews = mergeReviews(a.reviews, b.reviews);
+  const diagnostics = [a.diagnostic, b.diagnostic].filter((value) => value && typeof value === 'object' && !Array.isArray(value));
+  if (diagnostics.length) result.diagnostic = chooseDiagnostic(diagnostics[0], diagnostics[1]);
+  else delete result.diagnostic;
+  const settings = [a.settings, b.settings].filter((value) => value && typeof value === 'object' && !Array.isArray(value));
+  if (settings.length) {
+    result.settings = chooseRevisioned(settings[0], settings[1]);
   } else {
     delete result.settings;
   }
-  if (a.carryWordIds || b.carryWordIds) {
-    result.carryWordIds = unique([...(a.carryWordIds || []), ...(b.carryWordIds || [])]).sort();
+  if (a.carryWordIds !== undefined || b.carryWordIds !== undefined) {
+    result.carryWordIds = unique([
+      ...(Array.isArray(a.carryWordIds) ? a.carryWordIds : []),
+      ...(Array.isArray(b.carryWordIds) ? b.carryWordIds : []),
+    ]).filter((value) => typeof value === 'string').sort();
   }
   const timestamps = [a.updatedAt, b.updatedAt].filter((value) => typeof value === 'string');
   if (timestamps.length) result.updatedAt = timestamps.sort().at(-1);
-  return result;
+  else delete result.updatedAt;
+  return sanitizeFirestoreValue(result);
 }
 
 function emptyProgress() {
@@ -433,10 +551,16 @@ export function createCloudSync({
       return true;
     },
     async signUp(accountId, pin) {
-      return auth.createUser(accountEmail(accountId, emailDomain), validatePin(pin));
+      const credential = await auth.createUser(accountEmail(accountId, emailDomain), validatePin(pin));
+      const credentialUser = credential?.user?.uid ? credential.user : (credential?.uid ? credential : null);
+      if (credentialUser) selectAccount(credentialUser);
+      return credential;
     },
     async signIn(accountId, pin) {
-      return auth.signIn(accountEmail(accountId, emailDomain), validatePin(pin));
+      const credential = await auth.signIn(accountEmail(accountId, emailDomain), validatePin(pin));
+      const credentialUser = credential?.user?.uid ? credential.user : (credential?.uid ? credential : null);
+      if (credentialUser) selectAccount(credentialUser);
+      return credential;
     },
     signOut() { return auth.signOut(); },
     async whenIdle() {

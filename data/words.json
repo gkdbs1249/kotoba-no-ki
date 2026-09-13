@@ -159,7 +159,7 @@
     ],
     "example": {
       "japanese": "トイレはどこですか。",
-      "reading": "といれはどこですか。",
+      "reading": "トイレはどこですか。",
       "korean": "화장실은 어디입니까?"
     },
     "source": {
@@ -621,7 +621,7 @@
     ],
     "example": {
       "japanese": "朝、パンを食べます。",
-      "reading": "あさ、ぱんをたべます。",
+      "reading": "あさ、パンをたべます。",
       "korean": "아침에 빵을 먹습니다."
     },
     "source": {
@@ -808,13 +808,13 @@
   {
     "id": "j-n5-0038",
     "level": "N5",
-    "written": "居る",
+    "written": "いる",
     "reading": "いる",
     "meaningKo": "있다(사람·동물)",
     "partOfSpeech": "동사",
     "acceptedAnswers": [
-      "居る",
-      "いる"
+      "いる",
+      "居る"
     ],
     "example": {
       "japanese": "部屋に猫がいます。",
@@ -862,7 +862,7 @@
     "example": {
       "japanese": "この言葉の意味が分かります。",
       "reading": "このことばのいみがわかります。",
-      "korean": "이 말의 뜻을 압니다."
+      "korean": "이 말의 뜻을 이해합니다."
     },
     "source": {
       "vocabulary": "OpenJLPT data/csv/vocab-n5.csv",
@@ -993,7 +993,7 @@
     ],
     "example": {
       "japanese": "このホテルは少し高いです。",
-      "reading": "このほてるはすこしたかいです。",
+      "reading": "このホテルはすこしたかいです。",
       "korean": "이 호텔은 조금 비쌉니다."
     },
     "source": {
@@ -1426,7 +1426,7 @@
     ],
     "example": {
       "japanese": "朝はたいていパンを食べます。",
-      "reading": "あさはたいていぱんをたべます。",
+      "reading": "あさはたいていパンをたべます。",
       "korean": "아침에는 대개 빵을 먹습니다."
     },
     "source": {
@@ -1835,7 +1835,7 @@
     "written": "安心",
     "reading": "あんしん",
     "meaningKo": "안심",
-    "partOfSpeech": "명사·동사",
+    "partOfSpeech": "명사·する동사·형용동사",
     "acceptedAnswers": [
       "安心",
       "あんしん"
@@ -1857,7 +1857,7 @@
     "written": "心配",
     "reading": "しんぱい",
     "meaningKo": "걱정",
-    "partOfSpeech": "명사·동사",
+    "partOfSpeech": "명사·する동사·형용동사",
     "acceptedAnswers": [
       "心配",
       "しんぱい"
@@ -1945,7 +1945,7 @@
     "written": "準備",
     "reading": "じゅんび",
     "meaningKo": "준비",
-    "partOfSpeech": "명사·동사",
+    "partOfSpeech": "명사·する동사",
     "acceptedAnswers": [
       "準備",
       "じゅんび"
@@ -1967,7 +1967,7 @@
     "written": "運転",
     "reading": "うんてん",
     "meaningKo": "운전",
-    "partOfSpeech": "명사·동사",
+    "partOfSpeech": "명사·する동사",
     "acceptedAnswers": [
       "運転",
       "うんてん"
@@ -2039,9 +2039,9 @@
       "おくれる"
     ],
     "example": {
-      "japanese": "電車が十分遅れています。",
+      "japanese": "電車が10分遅れています。",
       "reading": "でんしゃがじゅっぷんおくれています。",
-      "korean": "전철이 10분 늦고 있습니다."
+      "korean": "전철이 10분 지연되고 있습니다."
     },
     "source": {
       "vocabulary": "OpenJLPT data/csv/vocab-n4.csv",

@@ -380,7 +380,7 @@
     "skill": "sentence",
     "subskill": "basic-sov-order",
     "responseMode": "ordering",
-    "prompt": "'저는 책을 읽습니다'가 되도록 어절을 배열하세요.",
+    "prompt": "'저는 책을 읽습니다'가 되도록 제시된 어절을 가장 기본적인 중립 어순으로 배열하세요.",
     "choices": [
       "私（わたし）は",
       "本（ほん）を",
@@ -399,7 +399,7 @@
     "skill": "sentence",
     "subskill": "time-destination-order",
     "responseMode": "ordering",
-    "prompt": "'내일 학교에 갑니다'가 되도록 어절을 배열하세요.",
+    "prompt": "'내일 학교에 갑니다'가 되도록 제시된 어절을 가장 기본적인 중립 어순으로 배열하세요.",
     "choices": [
       "明日（あした）",
       "学校（がっこう）へ",
@@ -418,7 +418,7 @@
     "skill": "sentence",
     "subskill": "location-action-order",
     "responseMode": "ordering",
-    "prompt": "'역에서 물을 샀습니다'가 되도록 어절을 배열하세요.",
+    "prompt": "'역에서 물을 샀습니다'가 되도록 제시된 어절을 가장 기본적인 중립 어순으로 배열하세요.",
     "choices": [
       "駅（えき）で",
       "水（みず）を",
@@ -437,7 +437,7 @@
     "skill": "sentence",
     "subskill": "reason-clause",
     "responseMode": "ordering",
-    "prompt": "'학교에서 일본어를 공부합니다'가 되도록 어절을 배열하세요.",
+    "prompt": "'학교에서 일본어를 공부합니다'가 되도록 제시된 어절을 가장 기본적인 중립 어순으로 배열하세요.",
     "choices": [
       "学校（がっこう）で",
       "日本語（にほんご）を",
@@ -456,7 +456,7 @@
     "skill": "sentence",
     "subskill": "quoted-thought",
     "responseMode": "ordering",
-    "prompt": "'어제 친구와 영화를 봤습니다'가 되도록 어절을 배열하세요.",
+    "prompt": "'어제 친구와 영화를 봤습니다'가 되도록 제시된 어절을 가장 기본적인 중립 어순으로 배열하세요.",
     "choices": [
       "昨日（きのう）",
       "友達（ともだち）と",

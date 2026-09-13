@@ -9,11 +9,16 @@ test('HTML exposes install metadata and account controls', async () => {
   assert.match(html, /rel="manifest" href="\.\/manifest\.webmanifest"/);
   assert.match(html, /id="account-button"/);
   assert.match(html, /id="sync-status"/);
+  assert.match(html, /복구할 수 없/);
+  assert.match(html, /진도를 읽거나 삭제/);
 });
 
 test('app wires cloud account sync and service-worker registration', async () => {
   const source = await read('../app.mjs');
   assert.match(source, /createCloudSync/);
+  assert.match(source, /shouldDeferRemote:\s*\(\)\s*=>\s*viewMode === 'active'/);
+  assert.doesNotMatch(source, /shouldDeferRemote:[^\n]+querySelector/);
+  assert.match(source, /meta\.reason === 'profile'/);
   assert.match(source, /setupCloudSync/);
   assert.match(source, /cloudSync\.save\(progress\)/);
   assert.match(source, /serviceWorker\.register\('\.\/sw\.js'\)/);

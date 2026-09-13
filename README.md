@@ -43,13 +43,13 @@ python3 -m http.server 4173
 5. `firebase-config.mjs`에는 브라우저에 공개되는 Firebase Web App 식별 정보만 둡니다. 이 설정은 클라이언트 앱에서 원래 공개되는 값이며 권한은 Authentication과 Firestore rules가 통제합니다. service-account JSON, refresh/access token, 사용자 PIN은 절대 커밋하지 않습니다.
 6. 앱은 설정 모듈 import 실패를 잡아 Firebase UI를 비활성화하고 로컬 모드로 계속 시작해야 합니다. 서비스 워커도 선택 설정 파일을 precache하지 않으므로 설정이 없어도 atomic install이 성공합니다.
 
-> **보안 한계:** 6자리 PIN은 낮은 엔트로피이며 이메일 복구 수단도 없습니다. 이 계정은 비민감 학습 진도 전용입니다. 결제·신원·건강정보 등에 사용하지 말고 Firebase의 rate limiting과 모니터링을 유지하세요. 로그인 오류 문구로 계정 존재 여부를 과도하게 노출하지 마세요.
+> **보안 한계:** 6자리 PIN은 낮은 엔트로피이며 이메일 복구 수단도 없습니다. PIN을 잊으면 계정을 복구할 수 없고, PIN을 아는 사람은 해당 학습 진도를 읽거나 삭제할 수 있습니다. 이 계정은 비민감 학습 진도 전용입니다. 결제·신원·건강정보 등에 사용하지 말고 Firebase의 rate limiting과 모니터링을 유지하세요. 로그인 오류 문구로 계정 존재 여부를 과도하게 노출하지 마세요.
 
 `firestore.rules`는 로그인 UID와 경로 UID가 같을 때만 `current` 진도 문서를 읽고 쓰게 하며, 허용 필드·기본 타입·컬렉션 크기를 제한합니다. 실제 Firebase와 임시 계정을 사용한 Chromium·WebKit 2-context 수렴 및 계정 격리 회귀를 배포 전 실행합니다.
 
 ## PWA 캐시
 
-`sw.js`의 cache 이름은 `kotoba-no-ki-v2`입니다. 설치 시 모든 필수 정적 파일을 먼저 fetch/검증하고 나서 cache에 기록하며, 어떤 fetch/put이든 실패하면 후보 cache 전체를 삭제합니다. 활성화 시 이 앱 prefix의 이전 cache만 제거합니다. Firebase/API/CDN 요청과 사용자 데이터는 cache하지 않습니다.
+`sw.js`의 cache 이름은 `kotoba-no-ki-v3`입니다. 설치 시 모든 필수 정적 파일을 먼저 fetch/검증하고 나서 cache에 기록하며, 어떤 fetch/put이든 실패하면 후보 cache 전체를 삭제합니다. 활성화 시 이 앱 prefix의 이전 cache만 제거합니다. Firebase/API/CDN 요청과 사용자 데이터는 cache하지 않습니다.
 
 런타임 파일을 변경할 때마다 cache 버전을 올리고, 기존 설치 PWA의 old→new 업그레이드를 확인하세요. `skipWaiting()`/`clients.claim()`은 이미 실행 중인 문서의 JavaScript를 교체하지 않으므로 안전한 시점의 새로고침 또는 앱 재실행이 필요합니다.
 

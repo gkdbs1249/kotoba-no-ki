@@ -5,7 +5,12 @@
     "subskill": "long-vowel",
     "responseMode": "choice",
     "prompt": "「コーヒー」의 소리를 히라가나로 고르세요.",
-    "choices": ["こーひー", "こひー", "こーびー", "こおひ"],
+    "choices": [
+      "こーひー",
+      "こひー",
+      "こーびー",
+      "こおひ"
+    ],
     "answer": "こーひー",
     "explanationKo": "「ー」는 앞소리를 길게 읽는 장음 표시예요. コーヒー는 '코오히이'에 가깝게 읽어요."
   },
@@ -15,7 +20,12 @@
     "subskill": "long-vowel",
     "responseMode": "choice",
     "prompt": "'슈퍼마켓'에 해당하는 가타카나를 고르세요.",
-    "choices": ["スーパー", "スパー", "スーバー", "ソーパー"],
+    "choices": [
+      "スーパー",
+      "スパー",
+      "スーバー",
+      "ソーパー"
+    ],
     "answer": "スーパー",
     "explanationKo": "スーパー에는 장음 「ー」가 두 번 들어가요."
   },
@@ -34,7 +44,12 @@
     "subskill": "small-tsu",
     "responseMode": "choice",
     "prompt": "「ベッド」의 소리를 히라가나로 고르세요.",
-    "choices": ["べっど", "べつど", "べっと", "へっど"],
+    "choices": [
+      "べっど",
+      "べつど",
+      "べっと",
+      "へっど"
+    ],
     "answer": "べっど",
     "explanationKo": "작은 「ッ」는 뒤 자음을 한 번 막아 읽어요. ベッド는 '벳도'에 가까워요."
   },
@@ -44,7 +59,12 @@
     "subskill": "small-tsu",
     "responseMode": "choice",
     "prompt": "'표, 티켓'에 해당하는 표기를 고르세요.",
-    "choices": ["チケット", "チケト", "チッケト", "ジケット"],
+    "choices": [
+      "チケット",
+      "チケト",
+      "チッケト",
+      "ジケット"
+    ],
     "answer": "チケット",
     "explanationKo": "チケット는 「ケ」 뒤에 작은 「ッ」가 들어가요."
   },
@@ -63,7 +83,12 @@
     "subskill": "contracted-sound",
     "responseMode": "choice",
     "prompt": "「シャツ」의 소리를 히라가나로 고르세요.",
-    "choices": ["しゃつ", "しやつ", "ちゃつ", "しゅつ"],
+    "choices": [
+      "しゃつ",
+      "しやつ",
+      "ちゃつ",
+      "しゅつ"
+    ],
     "answer": "しゃつ",
     "explanationKo": "「シャ」는 シ와 작은 ャ가 만나 '샤'가 돼요."
   },
@@ -73,7 +98,12 @@
     "subskill": "contracted-sound",
     "responseMode": "choice",
     "prompt": "'주스'에 해당하는 가타카나를 고르세요.",
-    "choices": ["ジュース", "ジユース", "チュース", "ジュス"],
+    "choices": [
+      "ジュース",
+      "ジユース",
+      "チュース",
+      "ジュス"
+    ],
     "answer": "ジュース",
     "explanationKo": "「ジュ」는 ジ와 작은 ュ로 만들고, 뒤의 「ー」로 길게 읽어요."
   },
@@ -92,9 +122,14 @@
     "subskill": "lookalike-shi-tsu",
     "responseMode": "choice",
     "prompt": "히라가나 「し」에 해당하는 가타카나를 고르세요.",
-    "choices": ["シ", "ツ", "ソ", "ン"],
+    "choices": [
+      "シ",
+      "ツ",
+      "ソ",
+      "ン"
+    ],
     "answer": "シ",
-    "explanationKo": "「シ」의 짧은 두 획은 옆으로 나란하고 긴 획은 아래에서 위로 올라가요."
+    "explanationKo": "「シ」의 짧은 두 획은 위아래로 놓이고, 긴 획은 아래쪽에서 오른쪽 위로 뻗어요."
   },
   {
     "id": "kata-lookalike-02",
@@ -102,9 +137,14 @@
     "subskill": "lookalike-shi-tsu",
     "responseMode": "choice",
     "prompt": "히라가나 「つ」에 해당하는 가타카나를 고르세요.",
-    "choices": ["ツ", "シ", "ン", "ソ"],
+    "choices": [
+      "ツ",
+      "シ",
+      "ン",
+      "ソ"
+    ],
     "answer": "ツ",
-    "explanationKo": "「ツ」의 짧은 두 획은 위에서 아래로 놓여 있어요."
+    "explanationKo": "「ツ」의 짧은 두 획은 좌우로 놓이고, 긴 획은 위쪽에서 왼쪽 아래로 내려와요."
   },
   {
     "id": "kata-lookalike-03",
@@ -112,7 +152,12 @@
     "subskill": "lookalike-so-n",
     "responseMode": "choice",
     "prompt": "히라가나 「そ」에 해당하는 가타카나를 고르세요.",
-    "choices": ["ソ", "ン", "シ", "ツ"],
+    "choices": [
+      "ソ",
+      "ン",
+      "シ",
+      "ツ"
+    ],
     "answer": "ソ",
     "explanationKo": "「ソ」의 짧은 획은 위에서 아래 방향이고, 긴 획은 위에서 시작해요."
   },
@@ -122,7 +167,12 @@
     "subskill": "lookalike-so-n",
     "responseMode": "choice",
     "prompt": "히라가나 「ん」에 해당하는 가타카나를 고르세요.",
-    "choices": ["ン", "ソ", "ツ", "シ"],
+    "choices": [
+      "ン",
+      "ソ",
+      "ツ",
+      "シ"
+    ],
     "answer": "ン",
     "explanationKo": "「ン」의 짧은 획은 옆 방향이고, 긴 획은 아래에서 위로 올라가요."
   },
@@ -132,7 +182,12 @@
     "subskill": "daily-loanword",
     "responseMode": "choice",
     "prompt": "「コンビニ」의 소리를 히라가나로 고르세요.",
-    "choices": ["こんびに", "こびんに", "こんぴに", "こんびり"],
+    "choices": [
+      "こんびに",
+      "こびんに",
+      "こんぴに",
+      "こんびり"
+    ],
     "answer": "こんびに",
     "explanationKo": "「コンビニ」는 convenience store를 줄인 일본식 표현이에요."
   },
@@ -142,7 +197,12 @@
     "subskill": "daily-loanword",
     "responseMode": "choice",
     "prompt": "「パソコン」의 소리를 히라가나로 고르세요.",
-    "choices": ["ぱそこん", "はそこん", "ぱそこし", "ぱぞこん"],
+    "choices": [
+      "ぱそこん",
+      "はそこん",
+      "ぱそこし",
+      "ぱぞこん"
+    ],
     "answer": "ぱそこん",
     "explanationKo": "「パソコン」은 personal computer를 줄인 일본식 표현이에요."
   },

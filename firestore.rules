@@ -13,7 +13,7 @@ service cloud.firestore {
         ])
         && (!('version' in data) || data.version is int)
         && (!('schemaVersion' in data) || data.schemaVersion is int)
-        && (!('resetAt' in data) || data.resetAt is int || data.resetAt is timestamp)
+        && (!('resetAt' in data) || data.resetAt is int)
         && (!('studyStartDate' in data) || data.studyStartDate == null || data.studyStartDate is string)
         && (!('days' in data) || (data.days is map && data.days.size() <= 400))
         && (!('reviews' in data) || (data.reviews is map && data.reviews.size() <= 5000))

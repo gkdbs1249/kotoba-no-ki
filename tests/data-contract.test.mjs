@@ -72,3 +72,33 @@ test('katakana supplement covers long vowels, small tsu, contracted sounds, and 
     assert.ok(question.explanationKo?.trim());
   }
 });
+
+test('ordering diagnostic explicitly asks for the canonical neutral order', async () => {
+  const questions = await loadJson('../data/diagnostic.json');
+  for (const question of questions.filter(({ responseMode }) => responseMode === 'ordering')) {
+    assert.match(question.prompt, /기본적인 중립 어순/);
+  }
+});
+
+test('curated Japanese records preserve script and beginner-natural labels', async () => {
+  const words = Object.fromEntries((await loadJson('../data/words.json')).map((word) => [word.id, word]));
+  assert.match(words['j-n5-0008'].example.reading, /トイレ/);
+  assert.match(words['j-n5-0029'].example.reading, /パン/);
+  assert.match(words['j-n5-0046'].example.reading, /ホテル/);
+  assert.match(words['j-n4-0005'].example.reading, /パン/);
+  assert.equal(words['j-n5-0038'].written, 'いる');
+  assert.deepEqual(words['j-n5-0038'].acceptedAnswers, ['いる', '居る']);
+  assert.equal(words['j-n4-0024'].partOfSpeech, '명사·する동사·형용동사');
+  assert.equal(words['j-n4-0025'].partOfSpeech, '명사·する동사·형용동사');
+  assert.equal(words['j-n4-0029'].partOfSpeech, '명사·する동사');
+  assert.equal(words['j-n4-0030'].partOfSpeech, '명사·する동사');
+  assert.equal(words['j-n4-0033'].example.japanese, '電車が10分遅れています。');
+  assert.equal(words['j-n4-0033'].example.korean, '전철이 10분 지연되고 있습니다.');
+  assert.equal(words['j-n5-0040'].example.korean, '이 말의 뜻을 이해합니다.');
+});
+
+test('katakana lookalike explanations describe the real stroke orientation', async () => {
+  const questions = Object.fromEntries((await loadJson('../data/katakana.json')).map((question) => [question.id, question]));
+  assert.match(questions['kata-lookalike-01'].explanationKo, /위아래/);
+  assert.match(questions['kata-lookalike-02'].explanationKo, /좌우/);
+});

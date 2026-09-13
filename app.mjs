@@ -155,10 +155,15 @@ async function setupCloudSync() {
     cloudSync = createCloudSync({
       ...adapters,
       storage: localStorage,
-      shouldDeferRemote: () => Boolean(app.querySelector('.answer-form, .word-card')),
-      applyState: (next) => {
+      shouldDeferRemote: () => viewMode === 'active',
+      applyState: (next, meta = {}) => {
         progress = normalizeProgressShape(next);
         updateAccountUi();
+        if (initialized && meta.reason === 'profile' && viewMode === 'active') {
+          if (accountDialog.open) accountDialog.close();
+          progress.diagnostic?.completed ? renderDashboard() : renderWelcome();
+          return;
+        }
         if (initialized && ['welcome', 'dashboard'].includes(viewMode)) {
           progress.diagnostic?.completed ? renderDashboard() : renderWelcome();
         }
@@ -197,6 +202,7 @@ function speakJapanese(text, button) {
 }
 
 function renderWelcome() {
+  if (cloudSync?.applyDeferred()) return renderWelcome();
   setView(`<section class="panel">
     <p class="eyebrow">내 일본어의 뿌리부터 확인해요</p>
     <h1>N5 배치 진단</h1>
@@ -286,6 +292,7 @@ function finishDiagnostic(responses, questions) {
 }
 
 function renderDashboard() {
+  if (cloudSync?.applyDeferred()) return renderDashboard();
   const date = today();
   const pendingDay = Object.values(progress.days)
     .filter((entry) => Array.isArray(entry?.wordIds) && entry.wordIds.length > 0 && !entry.coverageComplete)

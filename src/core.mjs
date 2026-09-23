@@ -1,6 +1,12 @@
 export const STORAGE_KEY = 'kotoba-no-ki:progress:anonymous';
 const LEGACY_STORAGE_KEY = 'kotoba-no-ki-progress-v1';
 export const REVIEW_INTERVALS = Object.freeze([1, 3, 7, 14, 30, 60]);
+export const DEFAULT_DAILY_WORD_COUNT = 10;
+
+export function normalizeDailyWordCount(value, fallback = DEFAULT_DAILY_WORD_COUNT) {
+  const count = typeof value === 'string' && value.trim() === '' ? Number.NaN : Number(value);
+  return Number.isInteger(count) && count >= 1 && count <= 30 ? count : fallback;
+}
 
 export function normalizeAnswer(value) {
   return String(value ?? '').normalize('NFKC').trim().toLocaleLowerCase()
@@ -49,6 +55,7 @@ export function createInitialProgress() {
     version: 1,
     studyStartDate: null,
     diagnostic: null,
+    settings: { dailyWordCount: DEFAULT_DAILY_WORD_COUNT, revision: 0 },
     days: {},
     reviews: {},
   };
@@ -71,7 +78,9 @@ export function assignDailyWords(progress, words, date, count = 10) {
     level,
     wordIds,
     learned: false,
+    learnedWordIds: [],
     coverageComplete: false,
+    coveredWordIds: [],
     recallAttempts: [],
   };
   progress.days[date] = cohort;
@@ -80,8 +89,11 @@ export function assignDailyWords(progress, words, date, count = 10) {
 }
 
 function correctlyCovered(day) {
-  return new Set((day.recallAttempts ?? []).filter((attempt) => attempt.completed).flatMap((attempt) =>
-    attempt.results.filter((result) => result.correct).map((result) => result.wordId)));
+  return new Set([
+    ...(Array.isArray(day.coveredWordIds) ? day.coveredWordIds : []),
+    ...(day.recallAttempts ?? []).filter((attempt) => attempt.completed).flatMap((attempt) =>
+      attempt.results.filter((result) => result.correct).map((result) => result.wordId)),
+  ]);
 }
 
 export function getRecallQueue(day) {
@@ -105,6 +117,7 @@ export function recordRecallAttempt(progress, date, results, completedAt = new D
     results: results.map((result) => ({ ...result, answeredAt: result.answeredAt ?? completedAt })),
   };
   day.recallAttempts.push(attempt);
+  day.coveredWordIds = [...correctlyCovered(day)].filter((id) => day.wordIds.includes(id)).sort();
   day.coverageComplete = getRecallQueue(day).length === 0;
   return attempt;
 }
@@ -168,6 +181,25 @@ export function getDayStatus(progress, date, today, studyStartDate = progress.st
 export function createOptionalPractice(questions, skills = ['particle', 'conjugation']) {
   const allowed = new Set(skills);
   return questions.filter((question) => allowed.has(question.skill)).map((question) => structuredClone(question));
+}
+
+function shuffledCopy(items, random = Math.random) {
+  const shuffled = items.map((item) => structuredClone(item));
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(random() * (index + 1));
+    [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+  }
+  return shuffled;
+}
+
+export function selectPracticeBatch(questions, count = 10, previousIds = [], random = Math.random) {
+  const uniqueQuestions = [...new Map((Array.isArray(questions) ? questions : [])
+    .filter((question) => question && typeof question.id === 'string' && question.id)
+    .map((question) => [question.id, question])).values()];
+  const previous = new Set(Array.isArray(previousIds) ? previousIds : []);
+  const fresh = shuffledCopy(uniqueQuestions.filter((question) => !previous.has(question.id)), random);
+  const repeated = shuffledCopy(uniqueQuestions.filter((question) => previous.has(question.id)), random);
+  return [...fresh, ...repeated].slice(0, Math.max(0, count));
 }
 
 function parseProgress(raw) {

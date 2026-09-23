@@ -1,0 +1,802 @@
+[
+  {
+    "id": "extra-2026w39-001",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "action-location-de",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘도서관에서 일본어를 공부합니다.’\n図書館(としょかん)___日本語(にほんご)を勉強(べんきょう)します。",
+    "choices": [
+      "で",
+      "に",
+      "を",
+      "と"
+    ],
+    "answer": "で",
+    "explanationKo": "공부라는 동작이 이루어지는 장소이므로 동작 장소를 나타내는 ‘で’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-002",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "time-ni",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘회의는 3시에 끝납니다.’\n会議(かいぎ)は三時(さんじ)___終(お)わります。",
+    "choices": [
+      "に",
+      "で",
+      "を",
+      "から"
+    ],
+    "answer": "に",
+    "explanationKo": "‘3시’처럼 동작이 일어나는 정확한 시각 뒤에는 시간 조사 ‘に’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-003",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "direct-object-wo",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘아침마다 우유를 마십니다.’\n毎朝(まいあさ)、牛乳(ぎゅうにゅう)___飲(の)みます。",
+    "choices": [
+      "を",
+      "が",
+      "で",
+      "へ"
+    ],
+    "answer": "を",
+    "explanationKo": "마시는 행위의 직접적인 대상이 ‘우유’이므로 목적격 조사 ‘を’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-004",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "existence-location-ni",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘책상 위에 고양이가 있습니다.’\n机(つくえ)の上(うえ)___猫(ねこ)がいます。",
+    "choices": [
+      "に",
+      "で",
+      "を",
+      "へ"
+    ],
+    "answer": "に",
+    "explanationKo": "‘います’로 생물의 존재 장소를 나타낼 때 장소 뒤에 ‘に’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-005",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "companion-to",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘일요일에 여동생과 영화를 봤습니다.’\n日曜日(にちようび)に妹(いもうと)___映画(えいが)を見(み)ました。",
+    "choices": [
+      "と",
+      "へ",
+      "まで",
+      "より"
+    ],
+    "answer": "と",
+    "explanationKo": "함께 행동한 상대인 ‘여동생’ 뒤에는 동반을 나타내는 ‘と’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-006",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "starting-point-kara",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘이 버스는 교토에서 왔습니다.’\nこのバスは京都(きょうと)___来(き)ました。",
+    "choices": [
+      "から",
+      "まで",
+      "しか",
+      "ほど"
+    ],
+    "answer": "から",
+    "explanationKo": "버스가 온 출발 지점이 교토이므로 기점을 나타내는 ‘から’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-007",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "endpoint-made",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘은행은 오후 5시까지 열려 있습니다.’\n銀行(ぎんこう)は午後(ごご)五時(ごじ)___開(あ)いています。",
+    "choices": [
+      "まで",
+      "から",
+      "だけ",
+      "より"
+    ],
+    "answer": "まで",
+    "explanationKo": "영업 상태가 계속되는 끝 시각이 오후 5시이므로 한계를 나타내는 ‘まで’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-008",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "possession-no",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘이것은 다나카 씨의 우산입니다.’\nこれは田中(たなか)さん___傘(かさ)です。",
+    "choices": [
+      "の",
+      "が",
+      "も",
+      "か"
+    ],
+    "answer": "の",
+    "explanationKo": "우산의 소유자가 다나카 씨임을 나타내므로 명사와 명사를 잇는 ‘の’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-009",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "preference-object-ga",
+    "responseMode": "choice",
+    "prompt": "대조의 뜻을 더하지 않은 기본적인 중립 표현이 되도록 빈칸에 알맞은 조사를 고르세요. ‘저는 단것을 좋아합니다.’\n私(わたし)は甘(あま)い物(もの)___好(す)きです。",
+    "choices": [
+      "が",
+      "を",
+      "で",
+      "へ"
+    ],
+    "answer": "が",
+    "explanationKo": "대조를 나타내지 않는 기본적인 중립문에서 ‘好きです’의 좋아하는 대상은 조사 ‘が’로 표시합니다. ‘は’를 쓰면 단것은 좋아한다는 대조의 뉘앙스가 더해집니다."
+  },
+  {
+    "id": "extra-2026w39-010",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "topic-wa",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘코끼리는 코가 깁니다.’\n象(ぞう)___鼻(はな)が長(なが)いです。",
+    "choices": [
+      "は",
+      "を",
+      "に",
+      "と"
+    ],
+    "answer": "は",
+    "explanationKo": "문장의 화제는 ‘코끼리’이고, 그 코가 길다고 설명하므로 화제 조사 ‘は’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-011",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "addition-mo",
+    "responseMode": "choice",
+    "prompt": "앞 문장과 이어지도록 빈칸에 알맞은 조사를 고르세요. ‘민수 씨는 학생입니다. 유나 씨도 학생입니다.’\nミンスさんは学生(がくせい)です。ユナさん___学生(がくせい)です。",
+    "choices": [
+      "も",
+      "は",
+      "を",
+      "で"
+    ],
+    "answer": "も",
+    "explanationKo": "유나 씨에게도 앞의 민수 씨와 같은 정보가 추가되므로 ‘~도’라는 뜻의 ‘も’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-012",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "nonexhaustive-listing-ya",
+    "responseMode": "choice",
+    "prompt": "전부가 아니라 몇 가지 예를 드는 뜻이 되도록 빈칸에 알맞은 조사를 고르세요. ‘가방에는 지갑이나 열쇠 같은 물건이 들어 있습니다.’\nかばんには財布(さいふ)___鍵(かぎ)が入(はい)っています。",
+    "choices": [
+      "や",
+      "と",
+      "の",
+      "か"
+    ],
+    "answer": "や",
+    "explanationKo": "전부가 아니라 몇 가지 예를 나열하라는 문맥이므로 ‘~이나 ~ 같은’이라는 비완전 나열을 나타내는 ‘や’를 씁니다. ‘と’는 여기서 지갑과 열쇠를 빠짐없이 나열하는 뜻이 됩니다."
+  },
+  {
+    "id": "extra-2026w39-013",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "comparison-yori",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘오늘은 어제보다 춥습니다.’\n今日(きょう)は昨日(きのう)___寒(さむ)いです。",
+    "choices": [
+      "より",
+      "まで",
+      "だけ",
+      "しか"
+    ],
+    "answer": "より",
+    "explanationKo": "추위의 비교 기준이 어제이므로 ‘~보다’라는 뜻의 ‘より’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-014",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "limitation-dake",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘아침에는 커피만 마십니다.’\n朝(あさ)はコーヒー___飲(の)みます。",
+    "choices": [
+      "だけ",
+      "しか",
+      "まで",
+      "より"
+    ],
+    "answer": "だけ",
+    "explanationKo": "뒤가 긍정형 ‘飲みます’이므로 ‘커피만’이라는 단순한 한정을 나타내는 ‘だけ’가 맞습니다. ‘しか’는 부정형과 호응합니다."
+  },
+  {
+    "id": "extra-2026w39-015",
+    "level": "N4",
+    "skill": "particle",
+    "subskill": "limitation-shika-negative",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘냉장고에는 달걀이 하나밖에 없습니다.’\n冷蔵庫(れいぞうこ)には卵(たまご)が一(ひと)つ___ありません。",
+    "choices": [
+      "しか",
+      "だけ",
+      "も",
+      "ほど"
+    ],
+    "answer": "しか",
+    "explanationKo": "‘하나밖에 없다’처럼 적은 양을 강조하며 뒤에 부정형 ‘ありません’이 오므로 ‘しか’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-016",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "purpose-ni",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘역에 친구를 마중하러 갑니다.’\n駅(えき)へ友達(ともだち)を迎(むか)え___行(い)きます。",
+    "choices": [
+      "に",
+      "で",
+      "が",
+      "から"
+    ],
+    "answer": "に",
+    "explanationKo": "이동 목적은 동사의 ます형 어간 ‘迎え’ 뒤에 ‘に’를 붙여 ‘마중하러’라고 나타냅니다."
+  },
+  {
+    "id": "extra-2026w39-017",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "means-de",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘젓가락으로 라면을 먹습니다.’\n箸(はし)___ラーメンを食(た)べます。",
+    "choices": [
+      "で",
+      "に",
+      "と",
+      "から"
+    ],
+    "answer": "で",
+    "explanationKo": "라면을 먹는 데 사용하는 도구가 젓가락이므로 수단·도구를 나타내는 ‘で’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-018",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "recipient-ni",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘남동생에게 생일 카드를 주었습니다.’\n弟(おとうと)___誕生日(たんじょうび)カードをあげました。",
+    "choices": [
+      "に",
+      "を",
+      "で",
+      "から"
+    ],
+    "answer": "に",
+    "explanationKo": "카드를 받는 상대인 남동생은 수여 동사 ‘あげました’의 수령자이므로 ‘に’로 표시합니다."
+  },
+  {
+    "id": "extra-2026w39-019",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "quotation-to",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘의사는 “푹 쉬세요”라고 말했습니다.’\n医者(いしゃ)は「ゆっくり休(やす)んでください」___言(い)いました。",
+    "choices": [
+      "と",
+      "を",
+      "へ",
+      "まで"
+    ],
+    "answer": "と",
+    "explanationKo": "말한 내용을 직접 인용한 부분 뒤에는 인용 조사 ‘と’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-020",
+    "level": "N4",
+    "skill": "particle",
+    "subskill": "cause-de",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘폭설 때문에 전철이 멈췄습니다.’\n大雪(おおゆき)___電車(でんしゃ)が止(と)まりました。",
+    "choices": [
+      "で",
+      "に",
+      "を",
+      "へ"
+    ],
+    "answer": "で",
+    "explanationKo": "전철이 멈춘 직접적인 원인이 폭설이므로 원인·이유를 나타내는 ‘で’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-021",
+    "level": "N4",
+    "skill": "particle",
+    "subskill": "contrast-wa",
+    "responseMode": "choice",
+    "prompt": "대조의 뜻이 드러나도록 빈칸에 알맞은 조사를 고르세요. ‘고기는 먹지만, 생선은 먹지 않습니다.’\n肉(にく)は食(た)べますが、魚(さかな)___食(た)べません。",
+    "choices": [
+      "は",
+      "を",
+      "が",
+      "で"
+    ],
+    "answer": "は",
+    "explanationKo": "앞의 ‘고기’와 뒤의 ‘생선’을 대조하므로 목적격 ‘を’ 대신 대조를 나타내는 ‘は’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-022",
+    "level": "N4",
+    "skill": "particle",
+    "subskill": "approximate-quantity-hodo",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘숙제를 끝내는 데 두 시간 정도 걸렸습니다.’\n宿題(しゅくだい)を終(お)えるのに二時間(にじかん)___かかりました。",
+    "choices": [
+      "ほど",
+      "しか",
+      "まで",
+      "より"
+    ],
+    "answer": "ほど",
+    "explanationKo": "걸린 시간이 정확히 두 시간이라기보다 ‘두 시간 정도’임을 나타내므로 대략적인 양의 ‘ほど’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-023",
+    "level": "N4",
+    "skill": "particle",
+    "subskill": "nominalizer-no",
+    "responseMode": "choice",
+    "prompt": "빈칸에 알맞은 조사를 고르세요. ‘저는 사진 찍는 것을 좋아합니다.’\n私(わたし)は写真(しゃしん)を撮(と)る___が好(す)きです。",
+    "choices": [
+      "の",
+      "に",
+      "で",
+      "へ"
+    ],
+    "answer": "の",
+    "explanationKo": "동사 ‘撮る’를 ‘사진 찍는 것’이라는 명사 역할로 바꾸기 위해 명사화하는 ‘の’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-024",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "confirmation-ne",
+    "responseMode": "choice",
+    "prompt": "상대의 동의를 구하는 느낌이 되도록 빈칸에 알맞은 조사를 고르세요. ‘오늘 날씨가 좋네요.’\n今日(きょう)はいい天気(てんき)です___。",
+    "choices": [
+      "ね",
+      "よ",
+      "か",
+      "を"
+    ],
+    "answer": "ね",
+    "explanationKo": "상대도 같은 느낌인지 확인하거나 공감을 구할 때 문장 끝에 ‘ね’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-025",
+    "level": "N5",
+    "skill": "particle",
+    "subskill": "new-information-yo",
+    "responseMode": "choice",
+    "prompt": "상대가 모르는 정보를 알려 주는 느낌이 되도록 빈칸에 알맞은 조사를 고르세요. ‘그 가게는 오늘 쉽니다.’\nその店(みせ)は今日(きょう)休(やす)みです___。",
+    "choices": [
+      "よ",
+      "ね",
+      "か",
+      "と"
+    ],
+    "answer": "よ",
+    "explanationKo": "상대에게 새 정보나 주의를 전달할 때 문장 끝에 ‘よ’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-026",
+    "level": "N5",
+    "skill": "conjugation",
+    "subskill": "polite-negative",
+    "responseMode": "choice",
+    "prompt": "괄호의 동사를 문맥에 맞게 바꾸세요. ‘저는 고기를 먹지 않습니다.’\n私(わたし)は肉(にく)を（食(た)べる）___。",
+    "choices": [
+      "食べません",
+      "食べます",
+      "食べました",
+      "食べましょう"
+    ],
+    "answer": "食べません",
+    "explanationKo": "현재의 부정 습관을 정중하게 말하므로 2그룹 동사 ‘食べる’를 ‘食べません’으로 바꿉니다."
+  },
+  {
+    "id": "extra-2026w39-027",
+    "level": "N5",
+    "skill": "conjugation",
+    "subskill": "polite-past",
+    "responseMode": "choice",
+    "prompt": "괄호의 동사를 문맥에 맞게 바꾸세요. ‘어젯밤 11시에 잤습니다.’\n昨夜(ゆうべ)、十一時(じゅういちじ)に（寝(ね)る）___。",
+    "choices": [
+      "寝ました",
+      "寝ます",
+      "寝ません",
+      "寝たいです"
+    ],
+    "answer": "寝ました",
+    "explanationKo": "‘어젯밤’에 끝난 동작을 정중하게 말하므로 과거형 ‘寝ました’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-028",
+    "level": "N5",
+    "skill": "conjugation",
+    "subskill": "polite-past-negative",
+    "responseMode": "choice",
+    "prompt": "괄호의 동사를 문맥에 맞게 바꾸세요. ‘지난주는 바빠서 운동하지 않았습니다.’\n先週(せんしゅう)は忙(いそが)しくて、（運動(うんどう)する）___。",
+    "choices": [
+      "運動しませんでした",
+      "運動しません",
+      "運動しました",
+      "運動しています"
+    ],
+    "answer": "運動しませんでした",
+    "explanationKo": "지난주에 하지 않은 일을 정중하게 나타내므로 ‘する’의 과거 부정형 ‘しませんでした’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-029",
+    "level": "N5",
+    "skill": "conjugation",
+    "subskill": "te-form-group2",
+    "responseMode": "choice",
+    "prompt": "두 동작을 이어 말하도록 괄호의 동사를 て형으로 바꾸세요. ‘창문을 열고 방을 청소합니다.’\n窓(まど)を（開(あ)ける）___、部屋(へや)を掃除(そうじ)します。",
+    "choices": [
+      "開けて",
+      "開けた",
+      "開けない",
+      "開けます"
+    ],
+    "answer": "開けて",
+    "explanationKo": "연속되는 두 동작을 연결하므로 2그룹 동사 ‘開ける’의 て형 ‘開けて’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-030",
+    "level": "N5",
+    "skill": "conjugation",
+    "subskill": "request-te-kudasai",
+    "responseMode": "choice",
+    "prompt": "정중한 부탁이 되도록 괄호의 동사를 바꾸세요. ‘여기에 이름을 써 주세요.’\nここに名前(なまえ)を（書(か)く）___ください。",
+    "choices": [
+      "書いて",
+      "書きて",
+      "書いた",
+      "書かないで"
+    ],
+    "answer": "書いて",
+    "explanationKo": "정중한 요청은 ‘동사 て형＋ください’이며, ‘書く’의 て형은 음편이 적용된 ‘書いて’입니다."
+  },
+  {
+    "id": "extra-2026w39-031",
+    "level": "N5",
+    "skill": "conjugation",
+    "subskill": "prohibition-naide-kudasai",
+    "responseMode": "choice",
+    "prompt": "정중한 금지가 되도록 괄호의 동사를 바꾸세요. ‘이 문을 열지 마세요.’\nこのドアを（開(あ)ける）___ください。",
+    "choices": [
+      "開けないで",
+      "開けて",
+      "開けなくて",
+      "開けたら"
+    ],
+    "answer": "開けないで",
+    "explanationKo": "‘~하지 마세요’라는 정중한 금지는 동사의 ない형에 ‘でください’를 붙이므로 ‘開けないでください’가 됩니다."
+  },
+  {
+    "id": "extra-2026w39-032",
+    "level": "N5",
+    "skill": "conjugation",
+    "subskill": "permission-temo-ii",
+    "responseMode": "choice",
+    "prompt": "허가를 묻는 문장이 되도록 괄호의 동사를 바꾸세요. ‘이 의자에 앉아도 됩니까?’\nこの椅子(いす)に（座(すわ)る）___もいいですか。",
+    "choices": [
+      "座って",
+      "座った",
+      "座らない",
+      "座り"
+    ],
+    "answer": "座って",
+    "explanationKo": "허가를 묻는 ‘~해도 됩니까’는 ‘동사 て형＋もいいですか’이며, ‘座る’의 て형은 ‘座って’입니다."
+  },
+  {
+    "id": "extra-2026w39-033",
+    "level": "N5",
+    "skill": "conjugation",
+    "subskill": "prohibition-tewa-ikenai",
+    "responseMode": "choice",
+    "prompt": "금지 규칙이 되도록 괄호의 동사를 바꾸세요. ‘여기에서 사진을 찍으면 안 됩니다.’\nここで写真(しゃしん)を（撮(と)る）___はいけません。",
+    "choices": [
+      "撮って",
+      "撮りて",
+      "撮った",
+      "撮らなくて"
+    ],
+    "answer": "撮って",
+    "explanationKo": "금지는 ‘동사 て형＋はいけません’으로 나타내며, ‘撮る’의 て형은 촉음편이 적용된 ‘撮って’입니다."
+  },
+  {
+    "id": "extra-2026w39-034",
+    "level": "N5",
+    "skill": "conjugation",
+    "subskill": "desire-tai",
+    "responseMode": "choice",
+    "prompt": "화자의 희망이 되도록 괄호의 동사를 바꾸세요. ‘내년에는 홋카이도에 가고 싶습니다.’\n来年(らいねん)は北海道(ほっかいどう)へ（行(い)く）___です。",
+    "choices": [
+      "行きたい",
+      "行った",
+      "行かない",
+      "行ける"
+    ],
+    "answer": "行きたい",
+    "explanationKo": "자신이 하고 싶은 일을 말할 때 동사의 ます형 어간에 ‘たい’를 붙이므로 ‘行きたいです’가 됩니다."
+  },
+  {
+    "id": "extra-2026w39-035",
+    "level": "N4",
+    "skill": "conjugation",
+    "subskill": "representative-actions-tari",
+    "responseMode": "choice",
+    "prompt": "주말에 한 대표적인 행동들을 나열하도록 괄호의 동사를 바꾸세요. ‘주말에는 책을 읽거나 음악을 듣거나 합니다.’\n週末(しゅうまつ)は本(ほん)を（読(よ)む）___、音楽(おんがく)を聞(き)いたりします。",
+    "choices": [
+      "読んだり",
+      "読んで",
+      "読んだ",
+      "読みたり"
+    ],
+    "answer": "読んだり",
+    "explanationKo": "대표 행동을 여러 개 나열하는 ‘たり～たりする’에서는 동사의 た형에 ‘り’를 붙입니다. ‘読む’는 ‘読んだり’가 됩니다."
+  },
+  {
+    "id": "extra-2026w39-036",
+    "level": "N4",
+    "skill": "conjugation",
+    "subskill": "potential-form-group1",
+    "responseMode": "choice",
+    "prompt": "능력을 나타내도록 괄호의 동사를 바꾸세요. ‘저는 한자를 조금 읽을 수 있습니다.’\n私(わたし)は漢字(かんじ)が少(すこ)し（読(よ)む）___。",
+    "choices": [
+      "読めます",
+      "読みます",
+      "読まれます",
+      "読ませます"
+    ],
+    "answer": "読めます",
+    "explanationKo": "읽을 수 있는 능력을 말하므로 1그룹 동사 ‘読む’를 가능형 ‘読める’의 정중형인 ‘読めます’로 바꿉니다."
+  },
+  {
+    "id": "extra-2026w39-037",
+    "level": "N4",
+    "skill": "conjugation",
+    "subskill": "plain-past-ta-form",
+    "responseMode": "choice",
+    "prompt": "명사 앞에서 완료된 일을 꾸미도록 괄호의 동사를 바꾸세요. ‘어제 산 책은 재미있었습니다.’\n昨日(きのう)（買(か)う）___本(ほん)は面白(おもしろ)かったです。",
+    "choices": [
+      "買った",
+      "買って",
+      "買う",
+      "買わない"
+    ],
+    "answer": "買った",
+    "explanationKo": "어제 이미 산 책을 꾸미므로 ‘買う’의 보통체 과거형인 ‘買った’를 명사 앞에 씁니다."
+  },
+  {
+    "id": "extra-2026w39-038",
+    "level": "N4",
+    "skill": "conjugation",
+    "subskill": "plain-negative-nai-form",
+    "responseMode": "choice",
+    "prompt": "‘~하지 않는 사람’이라는 뜻이 되도록 괄호의 동사를 바꾸세요. ‘아침을 먹지 않는 사람도 있습니다.’\n朝(あさ)ご飯(はん)を（食(た)べる）___人(ひと)もいます。",
+    "choices": [
+      "食べない",
+      "食べなく",
+      "食べません",
+      "食べなかった"
+    ],
+    "answer": "食べない",
+    "explanationKo": "명사 ‘人’을 현재 부정으로 꾸밀 때 정중형이 아니라 보통체 ない형 ‘食べない’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-039",
+    "level": "N4",
+    "skill": "conjugation",
+    "subskill": "volitional-form",
+    "responseMode": "choice",
+    "prompt": "친구에게 함께 하자고 제안하도록 괄호의 동사를 바꾸세요. ‘조금 쉬자.’\n少(すこ)し（休(やす)む）___。",
+    "choices": [
+      "休もう",
+      "休める",
+      "休んで",
+      "休まない"
+    ],
+    "answer": "休もう",
+    "explanationKo": "친한 사이에서 ‘~하자’라고 제안할 때 의지형을 쓰며, ‘休む’의 의지형은 ‘休もう’입니다."
+  },
+  {
+    "id": "extra-2026w39-040",
+    "level": "N4",
+    "skill": "conjugation",
+    "subskill": "conditional-tara",
+    "responseMode": "choice",
+    "prompt": "가정 조건을 나타내도록 괄호의 동사를 바꾸세요. ‘만약 비가 오면 경기가 취소됩니다.’\nもし雨(あめ)が（降(ふ)る）___、試合(しあい)は中止(ちゅうし)になります。",
+    "choices": [
+      "降ったら",
+      "降って",
+      "降るとき",
+      "降りながら"
+    ],
+    "answer": "降ったら",
+    "explanationKo": "‘もし’와 함께 ‘만약 비가 오면’이라는 가정 조건을 나타내므로 동사의 た형 ‘降った’에 ‘ら’를 붙인 ‘降ったら’를 씁니다."
+  },
+  {
+    "id": "extra-2026w39-041",
+    "level": "N5",
+    "skill": "conjugation",
+    "subskill": "i-adjective-past",
+    "responseMode": "choice",
+    "prompt": "괄호의 い형용사를 과거형으로 바꾸세요. ‘어제 시험은 어려웠습니다.’\n昨日(きのう)の試験(しけん)は（難(むずか)しい）___です。",
+    "choices": [
+      "難しかった",
+      "難しいかった",
+      "難しくない",
+      "難しくて"
+    ],
+    "answer": "難しかった",
+    "explanationKo": "い형용사의 과거형은 끝의 ‘い’를 빼고 ‘かった’를 붙이므로 ‘難しかったです’가 됩니다."
+  },
+  {
+    "id": "extra-2026w39-042",
+    "level": "N5",
+    "skill": "conjugation",
+    "subskill": "i-adjective-negative",
+    "responseMode": "choice",
+    "prompt": "괄호의 い형용사를 현재 부정형으로 바꾸세요. ‘이 신발은 비싸지 않습니다.’\nこの靴(くつ)は（高(たか)い）___です。",
+    "choices": [
+      "高くない",
+      "高かった",
+      "高くて",
+      "高いではない"
+    ],
+    "answer": "高くない",
+    "explanationKo": "い형용사의 현재 부정형은 끝의 ‘い’를 ‘くない’로 바꾸므로 ‘高くないです’가 됩니다."
+  },
+  {
+    "id": "extra-2026w39-043",
+    "level": "N4",
+    "skill": "conjugation",
+    "subskill": "i-adjective-past-negative",
+    "responseMode": "choice",
+    "prompt": "괄호의 い형용사를 과거 부정형으로 바꾸세요. ‘지난겨울은 그다지 춥지 않았습니다.’\n去年(きょねん)の冬(ふゆ)はあまり（寒(さむ)い）___です。",
+    "choices": [
+      "寒くなかった",
+      "寒くない",
+      "寒かった",
+      "寒いではなかった"
+    ],
+    "answer": "寒くなかった",
+    "explanationKo": "い형용사의 과거 부정형은 끝의 ‘い’를 ‘くなかった’로 바꾸므로 ‘寒くなかったです’가 됩니다."
+  },
+  {
+    "id": "extra-2026w39-044",
+    "level": "N5",
+    "skill": "conjugation",
+    "subskill": "na-adjective-past",
+    "responseMode": "choice",
+    "prompt": "괄호의 な형용사를 정중한 과거형으로 바꾸세요. ‘예전에는 이 동네가 조용했습니다.’\n昔(むかし)、この町(まち)は（静(しず)かだ）___。",
+    "choices": [
+      "静かでした",
+      "静かです",
+      "静かかったです",
+      "静かではありません"
+    ],
+    "answer": "静かでした",
+    "explanationKo": "な형용사의 정중한 과거 긍정은 어간 뒤에 ‘でした’를 붙이므로 ‘静かでした’가 됩니다."
+  },
+  {
+    "id": "extra-2026w39-045",
+    "level": "N5",
+    "skill": "conjugation",
+    "subskill": "na-adjective-negative",
+    "responseMode": "choice",
+    "prompt": "괄호의 な형용사를 정중한 현재 부정형으로 바꾸세요. ‘이 방은 깨끗하지 않습니다.’\nこの部屋(へや)は（きれいだ）___。",
+    "choices": [
+      "きれいではありません",
+      "きれくないです",
+      "きれいでした",
+      "きれいではありませんでした"
+    ],
+    "answer": "きれいではありません",
+    "explanationKo": "‘きれい’는 い로 끝나지만 な형용사이므로 정중한 현재 부정은 ‘きれいではありません’입니다."
+  },
+  {
+    "id": "extra-2026w39-046",
+    "level": "N5",
+    "skill": "conjugation",
+    "subskill": "noun-copula-past-negative",
+    "responseMode": "choice",
+    "prompt": "괄호의 명사 문장을 정중한 과거 부정형으로 바꾸세요. ‘어제는 휴일이 아니었습니다.’\n昨日(きのう)は（休(やす)みだ）___。",
+    "choices": [
+      "休みではありませんでした",
+      "休みではありません",
+      "休みでした",
+      "休みくなかったです"
+    ],
+    "answer": "休みではありませんでした",
+    "explanationKo": "명사 문장의 정중한 과거 부정은 명사 뒤에 ‘ではありませんでした’를 붙여 만듭니다."
+  },
+  {
+    "id": "extra-2026w39-047",
+    "level": "N5",
+    "skill": "conjugation",
+    "subskill": "progressive-te-iru",
+    "responseMode": "choice",
+    "prompt": "지금 진행 중인 동작이 되도록 괄호의 동사를 바꾸세요. ‘아버지는 지금 신문을 읽고 있습니다.’\n父(ちち)は今(いま)、新聞(しんぶん)を（読(よ)む）___います。",
+    "choices": [
+      "読んで",
+      "読んだ",
+      "読みて",
+      "読まないで"
+    ],
+    "answer": "読んで",
+    "explanationKo": "현재 진행은 ‘동사 て형＋います’로 나타내며, ‘読む’의 て형은 비음편이 적용된 ‘読んで’입니다."
+  },
+  {
+    "id": "extra-2026w39-048",
+    "level": "N4",
+    "skill": "conjugation",
+    "subskill": "experience-ta-koto-ga-aru",
+    "responseMode": "choice",
+    "prompt": "경험을 나타내도록 괄호의 동사를 바꾸세요. ‘저는 후지산에 오른 적이 있습니다.’\n私(わたし)は富士山(ふじさん)に（登(のぼ)る）___ことがあります。",
+    "choices": [
+      "登った",
+      "登って",
+      "登る",
+      "登らない"
+    ],
+    "answer": "登った",
+    "explanationKo": "과거의 경험은 ‘동사 た형＋ことがあります’로 나타내므로 ‘登る’를 ‘登った’로 바꿉니다."
+  },
+  {
+    "id": "extra-2026w39-049",
+    "level": "N4",
+    "skill": "conjugation",
+    "subskill": "obligation-nakereba-naranai",
+    "responseMode": "choice",
+    "prompt": "의무를 나타내도록 괄호의 동사를 바꾸세요. ‘내일까지 보고서를 내야 합니다.’\n明日(あした)までにレポートを（出(だ)す）___なりません。",
+    "choices": [
+      "出さなければ",
+      "出しては",
+      "出しても",
+      "出さないで"
+    ],
+    "answer": "出さなければ",
+    "explanationKo": "‘~해야 한다’는 동사의 ない형에서 ‘い’를 빼고 ‘ければなりません’을 붙입니다. ‘出す’는 ‘出さなければなりません’이 됩니다."
+  },
+  {
+    "id": "extra-2026w39-050",
+    "level": "N4",
+    "skill": "conjugation",
+    "subskill": "dictionary-form-before-mae-ni",
+    "responseMode": "choice",
+    "prompt": "행동의 순서가 맞도록 괄호의 동사를 바꾸세요. ‘자기 전에 이를 닦습니다.’\n（寝(ね)る）___前(まえ)に歯(は)を磨(みが)きます。",
+    "choices": [
+      "寝る",
+      "寝た",
+      "寝て",
+      "寝ない"
+    ],
+    "answer": "寝る",
+    "explanationKo": "어떤 동작을 하기 ‘전’에는 그 동작이 아직 일어나지 않았으므로 ‘前に’ 앞에 동사 사전형 ‘寝る’를 씁니다."
+  }
+]

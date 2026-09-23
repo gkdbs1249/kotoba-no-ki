@@ -224,6 +224,22 @@ function mergeCohorts(left = [], right = []) {
   return merged.sort((a, b) => stableStringify(a).localeCompare(stableStringify(b)));
 }
 
+function dayEvidence(day, field, completedField) {
+  const wordIds = Array.isArray(day.wordIds) ? day.wordIds.filter((value) => typeof value === 'string') : [];
+  return unique([
+    ...(Array.isArray(day[field]) ? day[field] : []),
+    ...(day[completedField] ? wordIds : []),
+  ]).filter((value) => typeof value === 'string');
+}
+
+function correctlyCoveredByAttempts(attempts) {
+  return unique((Array.isArray(attempts) ? attempts : [])
+    .filter((attempt) => attempt?.completed)
+    .flatMap((attempt) => Array.isArray(attempt.results) ? attempt.results : [])
+    .filter((result) => result?.correct && typeof result.wordId === 'string')
+    .map((result) => result.wordId));
+}
+
 function mergeDays(left = {}, right = {}) {
   left = asRecord(left);
   right = asRecord(right);
@@ -235,16 +251,30 @@ function mergeDays(left = {}, right = {}) {
     if (!isRecord(leftDay) && !isRecord(rightDay)) continue;
     const a = asRecord(leftDay);
     const b = asRecord(rightDay);
+    const wordIds = unique([
+      ...(Array.isArray(a.wordIds) ? a.wordIds : []),
+      ...(Array.isArray(b.wordIds) ? b.wordIds : []),
+    ]).filter((value) => typeof value === 'string').sort();
+    const recallAttempts = mergeAttempts(a.recallAttempts, b.recallAttempts);
+    const coveredWordIds = unique([
+      ...dayEvidence(a, 'coveredWordIds', 'coverageComplete'),
+      ...dayEvidence(b, 'coveredWordIds', 'coverageComplete'),
+      ...correctlyCoveredByAttempts(recallAttempts),
+    ]).sort();
+    const learnedWordIds = unique([
+      ...dayEvidence(a, 'learnedWordIds', 'learned'),
+      ...dayEvidence(b, 'learnedWordIds', 'learned'),
+      ...coveredWordIds,
+    ]).sort();
     result[date] = {
       ...mergeFieldsDeterministically(a, b),
       date,
-      wordIds: unique([
-        ...(Array.isArray(a.wordIds) ? a.wordIds : []),
-        ...(Array.isArray(b.wordIds) ? b.wordIds : []),
-      ]).filter((value) => typeof value === 'string').sort(),
-      learned: Boolean(a.learned || b.learned),
-      coverageComplete: Boolean(a.coverageComplete || b.coverageComplete),
-      recallAttempts: mergeAttempts(a.recallAttempts, b.recallAttempts),
+      wordIds,
+      learnedWordIds,
+      coveredWordIds,
+      learned: wordIds.length > 0 && wordIds.every((id) => learnedWordIds.includes(id)),
+      coverageComplete: wordIds.length > 0 && wordIds.every((id) => coveredWordIds.includes(id)),
+      recallAttempts,
     };
   }
   return result;

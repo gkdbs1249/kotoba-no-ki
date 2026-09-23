@@ -2,7 +2,9 @@
 
 한국어 사용자를 위한 일본어 N5·N4 학습 PWA입니다. GitHub Pages는 정적 앱만 배포하고, 선택적으로 Firebase Authentication + Cloud Firestore가 계정별 진도를 동기화합니다. Firebase를 설정하지 않아도 기존 `localStorage` 학습은 계속 동작합니다.
 
-첫 공개 버전에는 사람이 검수한 어휘 101개(N5 61개, N4 40개), N5 진단 30문항, 가타카나 보충 16문항이 포함됩니다. 이는 JLPT N5·N4 전체 공식 어휘 목록이 아니라 앱의 첫 학습 묶음이며, 출처와 가공 원칙은 `DATA_SOURCES.md`에 기록합니다.
+첫 공개 버전에는 사람이 검수한 어휘 101개(N5 61개, N4 40개), N5 진단 30문항, 추가 연습 50문항, 가타카나 보충 50문항이 포함됩니다. 이는 JLPT N5·N4 전체 공식 어휘 목록이 아니라 앱의 첫 학습 묶음이며, 출처와 가공 원칙은 `DATA_SOURCES.md`에 기록합니다.
+
+설정에서 하루 신규 단어 수를 1~30개로 조절할 수 있습니다. 이미 배정된 당일 cohort는 유지하고 다음 신규 학습부터 적용합니다. 추가 연습과 가타카나 빠르게 읽기는 각각 50문제에서 10문제를 출제하며, 연속 회차는 서로 겹치지 않게 선택합니다. 두 문제은행은 외부 주간 운영 job이 전체 문항을 교체하고 검수·테스트·배포합니다.
 
 ## 로컬 실행과 검증
 
@@ -27,7 +29,7 @@ python3 -m http.server 4173
 - 계정이 바뀌면 이전 listener를 해제하고 UID/generation guard로 늦은 콜백을 폐기합니다.
 - 쓰기 A 도중 더 최신 상태 B가 생기면 A의 성공/실패가 B를 지우지 않습니다.
 - 학습 화면이 객체 참조를 보유하는 동안에는 `shouldDeferRemote` hook이 UI 적용을 보류하고, 안전한 경계에서 `applyDeferred()`를 호출할 수 있습니다. 보류 중에도 병합 상태는 UID 로컬 저장소에 내구적으로 저장됩니다.
-- `resetAt`이 더 최신인 세대가 과거 진도를 폐기합니다. 날짜별 cohort/word ID/완료 상태와 review interval은 union·monotonic merge하고, 설정은 `settings.revision`이 높은 쪽을 선택합니다.
+- `resetAt`이 더 최신인 세대가 과거 진도를 폐기합니다. 날짜별 cohort/word ID/review interval은 union하며, `learnedWordIds`·`coveredWordIds`의 단어별 증거를 합친 뒤 전체 cohort의 `learned`·`coverageComplete`를 다시 계산합니다. 설정은 `settings.revision`이 높은 쪽을 선택합니다.
 
 앱 연결 시 Firebase modular SDK 인스턴스를 `createFirebaseAdapters({ authSdk, firestoreSdk, authInstance, db })`에 전달한 뒤 반환된 adapter를 `createCloudSync(...)`에 전달합니다. 일반 로컬 저장 직후 `sync.save(progress)`를 호출하고, 앱 초기화는 첫 auth callback 또는 4.5초 안전 제한까지 기다립니다. `applyState`는 진행 중인 학습 화면을 이동시키지 않고 안전한 대시보드 경계에서만 다시 그립니다.
 
@@ -49,7 +51,7 @@ python3 -m http.server 4173
 
 ## PWA 캐시
 
-`sw.js`의 cache 이름은 `kotoba-no-ki-v3`입니다. 설치 시 모든 필수 정적 파일을 먼저 fetch/검증하고 나서 cache에 기록하며, 어떤 fetch/put이든 실패하면 후보 cache 전체를 삭제합니다. 활성화 시 이 앱 prefix의 이전 cache만 제거합니다. Firebase/API/CDN 요청과 사용자 데이터는 cache하지 않습니다.
+`sw.js`의 cache 이름은 `kotoba-no-ki-v4`입니다. 설치 시 모든 필수 정적 파일을 먼저 fetch/검증하고 나서 cache에 기록하며, 어떤 fetch/put이든 실패하면 후보 cache 전체를 삭제합니다. 활성화 시 이 앱 prefix의 이전 cache만 제거합니다. Firebase/API/CDN 요청과 사용자 데이터는 cache하지 않습니다.
 
 런타임 파일을 변경할 때마다 cache 버전을 올리고, 기존 설치 PWA의 old→new 업그레이드를 확인하세요. `skipWaiting()`/`clients.claim()`은 이미 실행 중인 문서의 JavaScript를 교체하지 않으므로 안전한 시점의 새로고침 또는 앱 재실행이 필요합니다.
 

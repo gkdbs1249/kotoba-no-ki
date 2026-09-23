@@ -30,13 +30,13 @@ test('progress merge unions date cohorts and keeps completion monotonic', () => 
   const local = {
     resetAt: 10,
     nextIndex: 8,
-    settings: { revision: 2, dailyGoal: 10 },
+    settings: { revision: 2, dailyWordCount: 10 },
     cohorts: [{ id: 'local-id', learnedDate: '2026-09-11', wordIds: ['a', 'b'], completed: false }],
   };
   const remote = {
     resetAt: 10,
     nextIndex: 5,
-    settings: { revision: 1, dailyGoal: 5 },
+    settings: { revision: 1, dailyWordCount: 5 },
     cohorts: [{ id: 'remote-id', learnedDate: '2026-09-11', wordIds: ['b', 'c'], completed: true, mastered: true }],
   };
 
@@ -49,12 +49,84 @@ test('progress merge unions date cohorts and keeps completion monotonic', () => 
   assert.equal(merged.cohorts[0].mastered, true);
 });
 
+test('same-date cohorts with different daily counts cannot inherit false completion', () => {
+  const completedThree = {
+    days: {
+      '2026-09-23': {
+        date: '2026-09-23',
+        wordIds: ['w1', 'w2', 'w3'],
+        learned: true,
+        coverageComplete: true,
+        recallAttempts: [{
+          id: 'small-complete',
+          completed: true,
+          results: ['w1', 'w2', 'w3'].map((wordId) => ({ wordId, correct: true })),
+        }],
+      },
+    },
+    reviews: Object.fromEntries(['w1', 'w2', 'w3'].map((wordId) => [wordId, { learnedDate: '2026-09-23', completedIntervals: [] }])),
+  };
+  const unstartedSeven = {
+    days: {
+      '2026-09-23': {
+        date: '2026-09-23',
+        wordIds: ['w1', 'w2', 'w3', 'w4', 'w5', 'w6', 'w7'],
+        learned: false,
+        coverageComplete: false,
+        recallAttempts: [],
+      },
+    },
+    reviews: {},
+  };
+
+  const merged = mergeProgress(completedThree, unstartedSeven);
+  const day = merged.days['2026-09-23'];
+  assert.deepEqual(day.wordIds, ['w1', 'w2', 'w3', 'w4', 'w5', 'w6', 'w7']);
+  assert.deepEqual(day.learnedWordIds, ['w1', 'w2', 'w3']);
+  assert.deepEqual(day.coveredWordIds, ['w1', 'w2', 'w3']);
+  assert.equal(day.learned, false);
+  assert.equal(day.coverageComplete, false);
+  assert.deepEqual(Object.keys(merged.reviews), ['w1', 'w2', 'w3']);
+});
+
+test('word-level day evidence remains associative across repeated device merges', () => {
+  const wrap = (day) => ({ days: { '2026-09-23': { date: '2026-09-23', recallAttempts: [], ...day } } });
+  const firstThree = wrap({ wordIds: ['w1', 'w2', 'w3'], learned: true, coverageComplete: true });
+  const unstartedSeven = wrap({ wordIds: ['w1', 'w2', 'w3', 'w4', 'w5', 'w6', 'w7'], learned: false, coverageComplete: false });
+  const lastFour = wrap({ wordIds: ['w4', 'w5', 'w6', 'w7'], learned: true, coverageComplete: true });
+
+  const leftGrouped = mergeProgress(mergeProgress(firstThree, unstartedSeven), lastFour);
+  const rightGrouped = mergeProgress(firstThree, mergeProgress(unstartedSeven, lastFour));
+  assert.deepEqual(leftGrouped, rightGrouped);
+  const day = leftGrouped.days['2026-09-23'];
+  assert.deepEqual(day.learnedWordIds, day.wordIds);
+  assert.deepEqual(day.coveredWordIds, day.wordIds);
+  assert.equal(day.learned, true);
+  assert.equal(day.coverageComplete, true);
+});
+
+test('out-of-order provenance survives until its word IDs arrive', () => {
+  const wrap = (day) => ({ days: { '2026-09-23': { date: '2026-09-23', recallAttempts: [], ...day } } });
+  const earlyEvidence = wrap({ wordIds: [], learnedWordIds: ['a'], coveredWordIds: ['a'] });
+  const emptyState = wrap({ wordIds: [] });
+  const lateWord = wrap({ wordIds: ['a'] });
+
+  const leftGrouped = mergeProgress(mergeProgress(earlyEvidence, emptyState), lateWord);
+  const rightGrouped = mergeProgress(earlyEvidence, mergeProgress(emptyState, lateWord));
+  assert.deepEqual(leftGrouped, rightGrouped);
+  const day = leftGrouped.days['2026-09-23'];
+  assert.deepEqual(day.learnedWordIds, ['a']);
+  assert.deepEqual(day.coveredWordIds, ['a']);
+  assert.equal(day.learned, true);
+  assert.equal(day.coverageComplete, true);
+});
+
 test('current days/reviews schema merges by date with union and monotonic completion', () => {
   const merged = mergeProgress(
     {
       version: 1,
       studyStartDate: '2026-09-12',
-      days: { '2026-09-12': { date: '2026-09-12', wordIds: ['a'], learned: true, recallAttempts: [{ id: 'a1', completed: true }] } },
+      days: { '2026-09-12': { date: '2026-09-12', wordIds: ['a'], learned: true, coverageComplete: true, recallAttempts: [{ id: 'a1', completed: true, results: [{ wordId: 'a', correct: true }] }] } },
       reviews: { a: { learnedDate: '2026-09-12', completedIntervals: [1, 3] } },
     },
     {
@@ -538,8 +610,8 @@ test('PWA, Firebase rules, config example, and Pages workflow keep the static ap
   assert.equal(manifest.name, 'ことばの木 / Kotoba no Ki');
   assert.equal(manifest.start_url, './');
   assert.equal(manifest.display, 'standalone');
-  assert.match(worker, /kotoba-no-ki-v3/);
-  for (const asset of ['./index.html', './app.mjs', './src/core.mjs', './src/cloud-sync.mjs', './styles.css', './data/words.json', './data/katakana.json']) {
+  assert.match(worker, /kotoba-no-ki-v\d+/);
+  for (const asset of ['./index.html', './app.mjs', './src/core.mjs', './src/cloud-sync.mjs', './styles.css', './data/words.json', './data/extra-practice.json', './data/katakana.json']) {
     assert.ok(worker.includes(asset), `service worker must cache ${asset}`);
   }
   assert.match(worker, /Promise\.all/);

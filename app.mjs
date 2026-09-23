@@ -1,5 +1,6 @@
 import {
   normalizeAnswer,
+  normalizeDailyWordCount,
   isAcceptedAnswer,
   scoreDiagnostic,
   assignDailyWords,
@@ -10,7 +11,7 @@ import {
   completeDueReview,
   buildMonthGrid,
   getDayStatus,
-  createOptionalPractice,
+  selectPracticeBatch,
   createInitialProgress,
   loadProgress,
   saveProgress,
@@ -30,7 +31,10 @@ const SKILL_LABELS = {
 };
 let words = [];
 let diagnostics = [];
+let extraPracticeDrills = [];
 let katakanaDrills = [];
+let previousExtraQuestionIds = [];
+let previousKatakanaQuestionIds = [];
 let progress = loadProgress();
 try { saveProgress(localStorage, progress); } catch { /* continue in memory if storage is unavailable */ }
 let cloudSync = null;
@@ -96,11 +100,17 @@ const normalizeProgressShape = (candidate) => {
   const diagnostic = value.diagnostic && typeof value.diagnostic === 'object' && !Array.isArray(value.diagnostic)
     ? { ...value.diagnostic, weakSkills: (Array.isArray(value.diagnostic.weakSkills) ? value.diagnostic.weakSkills : []).filter((skill) => SKILL_LABELS[skill]) }
     : undefined;
+  const sourceSettings = value.settings && typeof value.settings === 'object' && !Array.isArray(value.settings) ? value.settings : {};
+  const settings = {
+    dailyWordCount: normalizeDailyWordCount(sourceSettings.dailyWordCount),
+    revision: Number.isInteger(sourceSettings.revision) && sourceSettings.revision >= 0 ? sourceSettings.revision : 0,
+  };
   return {
     ...base,
     ...value,
     studyStartDate: isValidDateString(value.studyStartDate) ? value.studyStartDate : base.studyStartDate,
     ...(diagnostic ? { diagnostic } : {}),
+    settings,
     days,
     reviews,
   };
@@ -306,16 +316,19 @@ function renderDashboard() {
     .flatMap((entry) => entry.wordIds ?? []));
   const currentLevel = n5Words.every((word) => completedN5.has(word.id)) ? 'N4 초급 확장' : 'N5 기초 다지기';
   const weakSkills = progress.diagnostic?.weakSkills ?? [];
+  const dailyWordCount = normalizeDailyWordCount(progress.settings?.dailyWordCount);
+  const displayedWordCount = day?.wordIds?.length ?? dailyWordCount;
   setView(`<section class="panel">
     <p class="eyebrow">${currentLevel} · 오늘도 한 가지씩 자라요</p><h1>안녕하세요 🌱</h1>
     ${weakSkills.length ? `<p class="muted">진단 추천: ${weakSkills.map((skill) => escapeHtml(SKILL_LABELS[skill] ?? skill)).join(' · ')} 영역을 먼저 보완해요.</p>` : ''}
-    <div class="stats"><div class="stat"><strong>${day?.wordIds?.length ?? 10}</strong><span>오늘 단어</span></div><div class="stat"><strong>${due}</strong><span>복습 대기</span></div><div class="stat"><strong>${completedDays}</strong><span>완료한 날</span></div></div>
+    <div class="stats"><div class="stat"><strong>${displayedWordCount}</strong><span>오늘 단어</span></div><div class="stat"><strong>${due}</strong><span>복습 대기</span></div><div class="stat"><strong>${completedDays}</strong><span>완료한 날</span></div></div>
     <div class="dashboard-grid">
-      <article class="task"><div class="task-copy"><h2>오늘의 학습</h2><p>${day?.coverageComplete ? '오늘의 10개를 모두 떠올렸어요' : day?.learned ? '뜻 → 일본어 오답을 줄여 보세요' : '새 단어 10개와 직접 입력'}</p></div><button id="daily-button" type="button">${day?.coverageComplete ? '다시 보기' : '시작'}</button></article>
+      <article class="task"><div class="task-copy"><h2>오늘의 학습</h2><p>${day?.coverageComplete ? `오늘의 ${displayedWordCount}개를 모두 떠올렸어요` : day?.learned ? '뜻 → 일본어 오답을 줄여 보세요' : `새 단어 ${displayedWordCount}개와 직접 입력`}</p></div><button id="daily-button" type="button">${day?.coverageComplete ? '다시 보기' : '시작'}</button></article>
       <article class="task"><div class="task-copy"><h2>복습</h2><p>1·3·7·14·30·60일 간격 · ${due}개 대기</p></div><button id="review-button" type="button" ${due ? '' : 'disabled'}>${due ? '복습' : '완료'}</button></article>
-      <article class="task"><div class="task-copy"><h2>추가 연습</h2><p>조사·활용 집중 · 정규 진도와 별도</p></div><button id="extra-button" type="button">연습</button></article>
-      <article class="task"><div class="task-copy"><h2>가타카나 빠르게 읽기</h2><p>장음·작은 글자·비슷한 모양 집중</p></div><button id="katakana-button" type="button">연습</button></article>
+      <article class="task"><div class="task-copy"><h2>추가 연습</h2><p>조사·활용 50문제 중 매번 다른 10문제</p></div><button id="extra-button" type="button">연습</button></article>
+      <article class="task"><div class="task-copy"><h2>가타카나 빠르게 읽기</h2><p>가타카나 50문제 중 매번 다른 10문제</p></div><button id="katakana-button" type="button">연습</button></article>
       <article class="task"><div class="task-copy"><h2>학습 캘린더</h2><p>네모 칸에서 학습 흐름 확인</p></div><button id="calendar-button" type="button">보기</button></article>
+      <article class="task"><div class="task-copy"><h2>설정</h2><p>하루 신규 단어 ${dailyWordCount}개</p></div><button id="settings-button" type="button">조정</button></article>
     </div>
   </section>`, 'dashboard');
   document.querySelector('#daily-button').addEventListener('click', startDaily);
@@ -323,11 +336,34 @@ function renderDashboard() {
   document.querySelector('#extra-button').addEventListener('click', startExtraPractice);
   document.querySelector('#katakana-button').addEventListener('click', startKatakanaPractice);
   document.querySelector('#calendar-button').addEventListener('click', renderCalendar);
+  document.querySelector('#settings-button').addEventListener('click', renderSettings);
+}
+
+function renderSettings() {
+  const current = normalizeDailyWordCount(progress.settings?.dailyWordCount);
+  setView(`<section class="panel"><p class="eyebrow">設定(설정)</p><h1>하루 공부할 단어 수</h1><p class="muted">1~30개 사이에서 정할 수 있어요. 진행 중인 학습은 그대로 유지되고 다음 신규 학습부터 적용됩니다.</p><form id="daily-word-count-form" class="answer-form"><label for="daily-word-count">하루 신규 단어</label><input id="daily-word-count" name="dailyWordCount" type="number" inputmode="numeric" min="1" max="30" step="1" value="${current}" required><div class="actions two"><button class="secondary" id="settings-cancel" type="button">취소</button><button class="primary" type="submit">저장</button></div></form><div id="settings-message" role="status" aria-live="polite"></div></section>`);
+  document.querySelector('#settings-cancel').addEventListener('click', renderDashboard);
+  document.querySelector('#daily-word-count-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const input = document.querySelector('#daily-word-count');
+    const requested = Number(input.value);
+    if (!Number.isInteger(requested) || requested < 1 || requested > 30) {
+      document.querySelector('#settings-message').textContent = '1~30 사이의 정수를 입력해 주세요.';
+      input.focus();
+      return;
+    }
+    progress.settings = {
+      dailyWordCount: normalizeDailyWordCount(requested),
+      revision: (Number.isInteger(progress.settings?.revision) ? progress.settings.revision : 0) + 1,
+    };
+    persist();
+    renderDashboard();
+  });
 }
 
 function startDaily() {
   const date = today();
-  const day = assignDailyWords(progress, words, date, 10);
+  const day = assignDailyWords(progress, words, date, progress.settings.dailyWordCount);
   persist();
   if (!day.wordIds.length) {
     setView('<section class="panel"><h1>모든 준비된 단어를 배웠어요! 🎉</h1><button class="primary" id="done">홈으로</button></section>');
@@ -357,6 +393,7 @@ function showLearningCards(day) {
       index += 1;
       if (index === day.wordIds.length) {
         day.learned = true;
+        day.learnedWordIds = [...day.wordIds];
         scheduleReviews(progress, day.wordIds, day.date);
         persist();
         startRecall(day);
@@ -453,9 +490,9 @@ function startReview() {
 }
 
 function startExtraPractice() {
-  const pool = createOptionalPractice(diagnostics, ['particle', 'conjugation']);
-  if (!pool.length) return renderDataError('추가 연습 문항이 아직 없어요.');
-  const selected = [...pool].sort(() => Math.random() - .5).slice(0, Math.min(10, pool.length));
+  if (!extraPracticeDrills.length) return renderDataError('추가 연습 문항이 아직 없어요.');
+  const selected = selectPracticeBatch(extraPracticeDrills, 10, previousExtraQuestionIds);
+  previousExtraQuestionIds = selected.map(({ id }) => id);
   runQuestionSession(selected, (responses, questions) => {
     const result = scoreDiagnostic(questions, responses);
     setView(`<section class="panel"><p class="eyebrow">정규 진도에 영향 없는 추가 연습</p><h1>${result.correct}/${result.total}</h1><p>연습 결과는 오늘의 학습·복습·캘린더에 저장하지 않았어요.</p><div class="actions two"><button class="secondary" id="extra-again">다시 연습</button><button class="primary" id="extra-home">홈으로</button></div></section>`);
@@ -466,7 +503,8 @@ function startExtraPractice() {
 
 function startKatakanaPractice() {
   if (!katakanaDrills.length) return renderDataError('가타카나 연습 문항이 아직 없어요.');
-  const selected = [...katakanaDrills].sort(() => Math.random() - .5).slice(0, Math.min(10, katakanaDrills.length));
+  const selected = selectPracticeBatch(katakanaDrills, 10, previousKatakanaQuestionIds);
+  previousKatakanaQuestionIds = selected.map(({ id }) => id);
   runQuestionSession(selected, (responses, questions) => {
     const result = scoreDiagnostic(questions, responses);
     setView(`<section class="panel"><p class="eyebrow">가타카나 짧은 연습 완료</p><h1>${result.correct}/${result.total}</h1><p>장음·작은 글자·비슷한 모양을 다시 확인했어요. 이 결과는 정규 진도에 영향을 주지 않아요.</p><div class="actions two"><button class="secondary" id="katakana-again">다시 연습</button><button class="primary" id="katakana-home">홈으로</button></div></section>`);
@@ -501,14 +539,15 @@ function renderDataError(message) {
 async function initialize() {
   try {
     const cloudStart = setupCloudSync();
-    const [wordResponse, diagnosticResponse, katakanaResponse] = await Promise.all([
+    const [wordResponse, diagnosticResponse, extraPracticeResponse, katakanaResponse] = await Promise.all([
       fetch('./data/words.json'),
       fetch('./data/diagnostic.json'),
+      fetch('./data/extra-practice.json'),
       fetch('./data/katakana.json'),
     ]);
-    if (!wordResponse.ok || !diagnosticResponse.ok || !katakanaResponse.ok) throw new Error('학습 데이터를 불러올 수 없습니다.');
-    [words, diagnostics, katakanaDrills] = await Promise.all([wordResponse.json(), diagnosticResponse.json(), katakanaResponse.json()]);
-    if (!Array.isArray(words) || !Array.isArray(diagnostics) || diagnostics.length !== 30 || !Array.isArray(katakanaDrills)) throw new Error('학습 데이터 형식이 올바르지 않습니다.');
+    if (!wordResponse.ok || !diagnosticResponse.ok || !extraPracticeResponse.ok || !katakanaResponse.ok) throw new Error('학습 데이터를 불러올 수 없습니다.');
+    [words, diagnostics, extraPracticeDrills, katakanaDrills] = await Promise.all([wordResponse.json(), diagnosticResponse.json(), extraPracticeResponse.json(), katakanaResponse.json()]);
+    if (!Array.isArray(words) || !Array.isArray(diagnostics) || diagnostics.length !== 30 || !Array.isArray(extraPracticeDrills) || extraPracticeDrills.length !== 50 || !Array.isArray(katakanaDrills) || katakanaDrills.length !== 50) throw new Error('학습 데이터 형식이 올바르지 않습니다.');
     await Promise.race([cloudStart, new Promise((resolve) => setTimeout(resolve, 4500))]);
     progress = normalizeProgressShape(progress);
     persist();

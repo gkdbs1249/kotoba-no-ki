@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kotoba-no-ki-v3';
+const CACHE_NAME = 'kotoba-no-ki-v4';
 const CACHE_PREFIX = 'kotoba-no-ki-';
 const APP_SHELL = Object.freeze([
   './',
@@ -13,6 +13,7 @@ const APP_SHELL = Object.freeze([
   './icons/kotoba-no-ki-512.png',
   './data/words.json',
   './data/diagnostic.json',
+  './data/extra-practice.json',
   './data/katakana.json',
 ]);
 const APP_PATHS = new Set(APP_SHELL.map((asset) => new URL(asset, self.registration.scope).pathname));

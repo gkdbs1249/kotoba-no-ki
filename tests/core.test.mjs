@@ -7,6 +7,7 @@ import {
   isAcceptedAnswer,
   scoreDiagnostic,
   createInitialProgress,
+  normalizeDailyWordCount,
   assignDailyWords,
   recordRecallAttempt,
   getRecallQueue,
@@ -15,6 +16,7 @@ import {
   buildMonthGrid,
   getDayStatus,
   createOptionalPractice,
+  selectPracticeBatch,
   loadProgress,
   saveProgress,
 } from '../src/core.mjs';
@@ -50,6 +52,25 @@ test('diagnostic scoring reports each skill and persists weak skills below 70%',
   assert.equal(result.total, 3);
 });
 
+test('daily word setting accepts 1 to 30 and defaults invalid values to ten', () => {
+  assert.equal(createInitialProgress().settings.dailyWordCount, 10);
+  assert.equal(normalizeDailyWordCount('1'), 1);
+  assert.equal(normalizeDailyWordCount('30'), 30);
+  for (const invalid of [0, 31, 1.5, '2.5', '', 'ten', null]) {
+    assert.equal(normalizeDailyWordCount(invalid), 10);
+  }
+});
+
+test('changing the setting never resizes an already assigned daily cohort', () => {
+  const words = Array.from({ length: 12 }, (_, index) => ({ id: `w${index + 1}`, level: 'N5' }));
+  const progress = createInitialProgress();
+  const first = assignDailyWords(progress, words, '2026-09-22', 3);
+  progress.settings.dailyWordCount = 7;
+  const resumed = assignDailyWords(progress, words, '2026-09-22', progress.settings.dailyWordCount);
+  assert.equal(first.wordIds.length, 3);
+  assert.deepEqual(resumed.wordIds, first.wordIds);
+});
+
 test('daily assignment stores exactly ten unseen N5 words without mutating input', () => {
   const progress = createInitialProgress();
   const original = structuredClone(words);
@@ -79,6 +100,27 @@ test('N4 words unlock only after every available N5 word has been completed', ()
   const second = assignDailyWords(progress, mixed, '2026-09-13', 10);
   assert.deepEqual(second.wordIds, ['j-n4-0001', 'j-n4-0002']);
   assert.equal(second.level, 'N4');
+});
+
+test('recall queue preserves word-level coverage imported from another device', () => {
+  const progress = createInitialProgress();
+  progress.days['2026-09-23'] = {
+    date: '2026-09-23',
+    wordIds: ['w1', 'w2', 'w3'],
+    learned: true,
+    learnedWordIds: ['w1', 'w2', 'w3'],
+    coverageComplete: false,
+    coveredWordIds: ['w1'],
+    recallAttempts: [],
+  };
+  assert.deepEqual(getRecallQueue(progress.days['2026-09-23']), ['w2', 'w3']);
+  recordRecallAttempt(progress, '2026-09-23', [
+    { wordId: 'w2', correct: true },
+    { wordId: 'w3', correct: false },
+  ], '2026-09-23T12:00:00Z');
+  assert.deepEqual(progress.days['2026-09-23'].coveredWordIds, ['w1', 'w2']);
+  assert.deepEqual(getRecallQueue(progress.days['2026-09-23']), ['w3']);
+  assert.equal(progress.days['2026-09-23'].coverageComplete, false);
 });
 
 test('productive recall retries only uncovered words until cumulative coverage completes', () => {
@@ -136,6 +178,19 @@ test('calendar status distinguishes future, missed, studied, and mastered days',
   assert.equal(getDayStatus(progress, '2026-09-11', '2026-09-12', '2026-09-01'), 'mastered');
   assert.equal(getDayStatus(progress, '2026-09-13', '2026-09-12', '2026-09-01'), 'future');
   assert.equal(getDayStatus(progress, '2026-08-31', '2026-09-12', '2026-09-01'), 'inactive');
+});
+
+test('practice batches draw ten unique questions and avoid the immediately previous batch', () => {
+  const bank = Array.from({ length: 50 }, (_, index) => ({ id: `q-${index + 1}` }));
+  const original = structuredClone(bank);
+  const first = selectPracticeBatch(bank, 10, [], () => 0.5);
+  const second = selectPracticeBatch(bank, 10, first.map(({ id }) => id), () => 0.5);
+  assert.equal(first.length, 10);
+  assert.equal(second.length, 10);
+  assert.equal(new Set(first.map(({ id }) => id)).size, 10);
+  assert.equal(new Set(second.map(({ id }) => id)).size, 10);
+  assert.equal(second.some(({ id }) => first.some((item) => item.id === id)), false);
+  assert.deepEqual(bank, original);
 });
 
 test('optional particle/conjugation practice does not mutate regular progress', () => {

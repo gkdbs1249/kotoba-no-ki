@@ -27,11 +27,32 @@ test('app wires cloud account sync and service-worker registration', async () =>
   assert.match(source, /signOut/);
 });
 
+test('app exposes adjustable daily word settings and randomized fifty-question banks', async () => {
+  const source = await read('../app.mjs');
+  assert.match(source, /normalizeDailyWordCount/);
+  assert.match(source, /renderSettings/);
+  assert.match(source, /daily-word-count/);
+  assert.match(source, /progress\.settings\.dailyWordCount/);
+  assert.match(source, /data\/extra-practice\.json/);
+  assert.match(source, /selectPracticeBatch/);
+  assert.match(source, /previousExtraQuestionIds/);
+  assert.match(source, /previousKatakanaQuestionIds/);
+});
+
 test('app exposes a dedicated katakana weakness drill without regular progress writes', async () => {
   const source = await read('../app.mjs');
   assert.match(source, /data\/katakana\.json/);
   assert.match(source, /startKatakanaPractice/);
   assert.match(source, /가타카나 빠르게 읽기/);
+});
+
+test('weekly practice banks are precached and copied into the Pages artifact', async () => {
+  const worker = await read('../sw.js');
+  const workflow = await read('../.github/workflows/pages.yml');
+  assert.match(worker, /data\/extra-practice\.json/);
+  assert.match(worker, /data\/katakana\.json/);
+  assert.match(workflow, /data\/extra-practice\.json/);
+  assert.match(workflow, /data\/katakana\.json/);
 });
 
 test('manifest has installable 192 and 512 pixel icons', async () => {

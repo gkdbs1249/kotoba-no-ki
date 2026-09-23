@@ -58,9 +58,9 @@ test('placement diagnostic has exactly 30 balanced questions', async () => {
 
 test('katakana supplement covers long vowels, small tsu, contracted sounds, and lookalikes', async () => {
   const questions = await loadJson('../data/katakana.json');
-  assert.ok(questions.length >= 12);
+  assert.equal(questions.length, 50);
   const subskills = new Set(questions.map((question) => question.subskill));
-  for (const required of ['long-vowel', 'small-tsu', 'contracted-sound', 'lookalike-shi-tsu', 'lookalike-so-n']) {
+  for (const required of ['long-vowel', 'small-tsu', 'contracted-sound', 'lookalike', 'daily-loanword']) {
     assert.ok(subskills.has(required), `missing katakana subskill: ${required}`);
   }
   assert.ok(questions.some((question) => question.responseMode === 'typing'));
@@ -98,7 +98,10 @@ test('curated Japanese records preserve script and beginner-natural labels', asy
 });
 
 test('katakana lookalike explanations describe the real stroke orientation', async () => {
-  const questions = Object.fromEntries((await loadJson('../data/katakana.json')).map((question) => [question.id, question]));
-  assert.match(questions['kata-lookalike-01'].explanationKo, /위아래/);
-  assert.match(questions['kata-lookalike-02'].explanationKo, /좌우/);
+  const questions = await loadJson('../data/katakana.json');
+  const findPrompt = (kana) => questions.find(({ subskill, prompt }) => subskill === 'lookalike' && prompt.includes(`「${kana}」`));
+  assert.match(findPrompt('シ').explanationKo, /위아래/);
+  assert.match(findPrompt('ツ').explanationKo, /좌우/);
+  assert.match(findPrompt('ソ').explanationKo, /위에서/);
+  assert.match(findPrompt('ン').explanationKo, /아래에서 위/);
 });

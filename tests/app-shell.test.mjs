@@ -27,11 +27,25 @@ test('app wires cloud account sync and service-worker registration', async () =>
   assert.match(source, /signOut/);
 });
 
+test('dashboard nests settings under account, drills under extra practice, and renders calendar inline', async () => {
+  const [html, source] = await Promise.all([read('../index.html'), read('../app.mjs')]);
+  assert.match(html, /id="account-settings"/);
+  assert.match(html, /id="daily-word-count-form"/);
+  assert.match(source, /function renderExtraPracticeHub/);
+  assert.match(source, /id="extra-particle-button"/);
+  assert.match(source, /id="extra-katakana-button"/);
+  assert.match(source, /class="dashboard-calendar"/);
+  assert.match(source, /signedIn \|\| !authAvailable/);
+  assert.match(source, /accountSettingsChanged && viewMode === 'dashboard'/);
+  assert.doesNotMatch(source, /id="settings-button"/);
+  assert.doesNotMatch(source, /id="calendar-button"/);
+  assert.doesNotMatch(source, /id="katakana-button"/);
+});
+
 test('app exposes adjustable daily word settings and randomized fifty-question banks', async () => {
-  const source = await read('../app.mjs');
+  const [html, source] = await Promise.all([read('../index.html'), read('../app.mjs')]);
   assert.match(source, /normalizeDailyWordCount/);
-  assert.match(source, /renderSettings/);
-  assert.match(source, /daily-word-count/);
+  assert.match(html, /daily-word-count/);
   assert.match(source, /progress\.settings\.dailyWordCount/);
   assert.match(source, /data\/extra-practice\.json/);
   assert.match(source, /selectPracticeBatch/);

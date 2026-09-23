@@ -25,6 +25,9 @@ const accountDialog = document.querySelector('#account-dialog');
 const accountForm = document.querySelector('#account-form');
 const accountMessage = document.querySelector('#account-message');
 const signOutButton = document.querySelector('#sign-out-button');
+const dailyWordCountForm = document.querySelector('#daily-word-count-form');
+const dailyWordCountInput = document.querySelector('#daily-word-count');
+const settingsMessage = document.querySelector('#settings-message');
 const syncStatus = document.querySelector('#sync-status');
 const SKILL_LABELS = {
   vocabulary: '어휘', reading: '읽기', particle: '조사', conjugation: '활용', sentence: '문장',
@@ -40,6 +43,7 @@ try { saveProgress(localStorage, progress); } catch { /* continue in memory if s
 let cloudSync = null;
 let initialized = false;
 let viewMode = 'loading';
+let accountSettingsChanged = false;
 
 const escapeHtml = (value) => String(value ?? '').replace(/[&<>'"]/g, (character) => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;',
@@ -131,7 +135,7 @@ const setView = (html, mode = 'active') => {
   window.speechSynthesis?.cancel();
   viewMode = mode;
   app.innerHTML = html;
-  const accountAvailable = Boolean(cloudSync) && ['welcome', 'dashboard'].includes(mode);
+  const accountAvailable = ['welcome', 'dashboard'].includes(mode);
   accountButton.disabled = !accountAvailable;
   accountButton.title = accountAvailable ? '' : '학습 화면을 마친 뒤 계정을 연결할 수 있어요';
   app.focus({ preventScroll: true });
@@ -140,10 +144,11 @@ const setView = (html, mode = 'active') => {
 const progressBar = (current, total) => `<div class="progress" aria-label="${current}/${total}"><span style="width:${total ? current / total * 100 : 0}%"></span></div>`;
 
 function updateAccountUi() {
+  const authAvailable = Boolean(cloudSync);
   const signedIn = Boolean(cloudSync?.currentUid);
   const rememberedId = localStorage.getItem('kotoba-no-ki:account-id');
-  accountButton.textContent = signedIn ? (rememberedId || '계정 연결됨') : '로그인';
-  accountForm.classList.toggle('hidden', signedIn);
+  accountButton.textContent = signedIn ? (rememberedId || '계정 연결됨') : authAvailable ? '로그인' : '설정';
+  accountForm.classList.toggle('hidden', signedIn || !authAvailable);
   signOutButton.classList.toggle('hidden', !signedIn);
 }
 
@@ -190,8 +195,9 @@ async function setupCloudSync() {
   } catch {
     cloudSync = null;
     syncStatus.textContent = '이 기기에 저장됨';
-    accountButton.disabled = true;
-    accountButton.title = '클라우드 설정 후 사용할 수 있어요';
+    updateAccountUi();
+    accountButton.disabled = !['welcome', 'dashboard'].includes(viewMode);
+    accountButton.title = accountButton.disabled ? '학습 화면을 마친 뒤 설정할 수 있어요' : '';
   }
 }
 
@@ -301,6 +307,34 @@ function finishDiagnostic(responses, questions) {
   document.querySelector('#to-dashboard').addEventListener('click', renderDashboard);
 }
 
+function dashboardCalendarMarkup() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const grid = buildMonthGrid(year, month);
+  const statusLabels = { mastered: '떠올리기 완료', studied: '학습 중', missed: '학습 없음', today: '오늘', future: '미래 날짜', inactive: '학습 시작 전' };
+  return `<section class="dashboard-calendar" aria-labelledby="dashboard-calendar-title">
+    <p class="eyebrow">학습 캘린더</p><h2 id="dashboard-calendar-title">${year}년 ${month + 1}월</h2>
+    <div class="calendar-wrap"><div class="weekdays" aria-hidden="true">${['일','월','화','수','목','금','토'].map((day) => `<div>${day}</div>`).join('')}</div><div class="calendar" aria-label="${year}년 ${month + 1}월">${grid.map((cell) => {
+      if (!cell) return '<span class="day blank" aria-hidden="true"></span>';
+      const status = getDayStatus(progress, cell.date, today(), progress.studyStartDate);
+      return `<button class="day ${status}" type="button" data-calendar-date="${cell.date}" aria-label="${cell.date}, ${statusLabels[status]}">${cell.day}</button>`;
+    }).join('')}</div></div>
+    <div class="legend"><span class="mastered">떠올리기 완료</span><span class="studied">학습 중</span><span class="missed">학습 없음</span></div>
+    <div id="dashboard-day-detail"></div>
+  </section>`;
+}
+
+function bindDashboardCalendar() {
+  document.querySelectorAll('[data-calendar-date]').forEach((button) => button.addEventListener('click', () => {
+    const date = button.dataset.calendarDate;
+    const day = progress.days[date];
+    document.querySelector('#dashboard-day-detail').innerHTML = day
+      ? `<div class="calendar-detail"><h3>${date}</h3><p>단어 ${day.wordIds?.length ?? 0}개 · ${day.coverageComplete ? '뜻 → 일본어 완료' : '학습 중'}</p><p class="muted">완료한 입력 회차 ${day.recallAttempts?.filter((attempt) => attempt.completed).length ?? 0}회</p></div>`
+      : `<p class="muted">${date}에는 저장된 학습이 없어요.</p>`;
+  }));
+}
+
 function renderDashboard() {
   if (cloudSync?.applyDeferred()) return renderDashboard();
   const date = today();
@@ -325,40 +359,24 @@ function renderDashboard() {
     <div class="dashboard-grid">
       <article class="task"><div class="task-copy"><h2>오늘의 학습</h2><p>${day?.coverageComplete ? `오늘의 ${displayedWordCount}개를 모두 떠올렸어요` : day?.learned ? '뜻 → 일본어 오답을 줄여 보세요' : `새 단어 ${displayedWordCount}개와 직접 입력`}</p></div><button id="daily-button" type="button">${day?.coverageComplete ? '다시 보기' : '시작'}</button></article>
       <article class="task"><div class="task-copy"><h2>복습</h2><p>1·3·7·14·30·60일 간격 · ${due}개 대기</p></div><button id="review-button" type="button" ${due ? '' : 'disabled'}>${due ? '복습' : '완료'}</button></article>
-      <article class="task"><div class="task-copy"><h2>추가 연습</h2><p>조사·활용 50문제 중 매번 다른 10문제</p></div><button id="extra-button" type="button">연습</button></article>
-      <article class="task"><div class="task-copy"><h2>가타카나 빠르게 읽기</h2><p>가타카나 50문제 중 매번 다른 10문제</p></div><button id="katakana-button" type="button">연습</button></article>
-      <article class="task"><div class="task-copy"><h2>학습 캘린더</h2><p>네모 칸에서 학습 흐름 확인</p></div><button id="calendar-button" type="button">보기</button></article>
-      <article class="task"><div class="task-copy"><h2>설정</h2><p>하루 신규 단어 ${dailyWordCount}개</p></div><button id="settings-button" type="button">조정</button></article>
+      <article class="task"><div class="task-copy"><h2>추가 연습</h2><p>조사·활용 / 가타카나 빠르게 읽기</p></div><button id="extra-button" type="button">선택</button></article>
     </div>
+    ${dashboardCalendarMarkup()}
   </section>`, 'dashboard');
   document.querySelector('#daily-button').addEventListener('click', startDaily);
   document.querySelector('#review-button').addEventListener('click', startReview);
-  document.querySelector('#extra-button').addEventListener('click', startExtraPractice);
-  document.querySelector('#katakana-button').addEventListener('click', startKatakanaPractice);
-  document.querySelector('#calendar-button').addEventListener('click', renderCalendar);
-  document.querySelector('#settings-button').addEventListener('click', renderSettings);
+  document.querySelector('#extra-button').addEventListener('click', renderExtraPracticeHub);
+  bindDashboardCalendar();
 }
 
-function renderSettings() {
-  const current = normalizeDailyWordCount(progress.settings?.dailyWordCount);
-  setView(`<section class="panel"><p class="eyebrow">設定(설정)</p><h1>하루 공부할 단어 수</h1><p class="muted">1~30개 사이에서 정할 수 있어요. 진행 중인 학습은 그대로 유지되고 다음 신규 학습부터 적용됩니다.</p><form id="daily-word-count-form" class="answer-form"><label for="daily-word-count">하루 신규 단어</label><input id="daily-word-count" name="dailyWordCount" type="number" inputmode="numeric" min="1" max="30" step="1" value="${current}" required><div class="actions two"><button class="secondary" id="settings-cancel" type="button">취소</button><button class="primary" type="submit">저장</button></div></form><div id="settings-message" role="status" aria-live="polite"></div></section>`);
-  document.querySelector('#settings-cancel').addEventListener('click', renderDashboard);
-  document.querySelector('#daily-word-count-form').addEventListener('submit', (event) => {
-    event.preventDefault();
-    const input = document.querySelector('#daily-word-count');
-    const requested = Number(input.value);
-    if (!Number.isInteger(requested) || requested < 1 || requested > 30) {
-      document.querySelector('#settings-message').textContent = '1~30 사이의 정수를 입력해 주세요.';
-      input.focus();
-      return;
-    }
-    progress.settings = {
-      dailyWordCount: normalizeDailyWordCount(requested),
-      revision: (Number.isInteger(progress.settings?.revision) ? progress.settings.revision : 0) + 1,
-    };
-    persist();
-    renderDashboard();
-  });
+function renderExtraPracticeHub() {
+  setView(`<section class="panel"><p class="eyebrow">정규 진도와 별도</p><h1>추가 연습</h1><p class="muted">연습 결과는 오늘의 학습·복습·캘린더에 저장되지 않아요.</p><div class="dashboard-grid">
+    <article class="task"><div class="task-copy"><h2>조사·활용</h2><p>50문제 중 매번 다른 10문제</p></div><button id="extra-particle-button" type="button">연습</button></article>
+    <article class="task"><div class="task-copy"><h2>가타카나 빠르게 읽기</h2><p>50문제 중 매번 다른 10문제</p></div><button id="extra-katakana-button" type="button">연습</button></article>
+  </div><button class="secondary" id="extra-practice-home" type="button">홈으로</button></section>`);
+  document.querySelector('#extra-particle-button').addEventListener('click', startExtraPractice);
+  document.querySelector('#extra-katakana-button').addEventListener('click', startKatakanaPractice);
+  document.querySelector('#extra-practice-home').addEventListener('click', renderDashboard);
 }
 
 function startDaily() {
@@ -513,24 +531,6 @@ function startKatakanaPractice() {
   }, { title: '가타카나 빠르게 읽기' });
 }
 
-function renderCalendar() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth();
-  const grid = buildMonthGrid(year, month);
-  const statusLabels = { mastered: '떠올리기 완료', studied: '학습 중', missed: '학습 없음', today: '오늘', future: '미래 날짜', inactive: '학습 시작 전' };
-  setView(`<section class="panel"><p class="eyebrow">학습 캘린더</p><h1>${year}년 ${month + 1}월</h1><div class="calendar-wrap"><div class="weekdays" aria-hidden="true">${['일','월','화','수','목','금','토'].map((day) => `<div>${day}</div>`).join('')}</div><div class="calendar" aria-label="${year}년 ${month + 1}월">${grid.map((cell) => {
-    if (!cell) return '<span class="day blank" aria-hidden="true"></span>';
-    const status = getDayStatus(progress, cell.date, today(), progress.studyStartDate);
-    return `<button class="day ${status}" type="button" data-date="${cell.date}" aria-label="${cell.date}, ${statusLabels[status]}">${cell.day}</button>`;
-  }).join('')}</div></div><div class="legend"><span class="mastered">떠올리기 완료</span><span class="studied">학습 중</span><span class="missed">학습 없음</span></div><div id="day-detail"></div><button class="secondary" id="calendar-home">홈으로</button></section>`);
-  document.querySelector('#calendar-home').addEventListener('click', renderDashboard);
-  document.querySelectorAll('[data-date]').forEach((button) => button.addEventListener('click', () => {
-    const day = progress.days[button.dataset.date];
-    document.querySelector('#day-detail').innerHTML = day ? `<div class="panel"><h2>${button.dataset.date}</h2><p>단어 ${day.wordIds?.length ?? 0}개 · ${day.coverageComplete ? '뜻 → 일본어 완료' : '학습 중'}</p><p class="muted">완료한 입력 회차 ${day.recallAttempts?.filter((attempt) => attempt.completed).length ?? 0}회</p></div>` : `<p class="muted">${button.dataset.date}에는 저장된 학습이 없어요.</p>`;
-  }));
-}
-
 function renderDataError(message) {
   setView(`<section class="panel"><h1>준비 중 문제가 생겼어요</h1><p>${escapeHtml(message)}</p><button class="primary" id="retry-load">다시 불러오기</button></section>`);
   document.querySelector('#retry-load').addEventListener('click', () => location.reload());
@@ -561,8 +561,33 @@ async function initialize() {
 
 accountButton.addEventListener('click', () => {
   accountMessage.textContent = cloudSync ? '' : '현재는 이 기기에만 저장되고 있어요.';
+  settingsMessage.textContent = '';
+  accountSettingsChanged = false;
+  dailyWordCountInput.value = String(normalizeDailyWordCount(progress.settings?.dailyWordCount));
   updateAccountUi();
   accountDialog.showModal();
+});
+
+dailyWordCountForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const requested = Number(dailyWordCountInput.value);
+  if (!Number.isInteger(requested) || requested < 1 || requested > 30) {
+    settingsMessage.textContent = '1~30 사이의 정수를 입력해 주세요.';
+    dailyWordCountInput.focus();
+    return;
+  }
+  progress.settings = {
+    dailyWordCount: normalizeDailyWordCount(requested),
+    revision: (Number.isInteger(progress.settings?.revision) ? progress.settings.revision : 0) + 1,
+  };
+  persist();
+  accountSettingsChanged = true;
+  settingsMessage.textContent = '저장되었습니다. 다음 신규 학습부터 적용됩니다.';
+});
+
+accountDialog.addEventListener('close', () => {
+  if (accountSettingsChanged && viewMode === 'dashboard') renderDashboard();
+  accountSettingsChanged = false;
 });
 
 accountForm.addEventListener('submit', async (event) => {

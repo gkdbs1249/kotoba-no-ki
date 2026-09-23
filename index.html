@@ -41,6 +41,18 @@
       </div>
     </form>
     <div id="account-message" class="muted" role="status" aria-live="polite"></div>
+    <section id="account-settings" class="account-settings" aria-labelledby="account-settings-title">
+      <h3 id="account-settings-title">학습 설정</h3>
+      <p class="muted">진행 중인 학습은 유지되고 다음 신규 학습부터 적용됩니다.</p>
+      <form id="daily-word-count-form" class="answer-form compact-form">
+        <label for="daily-word-count">하루 신규 단어</label>
+        <div class="inline-setting">
+          <input id="daily-word-count" name="dailyWordCount" type="number" inputmode="numeric" min="1" max="30" step="1" value="10" required>
+          <button class="primary" type="submit">저장</button>
+        </div>
+      </form>
+      <div id="settings-message" class="muted" role="status" aria-live="polite"></div>
+    </section>
     <button id="sign-out-button" class="secondary hidden" type="button">로그아웃</button>
   </dialog>
   <noscript>이 앱은 JavaScript가 필요합니다.</noscript>

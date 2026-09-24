@@ -62,17 +62,28 @@ export function createInitialProgress() {
 }
 
 export function assignDailyWords(progress, words, date, count = 10) {
-  if (progress.days[date]) return progress.days[date];
-  const unfinished = Object.values(progress.days)
-    .filter((day) => Array.isArray(day?.wordIds) && day.wordIds.length > 0 && !day.coverageComplete)
-    .sort((a, b) => String(b.date).localeCompare(String(a.date)))[0];
-  if (unfinished) return unfinished;
+  const existing = progress.days[date];
+  const emptyUnstarted = existing
+    && (!Array.isArray(existing.wordIds) || existing.wordIds.length === 0)
+    && !existing.learned
+    && !existing.coverageComplete
+    && !(existing.learnedWordIds?.length)
+    && !(existing.coveredWordIds?.length)
+    && !(existing.recallAttempts?.length);
+  if (existing && !emptyUnstarted) return existing;
+  if (!existing) {
+    const unfinished = Object.values(progress.days)
+      .filter((day) => Array.isArray(day?.wordIds) && day.wordIds.length > 0 && !day.coverageComplete)
+      .sort((a, b) => String(b.date).localeCompare(String(a.date)))[0];
+    if (unfinished) return unfinished;
+  }
   const assigned = new Set(Object.values(progress.days).flatMap((day) => Array.isArray(day?.wordIds) ? day.wordIds : []));
   const n5 = words.filter((word) => word.level === 'N5' && !assigned.has(word.id));
   const level = n5.length ? 'N5' : 'N4';
   const wordIds = (level === 'N5' ? n5 : words.filter((word) => word.level === 'N4' && !assigned.has(word.id)))
     .slice(0, count)
     .map((word) => word.id);
+  if (existing && emptyUnstarted && wordIds.length === 0) return existing;
   const cohort = {
     date,
     level,
@@ -200,6 +211,25 @@ export function selectPracticeBatch(questions, count = 10, previousIds = [], ran
   const fresh = shuffledCopy(uniqueQuestions.filter((question) => !previous.has(question.id)), random);
   const repeated = shuffledCopy(uniqueQuestions.filter((question) => previous.has(question.id)), random);
   return [...fresh, ...repeated].slice(0, Math.max(0, count));
+}
+
+export function getLearnedWordIds(progress) {
+  const learned = new Set();
+  const days = Object.values(progress?.days ?? {})
+    .filter((day) => day && typeof day === 'object')
+    .sort((a, b) => String(a.date ?? '').localeCompare(String(b.date ?? '')));
+  for (const day of days) {
+    const evidenced = Array.isArray(day.learnedWordIds) ? day.learnedWordIds : [];
+    if (evidenced.length) evidenced.forEach((id) => learned.add(id));
+    else if (day.learned) (Array.isArray(day.wordIds) ? day.wordIds : []).forEach((id) => learned.add(id));
+  }
+  Object.keys(progress?.reviews ?? {}).forEach((id) => learned.add(id));
+  return [...learned];
+}
+
+export function selectCumulativeReviewIds(progress, count = 10, previousIds = [], random = Math.random) {
+  const candidates = getLearnedWordIds(progress).map((id) => ({ id }));
+  return selectPracticeBatch(candidates, count, previousIds, random).map(({ id }) => id);
 }
 
 function parseProgress(raw) {

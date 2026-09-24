@@ -12,6 +12,8 @@ import {
   buildMonthGrid,
   getDayStatus,
   selectPracticeBatch,
+  getLearnedWordIds,
+  selectCumulativeReviewIds,
   createInitialProgress,
   loadProgress,
   saveProgress,
@@ -38,6 +40,7 @@ let extraPracticeDrills = [];
 let katakanaDrills = [];
 let previousExtraQuestionIds = [];
 let previousKatakanaQuestionIds = [];
+let previousReviewWordIds = [];
 let progress = loadProgress();
 try { saveProgress(localStorage, progress); } catch { /* continue in memory if storage is unavailable */ }
 let cloudSync = null;
@@ -335,14 +338,37 @@ function bindDashboardCalendar() {
   }));
 }
 
+function reviewCountOptions(total) {
+  const defaultCount = Math.min(10, total);
+  const choices = [5, 10, 20, 30, 50].filter((count) => count < total);
+  return `${choices.map((count) => `<option value="${count}" ${count === defaultCount ? 'selected' : ''}>${count}개</option>`).join('')}<option value="${total}" ${total <= 10 ? 'selected' : ''}>전체 (${total}개)</option>`;
+}
+
 function renderDashboard() {
   if (cloudSync?.applyDeferred()) return renderDashboard();
   const date = today();
+  const dailyWordCount = normalizeDailyWordCount(progress.settings?.dailyWordCount);
+  const previousToday = progress.days[date];
+  let assignedDay = previousToday;
+  const emptyToday = previousToday
+    && (!Array.isArray(previousToday.wordIds) || previousToday.wordIds.length === 0)
+    && !previousToday.learned
+    && !previousToday.coverageComplete
+    && !(previousToday.learnedWordIds?.length)
+    && !(previousToday.coveredWordIds?.length)
+    && !(previousToday.recallAttempts?.length);
+  if (emptyToday) {
+    assignedDay = assignDailyWords(progress, words, date, dailyWordCount);
+    if (progress.days[date] !== previousToday) persist();
+  }
   const pendingDay = Object.values(progress.days)
     .filter((entry) => Array.isArray(entry?.wordIds) && entry.wordIds.length > 0 && !entry.coverageComplete)
     .sort((a, b) => String(b.date).localeCompare(String(a.date)))[0];
-  const day = progress.days[date] ?? pendingDay;
+  const day = assignedDay?.wordIds?.length ? assignedDay : pendingDay ?? assignedDay;
   const due = getDueWordIds(progress, date).length;
+  const byId = wordMap();
+  const learnedReviewIds = getLearnedWordIds(progress).filter((id) => byId.has(id));
+  const reviewTotal = learnedReviewIds.length;
   const completedDays = Object.values(progress.days).filter((entry) => entry.coverageComplete).length;
   const n5Words = words.filter((word) => word.level === 'N5');
   const completedN5 = new Set(Object.values(progress.days)
@@ -350,21 +376,20 @@ function renderDashboard() {
     .flatMap((entry) => entry.wordIds ?? []));
   const currentLevel = n5Words.every((word) => completedN5.has(word.id)) ? 'N4 초급 확장' : 'N5 기초 다지기';
   const weakSkills = progress.diagnostic?.weakSkills ?? [];
-  const dailyWordCount = normalizeDailyWordCount(progress.settings?.dailyWordCount);
   const displayedWordCount = day?.wordIds?.length ?? dailyWordCount;
   setView(`<section class="panel">
     <p class="eyebrow">${currentLevel} · 오늘도 한 가지씩 자라요</p><h1>안녕하세요 🌱</h1>
     ${weakSkills.length ? `<p class="muted">진단 추천: ${weakSkills.map((skill) => escapeHtml(SKILL_LABELS[skill] ?? skill)).join(' · ')} 영역을 먼저 보완해요.</p>` : ''}
-    <div class="stats"><div class="stat"><strong>${displayedWordCount}</strong><span>오늘 단어</span></div><div class="stat"><strong>${due}</strong><span>복습 대기</span></div><div class="stat"><strong>${completedDays}</strong><span>완료한 날</span></div></div>
+    <div class="stats"><div class="stat"><strong>${displayedWordCount}</strong><span>오늘 단어</span></div><div class="stat"><strong>${reviewTotal}</strong><span>누적 복습</span></div><div class="stat"><strong>${completedDays}</strong><span>완료한 날</span></div></div>
     <div class="dashboard-grid">
       <article class="task"><div class="task-copy"><h2>오늘의 학습</h2><p>${day?.coverageComplete ? `오늘의 ${displayedWordCount}개를 모두 떠올렸어요` : day?.learned ? '뜻 → 일본어 오답을 줄여 보세요' : `새 단어 ${displayedWordCount}개와 직접 입력`}</p></div><button id="daily-button" type="button">${day?.coverageComplete ? '다시 보기' : '시작'}</button></article>
-      <article class="task"><div class="task-copy"><h2>복습</h2><p>1·3·7·14·30·60일 간격 · ${due}개 대기</p></div><button id="review-button" type="button" ${due ? '' : 'disabled'}>${due ? '복습' : '완료'}</button></article>
+      <article class="task review-task"><div class="task-copy"><h2>복습</h2><p>지금까지 배운 ${reviewTotal}개 누적 · 오늘 예정 ${due}개</p></div>${reviewTotal ? `<div class="review-controls"><label for="review-count">이번 복습</label><select id="review-count">${reviewCountOptions(reviewTotal)}</select><button id="review-button" type="button">시작</button></div>` : '<button id="review-button" type="button" disabled>배운 뒤 가능</button>'}</article>
       <article class="task"><div class="task-copy"><h2>추가 연습</h2><p>조사·활용 / 가타카나 빠르게 읽기</p></div><button id="extra-button" type="button">선택</button></article>
     </div>
     ${dashboardCalendarMarkup()}
   </section>`, 'dashboard');
   document.querySelector('#daily-button').addEventListener('click', startDaily);
-  document.querySelector('#review-button').addEventListener('click', startReview);
+  document.querySelector('#review-button').addEventListener('click', () => startReview(Number(document.querySelector('#review-count')?.value ?? 0)));
   document.querySelector('#extra-button').addEventListener('click', renderExtraPracticeHub);
   bindDashboardCalendar();
 }
@@ -474,19 +499,25 @@ function renderDailyComplete(day) {
   document.querySelector('#complete-home').addEventListener('click', renderDashboard);
 }
 
-function startReview() {
+function startReview(requestedCount) {
   const date = today();
   const byId = wordMap();
-  const queue = getDueWordIds(progress, date).filter((id) => byId.has(id));
+  const learnedIds = getLearnedWordIds(progress).filter((id) => byId.has(id));
+  const count = Number.isInteger(requestedCount) && requestedCount > 0
+    ? Math.min(requestedCount, learnedIds.length)
+    : Math.min(10, learnedIds.length);
+  const queue = selectCumulativeReviewIds(progress, count, previousReviewWordIds).filter((id) => byId.has(id));
+  previousReviewWordIds = [...queue];
+  const initialCount = queue.length;
   let index = 0;
   const render = () => {
     if (!queue.length || index >= queue.length) {
-      setView('<section class="panel"><h1>복습 완료! 🍃</h1><p>오늘 예정된 단어를 모두 떠올렸어요.</p><button class="primary" id="review-home">홈으로</button></section>');
+      setView(`<section class="panel"><h1>복습 완료! 🍃</h1><p>지금까지 배운 단어 중 ${initialCount}개를 복습했어요.</p><button class="primary" id="review-home">홈으로</button></section>`);
       document.querySelector('#review-home').addEventListener('click', renderDashboard);
       return;
     }
     const word = byId.get(queue[index]);
-    setView(`<section class="panel"><p class="eyebrow">간격 복습 · ${index + 1}/${queue.length}</p>${progressBar(index, queue.length)}<p class="muted">뜻을 보고 일본어를 입력하세요.</p><div class="question">${escapeHtml(word.meaningKo)}</div><form class="answer-form"><input id="review-answer" lang="ja" aria-label="일본어 답" autocomplete="off" required><button class="primary">확인</button></form><div id="feedback-slot"></div></section>`);
+    setView(`<section class="panel"><p class="eyebrow">누적 복습 · ${index + 1}/${queue.length}</p>${progressBar(index, queue.length)}<p class="muted">뜻을 보고 일본어를 입력하세요. 틀린 단어는 마지막에 다시 나와요.</p><div class="question">${escapeHtml(word.meaningKo)}</div><form class="answer-form"><input id="review-answer" lang="ja" aria-label="일본어 답" autocomplete="off" required><button class="primary">확인</button></form><div id="feedback-slot"></div></section>`);
     const form = document.querySelector('form');
     form.addEventListener('submit', (event) => {
       event.preventDefault();

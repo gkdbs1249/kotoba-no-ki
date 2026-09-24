@@ -17,6 +17,8 @@ import {
   getDayStatus,
   createOptionalPractice,
   selectPracticeBatch,
+  getLearnedWordIds,
+  selectCumulativeReviewIds,
   loadProgress,
   saveProgress,
 } from '../src/core.mjs';
@@ -69,6 +71,48 @@ test('changing the setting never resizes an already assigned daily cohort', () =
   const resumed = assignDailyWords(progress, words, '2026-09-22', progress.settings.dailyWordCount);
   assert.equal(first.wordIds.length, 3);
   assert.deepEqual(resumed.wordIds, first.wordIds);
+});
+
+test('an empty unstarted day is repaired with the configured word count', () => {
+  const progress = createInitialProgress();
+  progress.days['2026-09-23'] = {
+    date: '2026-09-23', level: 'N5', wordIds: [], learned: false,
+    learnedWordIds: [], coverageComplete: false, coveredWordIds: [], recallAttempts: [],
+  };
+  const repaired = assignDailyWords(progress, words, '2026-09-23', 5);
+  assert.equal(repaired.wordIds.length, 5);
+  assert.deepEqual(progress.days['2026-09-23'].wordIds, repaired.wordIds);
+});
+
+test('empty current day is repaired without altering a prior unfinished cohort', () => {
+  const progress = createInitialProgress();
+  const priorIds = words.slice(0, 3).map(({ id }) => id);
+  progress.days['2026-09-22'] = {
+    date: '2026-09-22', level: 'N5', wordIds: priorIds, learned: true,
+    learnedWordIds: priorIds, coverageComplete: false, coveredWordIds: [priorIds[0]], recallAttempts: [],
+  };
+  progress.days['2026-09-23'] = {
+    date: '2026-09-23', level: 'N5', wordIds: [], learned: false,
+    learnedWordIds: [], coverageComplete: false, coveredWordIds: [], recallAttempts: [],
+  };
+  const priorSnapshot = structuredClone(progress.days['2026-09-22']);
+  const repaired = assignDailyWords(progress, words, '2026-09-23', 5);
+  assert.equal(repaired.date, '2026-09-23');
+  assert.equal(repaired.wordIds.length, 5);
+  assert.equal(repaired.wordIds.some((id) => priorIds.includes(id)), false);
+  assert.deepEqual(progress.days['2026-09-22'], priorSnapshot);
+});
+
+test('empty days with out-of-order learning evidence are never overwritten', () => {
+  const progress = createInitialProgress();
+  const evidenceOnly = {
+    date: '2026-09-23', level: 'N5', wordIds: [], learned: false,
+    learnedWordIds: ['remote-word'], coverageComplete: false, coveredWordIds: [], recallAttempts: [],
+  };
+  progress.days['2026-09-23'] = evidenceOnly;
+  const preserved = assignDailyWords(progress, words, '2026-09-23', 5);
+  assert.equal(preserved, evidenceOnly);
+  assert.deepEqual(progress.days['2026-09-23'].learnedWordIds, ['remote-word']);
 });
 
 test('daily assignment stores exactly ten unseen N5 words without mutating input', () => {
@@ -140,6 +184,32 @@ test('productive recall retries only uncovered words until cumulative coverage c
   assert.deepEqual(getRecallQueue(day), []);
   assert.equal(day.coverageComplete, true);
   assert.equal(day.recallAttempts[1].number, 2);
+});
+
+test('cumulative review selects the requested number from every learned word', () => {
+  const progress = createInitialProgress();
+  progress.days['2026-09-20'] = {
+    date: '2026-09-20', wordIds: ['w1', 'w2', 'w3', 'w4', 'w5', 'w6'],
+    learned: true, learnedWordIds: [], coverageComplete: true, coveredWordIds: [], recallAttempts: [],
+  };
+  progress.days['2026-09-21'] = {
+    date: '2026-09-21', wordIds: ['w7', 'w8', 'w9', 'w10', 'w11', 'w12'],
+    learned: true, learnedWordIds: ['w7', 'w8', 'w9', 'w10', 'w11', 'w12'], coverageComplete: false, coveredWordIds: [], recallAttempts: [],
+  };
+  progress.days['2026-09-22'] = {
+    date: '2026-09-22', wordIds: ['assigned-only'], learned: false,
+    learnedWordIds: [], coverageComplete: false, coveredWordIds: [], recallAttempts: [],
+  };
+  progress.reviews['legacy-review'] = { learnedDate: '2026-09-19', completedIntervals: [] };
+  assert.deepEqual(getLearnedWordIds(progress), [...Array.from({ length: 12 }, (_, index) => `w${index + 1}`), 'legacy-review']);
+  const first = selectCumulativeReviewIds(progress, 5, [], () => 0.5);
+  const second = selectCumulativeReviewIds(progress, 5, first, () => 0.5);
+  assert.equal(first.length, 5);
+  assert.equal(new Set(first).size, 5);
+  assert.equal(second.length, 5);
+  assert.equal(second.some((id) => first.includes(id)), false);
+  assert.equal(first.includes('assigned-only'), false);
+  assert.equal(selectCumulativeReviewIds(progress, 99).length, 13);
 });
 
 test('reviews are due at 1, 3, 7, 14, 30, and 60 days', () => {

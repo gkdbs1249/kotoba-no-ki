@@ -79,6 +79,10 @@ rt { font-size: .38em; font-weight: 600; color: var(--muted); }
 .task h2, .task p { margin: 0; }
 .task p { color: var(--muted); font-size: .9rem; }
 .task button { min-width: 5.7rem; padding: .6rem; border: 0; border-radius: 11px; color: white; background: var(--green); font-weight: 750; }
+.review-controls { display: grid; grid-template-columns: minmax(7rem, 1fr) auto; gap: .45rem; align-items: end; min-width: 12rem; }
+.review-controls label { grid-column: 1 / -1; color: var(--muted); font-size: .82rem; font-weight: 750; }
+.review-controls select { min-height: 44px; border: 1px solid var(--line); border-radius: 10px; padding: .55rem .7rem; color: var(--ink); background: white; font: inherit; }
+.review-controls button { min-width: 4.5rem; }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin: 1rem 0; }
 .stat { padding: .7rem .3rem; text-align: center; border-radius: 12px; background: var(--leaf); }
 .stat strong, .stat span { display: block; }
@@ -104,4 +108,4 @@ rt { font-size: .38em; font-weight: 600; color: var(--muted); }
 .legend .mastered::before { background: #bde7c6; }.legend .studied::before { background: #fff0b5; }.legend .missed::before { background: #ffe0dd; }
 .loading { text-align: center; }
 @media (min-width: 560px) { .actions.two { grid-template-columns: 1fr 1fr; } .choice-list { grid-template-columns: 1fr 1fr; } main { padding-top: 1.5rem; } }
-@media (max-width: 420px) { .sync-status { display: none; } .brand strong { font-size: 1rem; } .task { grid-template-columns: minmax(0,1fr); } .task button { width: 100%; } }
+@media (max-width: 420px) { .sync-status { display: none; } .brand strong { font-size: 1rem; } .task { grid-template-columns: minmax(0,1fr); } .task button { width: 100%; } .review-controls { width: 100%; min-width: 0; } }

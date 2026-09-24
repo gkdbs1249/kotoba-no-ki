@@ -42,6 +42,16 @@ test('dashboard nests settings under account, drills under extra practice, and r
   assert.doesNotMatch(source, /id="katakana-button"/);
 });
 
+test('dashboard assigns the configured cohort and offers cumulative review counts', async () => {
+  const source = await read('../app.mjs');
+  assert.match(source, /assignDailyWords\(progress, words, date, dailyWordCount\)/);
+  assert.match(source, /getLearnedWordIds/);
+  assert.match(source, /selectCumulativeReviewIds/);
+  assert.match(source, /id="review-count"/);
+  assert.match(source, /\[5, 10, 20, 30, 50\]/);
+  assert.match(source, /전체 \(\$\{total\}개\)/);
+});
+
 test('app exposes adjustable daily word settings and randomized fifty-question banks', async () => {
   const [html, source] = await Promise.all([read('../index.html'), read('../app.mjs')]);
   assert.match(source, /normalizeDailyWordCount/);

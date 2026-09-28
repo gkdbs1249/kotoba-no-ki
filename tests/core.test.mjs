@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import {
   STORAGE_KEY,
   REVIEW_INTERVALS,
@@ -22,6 +23,8 @@ import {
   loadProgress,
   saveProgress,
 } from '../src/core.mjs';
+
+const catalogWords = JSON.parse(await readFile(new URL('../data/words.json', import.meta.url), 'utf8'));
 
 const words = Array.from({ length: 14 }, (_, index) => ({
   id: `j-n5-${String(index + 1).padStart(4, '0')}`,
@@ -128,6 +131,19 @@ test('daily assignment stores exactly ten unseen N5 words without mutating input
   assert.equal(next.wordIds.length, 4);
   assert.equal(new Set([...cohort.wordIds, ...next.wordIds]).size, 14);
   assert.strictEqual(assignDailyWords(progress, words, '2026-09-12'), cohort);
+});
+
+test('a learner who completed the original 101 words receives five expanded N4 words', () => {
+  const progress = createInitialProgress();
+  const originalIds = catalogWords.slice(0, 101).map(({ id }) => id);
+  progress.days['2026-09-24'] = {
+    date: '2026-09-24', level: 'N4', wordIds: originalIds,
+    learned: true, learnedWordIds: originalIds, coverageComplete: true,
+    coveredWordIds: originalIds, recallAttempts: [],
+  };
+  const next = assignDailyWords(progress, catalogWords, '2026-09-25', 5);
+  assert.equal(next.wordIds.length, 5);
+  assert.equal(next.wordIds.every((id) => id.startsWith('j-n4-') && !originalIds.includes(id)), true);
 });
 
 test('N4 words unlock only after every available N5 word has been completed', () => {

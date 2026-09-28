@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 
 const loadJson = async (path) => JSON.parse(await readFile(new URL(path, import.meta.url), 'utf8'));
 
@@ -25,6 +26,69 @@ test('N5 and N4 vocabulary records have stable Japanese learning fields', async 
     assert.ok(word.example?.reading?.trim());
     assert.ok(word.example?.korean?.trim());
   }
+});
+
+test('expanded N4 bank preserves the original 101 records exactly', async () => {
+  const words = await loadJson('../data/words.json');
+  const originalHash = createHash('sha256').update(JSON.stringify(words.slice(0, 101))).digest('hex');
+  assert.equal(originalHash, '02da6c7d8bdfdf1f6d46e2bde84c616a8bd31f418806b5f525986c53bd70d8bf');
+  assert.ok(words.filter(({ level }) => level === 'N4').length >= 550);
+  assert.ok(words.length >= 611);
+});
+
+test('expanded N4 records are sequential, unique, readable, and source-traceable', async () => {
+  const words = await loadJson('../data/words.json');
+  const expanded = words.slice(101);
+  assert.equal(expanded.length, 560);
+  assert.equal(words.filter(({ level }) => level === 'N4').length, 600);
+  const forms = new Set();
+  const allWritten = new Set();
+  for (const word of words) {
+    assert.ok(!allWritten.has(word.written), `duplicate headword across levels: ${word.written}`);
+    allWritten.add(word.written);
+  }
+  for (const [offset, word] of expanded.entries()) {
+    assert.equal(word.id, `j-n4-${String(offset + 41).padStart(4, '0')}`);
+    const key = `${word.written}\u0000${word.reading}`;
+    assert.ok(!forms.has(key), `duplicate expanded form: ${word.written} / ${word.reading}`);
+    forms.add(key);
+    assert.ok(word.acceptedAnswers.includes(word.written));
+    assert.ok(word.acceptedAnswers.includes(word.reading));
+    assert.doesNotMatch(word.reading, /\//u, `${word.id} reading contains unresolved alternatives`);
+    if (!word.written.endsWith('する')) assert.doesNotMatch(word.reading, /する$/u, `${word.id} noun reading contains する`);
+    assert.doesNotMatch(word.example.reading, /[一-龯々]/u, `${word.id} reading still has kanji`);
+    // Inflected Japanese examples need lemma-aware review; exact headword substring checks
+    // reject valid forms such as 割れた and 召し上がって while accepting wrong senses.
+    assert.doesNotMatch(word.meaningKo, /(?:이라는|라는|은|는)\s*(?:명사|대명사|동사|형용사|부사|감탄사|접두사|접미사|표현)$/u);
+    assert.match(word.source.vocabulary, /c42fd9fa3777bfc1775446f7c418d549dfd6e4cf/);
+  }
+});
+
+test('expanded N4 examples teach the listed headword sense and preserve equivalent answers', async () => {
+  const words = Object.fromEntries((await loadJson('../data/words.json')).map((word) => [word.id, word]));
+  const expectedExamples = {
+    'j-n4-0041': ['あ、雨だ。', 'あ、あめだ。', '아, 비가 온다.'],
+    'j-n4-0215': ['卵が割れた。', 'たまごがわれた。', '계란이 깨졌다.'],
+    'j-n4-0230': ['学校の帰りに本屋へ寄った。', 'がっこうのかえりにほんやへよった。', '학교에서 돌아오는 길에 서점에 들렀다.'],
+    'j-n4-0363': ['どうぞ召し上がってください。', 'どうぞめしあがってください。', '어서 드세요.'],
+    'j-n4-0426': ['庭に草が生えている。', 'にわにくさがはえている。', '마당에 풀이 자라고 있다.'],
+    'j-n4-0439': ['私が彼の代わりに行きます。', 'わたしがかれのかわりにいきます。', '제가 그를 대신해서 갑니다.'],
+    'j-n4-0499': ['今日は暑い日です。', 'きょうはあついひです。', '오늘은 더운 날입니다.'],
+    'j-n4-0526': ['磁石が冷蔵庫に付く。', 'じしゃくがれいぞうこにつく。', '자석이 냉장고에 붙는다.'],
+    'j-n4-0578': ['遊びの時間です。', 'あそびのじかんです。', '놀이 시간입니다.'],
+    'j-n4-0585': ['この踊りは簡単です。', 'このおどりはかんたんです。', '이 춤은 간단합니다.'],
+    'j-n4-0590': ['旗を立てる。', 'はたをたてる。', '깃발을 세운다.'],
+  };
+  for (const [id, [japanese, reading, korean]] of Object.entries(expectedExamples)) {
+    assert.deepEqual(words[id].example, { japanese, reading, korean }, `${id} example drifted`);
+  }
+  assert.ok(words['j-n4-0067'].acceptedAnswers.includes('金持ち'));
+  assert.ok(words['j-n4-0293'].acceptedAnswers.includes('高等学校'));
+  assert.ok(words['j-n4-0295'].acceptedAnswers.includes('高校'));
+  for (const id of ['j-n4-0238', 'j-n4-0265', 'j-n4-0298', 'j-n4-0389', 'j-n4-0587']) {
+    assert.ok(words[id].source.normalization?.includes('normalized'), `${id} must document source normalization`);
+  }
+  assert.match(words['j-n4-0389'].source.example, /Tatoeba.*normalized 真中→真ん中/);
 });
 
 test('placement diagnostic has exactly 30 balanced questions', async () => {

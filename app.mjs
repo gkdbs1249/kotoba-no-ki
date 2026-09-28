@@ -11,6 +11,7 @@ import {
   completeDueReview,
   buildMonthGrid,
   getDayStatus,
+  isCalendarInactiveDate,
   selectPracticeBatch,
   getLearnedWordIds,
   selectCumulativeReviewIds,
@@ -57,6 +58,7 @@ const localDate = (date = new Date()) => {
 };
 const today = () => localDate();
 const wordMap = () => new Map(words.map((word) => [word.id, word]));
+const currentAccountId = () => cloudSync?.currentUid ? localStorage.getItem('kotoba-no-ki:account-id') : null;
 const isValidDateString = (value) => {
   if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
   const parsed = new Date(`${value}T00:00:00Z`);
@@ -320,7 +322,9 @@ function dashboardCalendarMarkup() {
     <p class="eyebrow">학습 캘린더</p><h2 id="dashboard-calendar-title">${year}년 ${month + 1}월</h2>
     <div class="calendar-wrap"><div class="weekdays" aria-hidden="true">${['일','월','화','수','목','금','토'].map((day) => `<div>${day}</div>`).join('')}</div><div class="calendar" aria-label="${year}년 ${month + 1}월">${grid.map((cell) => {
       if (!cell) return '<span class="day blank" aria-hidden="true"></span>';
-      const status = getDayStatus(progress, cell.date, today(), progress.studyStartDate);
+      const status = isCalendarInactiveDate(currentAccountId(), cell.date)
+        ? 'inactive'
+        : getDayStatus(progress, cell.date, today(), progress.studyStartDate);
       return `<button class="day ${status}" type="button" data-calendar-date="${cell.date}" aria-label="${cell.date}, ${statusLabels[status]}">${cell.day}</button>`;
     }).join('')}</div></div>
     <div class="legend"><span class="mastered">떠올리기 완료</span><span class="studied">학습 중</span><span class="missed">학습 없음</span></div>
@@ -332,7 +336,10 @@ function bindDashboardCalendar() {
   document.querySelectorAll('[data-calendar-date]').forEach((button) => button.addEventListener('click', () => {
     const date = button.dataset.calendarDate;
     const day = progress.days[date];
-    document.querySelector('#dashboard-day-detail').innerHTML = day
+    const inactive = isCalendarInactiveDate(currentAccountId(), date);
+    document.querySelector('#dashboard-day-detail').innerHTML = inactive
+      ? `<p class="muted">${date}은 코토바노키 업데이트 기간으로 학습 기록 대상에서 제외했어요.</p>`
+      : day
       ? `<div class="calendar-detail"><h3>${date}</h3><p>단어 ${day.wordIds?.length ?? 0}개 · ${day.coverageComplete ? '뜻 → 일본어 완료' : '학습 중'}</p><p class="muted">완료한 입력 회차 ${day.recallAttempts?.filter((attempt) => attempt.completed).length ?? 0}회</p></div>`
       : `<p class="muted">${date}에는 저장된 학습이 없어요.</p>`;
   }));

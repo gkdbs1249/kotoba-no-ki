@@ -179,6 +179,15 @@ export function buildMonthGrid(year, monthIndex) {
   return cells;
 }
 
+const CALENDAR_INACTIVE_DATES_BY_ACCOUNT = {
+  uzs1008: new Set(['2026-09-24', '2026-09-25', '2026-09-26', '2026-09-27']),
+};
+
+export function isCalendarInactiveDate(accountId, date) {
+  const normalizedAccountId = String(accountId ?? '').trim().toLowerCase();
+  return CALENDAR_INACTIVE_DATES_BY_ACCOUNT[normalizedAccountId]?.has(date) ?? false;
+}
+
 export function getDayStatus(progress, date, today, studyStartDate = progress.studyStartDate) {
   if (studyStartDate && date < studyStartDate) return 'inactive';
   if (date > today) return 'future';

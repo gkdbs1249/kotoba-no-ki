@@ -51,7 +51,7 @@ python3 -m http.server 4173
 
 ## PWA 캐시
 
-`sw.js`의 cache 이름은 `kotoba-no-ki-v7`입니다. 설치 시 모든 필수 정적 파일을 먼저 fetch/검증하고 나서 cache에 기록하며, 어떤 fetch/put이든 실패하면 후보 cache 전체를 삭제합니다. 활성화 시 이 앱 prefix의 이전 cache만 제거합니다. Firebase/API/CDN 요청과 사용자 데이터는 cache하지 않습니다.
+`sw.js`의 cache 이름은 `kotoba-no-ki-v9`입니다. 설치 시 모든 필수 정적 파일을 먼저 fetch/검증하고 나서 cache에 기록하며, 어떤 fetch/put이든 실패하면 후보 cache 전체를 삭제합니다. 활성화 시 이 앱 prefix의 이전 cache만 제거합니다. Firebase/API/CDN 요청과 사용자 데이터는 cache하지 않습니다.
 
 런타임 파일을 변경할 때마다 cache 버전을 올리고, 기존 설치 PWA의 old→new 업그레이드를 확인하세요. `skipWaiting()`/`clients.claim()`은 이미 실행 중인 문서의 JavaScript를 교체하지 않으므로 안전한 시점의 새로고침 또는 앱 재실행이 필요합니다.
 

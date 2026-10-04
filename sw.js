@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kotoba-no-ki-v8';
+const CACHE_NAME = 'kotoba-no-ki-v9';
 const CACHE_PREFIX = 'kotoba-no-ki-';
 const APP_SHELL = Object.freeze([
   './',

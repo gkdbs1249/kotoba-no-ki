@@ -13,6 +13,7 @@ import {
   getDayStatus,
   isCalendarInactiveDate,
   selectPracticeBatch,
+  shuffleOrderingChoices,
   getLearnedWordIds,
   selectCumulativeReviewIds,
   createInitialProgress,
@@ -249,7 +250,9 @@ function runQuestionSession(questions, onComplete, options = {}) {
     let selectedOrder = [];
     const title = options.title ?? 'N5 배치 진단';
     const instruction = question.responseMode === 'ordering' ? '알맞은 순서대로 눌러 주세요.' : '정답을 선택하거나 입력해 주세요.';
-    const choices = question.choices ?? [];
+    const choices = question.responseMode === 'ordering'
+      ? shuffleOrderingChoices(question)
+      : (question.choices ?? []);
     setView(`<section class="panel">
       <p class="eyebrow">${escapeHtml(title)} · ${index + 1}/${questions.length}</p>
       ${progressBar(index, questions.length)}

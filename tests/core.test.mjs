@@ -19,6 +19,7 @@ import {
   isCalendarInactiveDate,
   createOptionalPractice,
   selectPracticeBatch,
+  shuffleOrderingChoices,
   getLearnedWordIds,
   selectCumulativeReviewIds,
   loadProgress,
@@ -274,6 +275,19 @@ test('uzs1008 calendar excludes only the September 24–27 maintenance window', 
   assert.equal(isCalendarInactiveDate('uzs1008', '2026-09-23'), false);
   assert.equal(isCalendarInactiveDate('uzs1008', '2026-09-28'), false);
   assert.equal(isCalendarInactiveDate('another_user', '2026-09-24'), false);
+});
+
+test('ordering choices are copied, randomized, and never displayed in canonical answer order', () => {
+  const question = {
+    choices: ['1', '2', '3', '4'],
+    answer: ['1', '2', '3', '4'],
+  };
+  const original = [...question.choices];
+  const randomized = shuffleOrderingChoices(question, () => 0.999999);
+  assert.deepEqual(question.choices, original);
+  assert.deepEqual([...randomized].sort(), [...original].sort());
+  assert.notDeepEqual(randomized, question.answer);
+  assert.deepEqual(randomized, ['2', '3', '4', '1']);
 });
 
 test('practice batches draw ten unique questions and avoid the immediately previous batch', () => {

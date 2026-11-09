@@ -59,6 +59,7 @@ test('app exposes adjustable daily word settings and randomized fifty-question b
   assert.match(source, /progress\.settings\.dailyWordCount/);
   assert.match(source, /data\/extra-practice\.json/);
   assert.match(source, /selectPracticeBatch/);
+  assert.match(source, /shuffleOrderingChoices\(question\)/);
   assert.match(source, /previousExtraQuestionIds/);
   assert.match(source, /previousKatakanaQuestionIds/);
 });

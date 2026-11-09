@@ -212,6 +212,15 @@ function shuffledCopy(items, random = Math.random) {
   return shuffled;
 }
 
+export function shuffleOrderingChoices(question, random = Math.random) {
+  const choices = Array.isArray(question?.choices) ? question.choices : [];
+  const shuffled = shuffledCopy(choices, random);
+  if (shuffled.length < 2 || !Array.isArray(question?.answer)) return shuffled;
+  const isCanonicalOrder = shuffled.length === question.answer.length
+    && shuffled.every((choice, index) => choice === question.answer[index]);
+  return isCanonicalOrder ? [...shuffled.slice(1), shuffled[0]] : shuffled;
+}
+
 export function selectPracticeBatch(questions, count = 10, previousIds = [], random = Math.random) {
   const uniqueQuestions = [...new Map((Array.isArray(questions) ? questions : [])
     .filter((question) => question && typeof question.id === 'string' && question.id)

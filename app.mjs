@@ -13,6 +13,7 @@ import {
   getDayStatus,
   isCalendarInactiveDate,
   selectPracticeBatch,
+  prepareQuestionSession,
   shuffleOrderingChoices,
   getLearnedWordIds,
   selectCumulativeReviewIds,
@@ -243,10 +244,11 @@ function answerMatches(question, answer) {
 }
 
 function runQuestionSession(questions, onComplete, options = {}) {
+  const sessionQuestions = prepareQuestionSession(questions);
   let index = 0;
   const responses = {};
   const render = () => {
-    const question = questions[index];
+    const question = sessionQuestions[index];
     let selectedOrder = [];
     const title = options.title ?? 'N5 배치 진단';
     const instruction = question.responseMode === 'ordering' ? '알맞은 순서대로 눌러 주세요.' : '정답을 선택하거나 입력해 주세요.';
@@ -254,8 +256,8 @@ function runQuestionSession(questions, onComplete, options = {}) {
       ? shuffleOrderingChoices(question)
       : (question.choices ?? []);
     setView(`<section class="panel">
-      <p class="eyebrow">${escapeHtml(title)} · ${index + 1}/${questions.length}</p>
-      ${progressBar(index, questions.length)}
+      <p class="eyebrow">${escapeHtml(title)} · ${index + 1}/${sessionQuestions.length}</p>
+      ${progressBar(index, sessionQuestions.length)}
       <p class="muted">${escapeHtml(SKILL_LABELS[question.skill] ?? question.skill)} · ${instruction}</p>
       <div class="question">${escapeHtml(question.prompt)}</div>
       ${question.responseMode === 'typing' ? `<form class="answer-form"><label for="quiz-answer">일본어로 입력</label><input id="quiz-answer" name="answer" lang="ja" inputmode="text" autocomplete="off" enterkeyhint="done" required><button class="primary" type="submit">정답 확인</button></form>` : `<div class="choice-list">${choices.map((choice) => `<button class="choice" type="button" data-choice="${escapeHtml(choice)}">${escapeHtml(choice)}</button>`).join('')}</div>${question.responseMode === 'ordering' ? '<button class="primary" id="order-submit" type="button" disabled>순서 확인</button><p id="order-preview" class="muted">선택한 순서: —</p>' : ''}`}
@@ -271,12 +273,12 @@ function runQuestionSession(questions, onComplete, options = {}) {
       const canonical = Array.isArray(question.answer) ? question.answer.join(' → ') : question.answer;
       document.querySelector('#feedback-slot').innerHTML = `<div class="feedback ${correct ? 'correct' : 'wrong'}" role="status" aria-live="polite">
         ${correct ? '✓ 정답이에요!' : `✕ 아쉬워요. 정답: ${escapeHtml(canonical)}`}<br><span>${escapeHtml(question.explanationKo)}</span>
-      </div><button class="primary" id="next-question" type="button">${index + 1 === questions.length ? '결과 보기' : '다음 문제'}</button>`;
+      </div><button class="primary" id="next-question" type="button">${index + 1 === sessionQuestions.length ? '결과 보기' : '다음 문제'}</button>`;
       const next = document.querySelector('#next-question');
       next.focus();
       next.addEventListener('click', () => {
         index += 1;
-        if (index >= questions.length) onComplete(responses, questions);
+        if (index >= sessionQuestions.length) onComplete(responses, sessionQuestions);
         else render();
       });
     };

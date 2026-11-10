@@ -212,6 +212,27 @@ function shuffledCopy(items, random = Math.random) {
   return shuffled;
 }
 
+export function prepareQuestionSession(questions, random = Math.random) {
+  const positionDecks = new Map();
+  return (Array.isArray(questions) ? questions : []).map((source) => {
+    const question = structuredClone(source);
+    if (question.responseMode !== 'choice' || !Array.isArray(question.choices) || question.choices.length < 2) return question;
+    const answerIndex = question.choices.indexOf(question.answer);
+    if (answerIndex < 0) return question;
+    const choiceCount = question.choices.length;
+    let deck = positionDecks.get(choiceCount);
+    if (!deck?.length) {
+      deck = shuffledCopy(Array.from({ length: choiceCount }, (_, index) => index), random);
+      positionDecks.set(choiceCount, deck);
+    }
+    const targetIndex = deck.pop();
+    const distractors = shuffledCopy(question.choices.filter((_, index) => index !== answerIndex), random);
+    distractors.splice(targetIndex, 0, question.answer);
+    question.choices = distractors;
+    return question;
+  });
+}
+
 export function shuffleOrderingChoices(question, random = Math.random) {
   const choices = Array.isArray(question?.choices) ? question.choices : [];
   const shuffled = shuffledCopy(choices, random);

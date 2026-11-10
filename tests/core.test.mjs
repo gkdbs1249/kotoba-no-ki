@@ -19,6 +19,7 @@ import {
   isCalendarInactiveDate,
   createOptionalPractice,
   selectPracticeBatch,
+  prepareQuestionSession,
   shuffleOrderingChoices,
   getLearnedWordIds,
   selectCumulativeReviewIds,
@@ -275,6 +276,36 @@ test('uzs1008 calendar excludes only the September 24–27 maintenance window', 
   assert.equal(isCalendarInactiveDate('uzs1008', '2026-09-23'), false);
   assert.equal(isCalendarInactiveDate('uzs1008', '2026-09-28'), false);
   assert.equal(isCalendarInactiveDate('another_user', '2026-09-24'), false);
+});
+
+test('choice sessions balance correct answers across positions without mutating source questions', () => {
+  const questions = Array.from({ length: 10 }, (_, index) => ({
+    id: `q${index + 1}`,
+    responseMode: 'choice',
+    answer: '정답',
+    choices: ['정답', '오답1', '오답2', '오답3'],
+  }));
+  const prepared = prepareQuestionSession(questions, () => 0.999999);
+  const positions = prepared.map((question) => question.choices.indexOf(question.answer));
+  const counts = positions.reduce((result, position) => {
+    result[position] = (result[position] ?? 0) + 1;
+    return result;
+  }, {});
+
+  assert.deepEqual(Object.values(counts).sort((a, b) => a - b), [2, 2, 3, 3]);
+  assert.deepEqual(questions[0].choices, ['정답', '오답1', '오답2', '오답3']);
+  for (const question of prepared) {
+    assert.deepEqual([...question.choices].sort(), ['오답1', '오답2', '오답3', '정답'].sort());
+  }
+});
+
+test('choice preparation leaves typing and ordering questions unchanged', () => {
+  const questions = [
+    { id: 'typing', responseMode: 'typing', answer: 'ねこ' },
+    { id: 'ordering', responseMode: 'ordering', choices: ['私', 'は', '学生'], answer: ['私', 'は', '学生'] },
+  ];
+  assert.deepEqual(prepareQuestionSession(questions, () => 0.5), questions);
+  assert.notEqual(prepareQuestionSession(questions, () => 0.5), questions);
 });
 
 test('ordering choices are copied, randomized, and never displayed in canonical answer order', () => {

@@ -1,527 +1,652 @@
 [
   {
-    "id": "kata-2026w46-001",
+    "id": "kata-2026w47-001",
     "level": "N5",
     "skill": "reading",
     "subskill": "long-vowel",
     "responseMode": "choice",
-    "prompt": "가타카나 「コート」를 히라가나로 전사한 것을 고르세요. ー는 직전 모음 글자로 풀어 씁니다.",
-    "answer": "こおと",
-    "explanationKo": "コ의 모음은 お이므로 ー를 お로 풀어 「こおと」로 전사합니다.",
-    "choices": ["こおと", "こうと", "こと", "こおど"]
+    "prompt": "가타카나 「スープ」를 히라가나로 전사한 것을 고르세요. ー는 직전 모음 글자로 풀어 씁니다.",
+    "answer": "すうぷ",
+    "explanationKo": "ス의 모음은 う이므로 ー를 う로 풀어 「すうぷ」로 전사합니다.",
+    "choices": [
+      "すうぷ",
+      "すぷ",
+      "そうぷ",
+      "ずうぷ"
+    ]
   },
   {
-    "id": "kata-2026w46-002",
+    "id": "kata-2026w47-002",
     "level": "N5",
     "skill": "reading",
     "subskill": "long-vowel",
     "responseMode": "choice",
-    "prompt": "가타카나 「ゲーム」를 히라가나로 전사한 것을 고르세요. ー는 직전 모음 글자로 풀어 씁니다.",
-    "answer": "げえむ",
-    "explanationKo": "ゲ의 모음은 え이므로 ー를 え로 풀어 「げえむ」로 전사합니다.",
-    "choices": ["げえむ", "げいむ", "げむ", "けえむ"]
+    "prompt": "가타카나 「チーズ」를 히라가나로 전사한 것을 고르세요. ー는 직전 모음 글자로 풀어 씁니다.",
+    "answer": "ちいず",
+    "explanationKo": "チ의 모음은 い이므로 ー를 い로 풀어 「ちいず」로 전사합니다.",
+    "choices": [
+      "ちいず",
+      "ちえず",
+      "ちず",
+      "ぢいず"
+    ]
   },
   {
-    "id": "kata-2026w46-003",
+    "id": "kata-2026w47-003",
     "level": "N5",
     "skill": "reading",
     "subskill": "long-vowel",
     "responseMode": "choice",
-    "prompt": "가타카나 「ボール」를 히라가나로 전사한 것을 고르세요. ー는 직전 모음 글자로 풀어 씁니다.",
-    "answer": "ぼおる",
-    "explanationKo": "ボ의 모음은 お이므로 ー를 お로 풀어 「ぼおる」로 전사합니다.",
-    "choices": ["ぼおる", "ぼうる", "ぼる", "ぽおる"]
+    "prompt": "가타카나 「ノート」를 히라가나로 전사한 것을 고르세요. ー는 직전 모음 글자로 풀어 씁니다.",
+    "answer": "のおと",
+    "explanationKo": "ノ의 모음은 お이므로 ー를 お로 풀어 「のおと」로 전사합니다.",
+    "choices": [
+      "のおと",
+      "のうと",
+      "のと",
+      "のおど"
+    ]
   },
   {
-    "id": "kata-2026w46-004",
+    "id": "kata-2026w47-004",
     "level": "N4",
     "skill": "reading",
     "subskill": "long-vowel",
     "responseMode": "choice",
-    "prompt": "가타카나 「セーター」를 히라가나로 전사한 것을 고르세요. ー는 직전 모음 글자로 풀어 씁니다.",
-    "answer": "せえたあ",
-    "explanationKo": "セ 뒤의 ー는 え, タ 뒤의 ー는 あ로 풀어 「せえたあ」로 전사합니다.",
-    "choices": ["せえたあ", "せいたあ", "せえた", "せえとお"]
+    "prompt": "가타카나 「メーカー」를 히라가나로 전사한 것을 고르세요. ー는 직전 모음 글자로 풀어 씁니다.",
+    "answer": "めえかあ",
+    "explanationKo": "メ 뒤의 ー는 え, カ 뒤의 ー는 あ로 풀어 「めえかあ」로 전사합니다.",
+    "choices": [
+      "めえかあ",
+      "めいかあ",
+      "めえか",
+      "めえこお"
+    ]
   },
   {
-    "id": "kata-2026w46-005",
+    "id": "kata-2026w47-005",
     "level": "N4",
     "skill": "reading",
     "subskill": "long-vowel",
     "responseMode": "choice",
-    "prompt": "가타카나 「テーブル」를 히라가나로 전사한 것을 고르세요. ー는 직전 모음 글자로 풀어 씁니다.",
-    "answer": "てえぶる",
-    "explanationKo": "テ의 모음은 え이므로 ー를 え로 풀어 「てえぶる」로 전사합니다.",
-    "choices": ["てえぶる", "ていぶる", "てぶる", "でえぶる"]
+    "prompt": "가타카나 「タクシー」를 히라가나로 전사한 것을 고르세요. ー는 직전 모음 글자로 풀어 씁니다.",
+    "answer": "たくしい",
+    "explanationKo": "シ의 모음은 い이므로 ー를 い로 풀어 「たくしい」로 전사합니다.",
+    "choices": [
+      "たくしい",
+      "たくし",
+      "たくしえ",
+      "だくしい"
+    ]
   },
   {
-    "id": "kata-2026w46-006",
+    "id": "kata-2026w47-006",
     "level": "N5",
     "skill": "reading",
     "subskill": "long-vowel",
     "responseMode": "typing",
-    "prompt": "가타카나 「ビール」를 히라가나로 입력하세요. ー는 직전 모음 글자로 풀어 씁니다.",
-    "answer": "びいる",
-    "explanationKo": "ビ의 모음 い를 장음 기호 자리에 써서 「びいる」로 옮깁니다."
+    "prompt": "가타카나 「レーダー」를 히라가나로 입력하세요. ー는 직전 모음 글자로 풀어 씁니다.",
+    "answer": "れえだあ",
+    "explanationKo": "レ 뒤의 ー는 え, ダ 뒤의 ー는 あ로 풀어 「れえだあ」로 전사합니다."
   },
   {
-    "id": "kata-2026w46-007",
+    "id": "kata-2026w47-007",
     "level": "N5",
     "skill": "reading",
     "subskill": "long-vowel",
     "responseMode": "typing",
-    "prompt": "가타카나 「カード」를 히라가나로 입력하세요. ー는 직전 모음 글자로 풀어 씁니다.",
-    "answer": "かあど",
-    "explanationKo": "カ의 모음 あ를 장음 기호 자리에 써서 「かあど」로 옮깁니다."
+    "prompt": "가타카나 「グループ」를 히라가나로 입력하세요. ー는 직전 모음 글자로 풀어 씁니다.",
+    "answer": "ぐるうぷ",
+    "explanationKo": "ル의 모음은 う이므로 ー를 う로 풀어 「ぐるうぷ」로 전사합니다."
   },
   {
-    "id": "kata-2026w46-008",
+    "id": "kata-2026w47-008",
     "level": "N5",
     "skill": "reading",
     "subskill": "long-vowel",
     "responseMode": "typing",
-    "prompt": "가타카나 「プール」를 히라가나로 입력하세요. ー는 직전 모음 글자로 풀어 씁니다.",
-    "answer": "ぷうる",
-    "explanationKo": "プ의 모음 う를 장음 기호 자리에 써서 「ぷうる」로 옮깁니다."
+    "prompt": "가타카나 「コピー」를 히라가나로 입력하세요. ー는 직전 모음 글자로 풀어 씁니다.",
+    "answer": "こぴい",
+    "explanationKo": "ピ의 모음은 い이므로 ー를 い로 풀어 「こぴい」로 전사합니다."
   },
   {
-    "id": "kata-2026w46-009",
+    "id": "kata-2026w47-009",
     "level": "N4",
     "skill": "reading",
     "subskill": "long-vowel",
     "responseMode": "typing",
-    "prompt": "가타카나 「コーヒー」를 히라가나로 입력하세요. ー는 직전 모음 글자로 풀어 씁니다.",
-    "answer": "こおひい",
-    "explanationKo": "コ 뒤의 ー는 お, ヒ 뒤의 ー는 い로 풀어 「こおひい」로 옮깁니다."
+    "prompt": "가타카나 「スキー」를 히라가나로 입력하세요. ー는 직전 모음 글자로 풀어 씁니다.",
+    "answer": "すきい",
+    "explanationKo": "キ의 모음은 い이므로 ー를 い로 풀어 「すきい」로 전사합니다."
   },
   {
-    "id": "kata-2026w46-010",
+    "id": "kata-2026w47-010",
     "level": "N4",
     "skill": "reading",
     "subskill": "long-vowel",
     "responseMode": "typing",
-    "prompt": "가타카나 「デパート」를 히라가나로 입력하세요. ー는 직전 모음 글자로 풀어 씁니다.",
-    "answer": "でぱあと",
-    "explanationKo": "パ의 모음 あ를 장음 기호 자리에 써서 「でぱあと」로 옮깁니다."
+    "prompt": "가타카나 「エレベーター」를 히라가나로 입력하세요. ー는 직전 모음 글자로 풀어 씁니다.",
+    "answer": "えれべえたあ",
+    "explanationKo": "ベ 뒤의 ー는 え, タ 뒤의 ー는 あ로 풀어 「えれべえたあ」로 전사합니다."
   },
   {
-    "id": "kata-2026w46-011",
+    "id": "kata-2026w47-011",
     "level": "N5",
     "skill": "reading",
     "subskill": "small-tsu",
     "responseMode": "choice",
-    "prompt": "가타카나 「ラッパ」를 작은 ッ의 크기와 위치를 지켜 히라가나로 옮긴 것을 고르세요.",
-    "answer": "らっぱ",
-    "explanationKo": "ラ와 パ 사이의 작은 ッ를 작은 っ로 옮기면 「らっぱ」입니다.",
-    "choices": ["らっぱ", "らつぱ", "らぱ", "らっば"]
+    "prompt": "가타카나 「ベッド」를 작은 ッ의 크기와 위치를 지켜 히라가나로 옮긴 것을 고르세요.",
+    "answer": "べっど",
+    "explanationKo": "「ベッド」의 작은 ッ를 작은 っ로 옮기면 「べっど」입니다.",
+    "choices": [
+      "べっど",
+      "べつど",
+      "べど",
+      "ぺっど"
+    ]
   },
   {
-    "id": "kata-2026w46-012",
+    "id": "kata-2026w47-012",
     "level": "N5",
     "skill": "reading",
     "subskill": "small-tsu",
     "responseMode": "choice",
-    "prompt": "가타카나 「ホット」를 작은 ッ의 크기와 위치를 지켜 히라가나로 옮긴 것을 고르세요.",
-    "answer": "ほっと",
-    "explanationKo": "ホ와 ト 사이의 작은 ッ를 작은 っ로 옮기면 「ほっと」입니다.",
-    "choices": ["ほっと", "ほつと", "ほと", "ぼっと"]
+    "prompt": "가타카나 「キット」를 작은 ッ의 크기와 위치를 지켜 히라가나로 옮긴 것을 고르세요.",
+    "answer": "きっと",
+    "explanationKo": "「キット」의 작은 ッ를 작은 っ로 옮기면 「きっと」입니다.",
+    "choices": [
+      "きっと",
+      "きつと",
+      "きと",
+      "ぎっと"
+    ]
   },
   {
-    "id": "kata-2026w46-013",
+    "id": "kata-2026w47-013",
     "level": "N5",
     "skill": "reading",
     "subskill": "small-tsu",
     "responseMode": "choice",
-    "prompt": "가타카나 「パック」를 작은 ッ의 크기와 위치를 지켜 히라가나로 옮긴 것을 고르세요.",
-    "answer": "ぱっく",
-    "explanationKo": "パ와 ク 사이의 작은 ッ를 작은 っ로 옮기면 「ぱっく」입니다.",
-    "choices": ["ぱっく", "ぱつく", "ぱく", "ばっく"]
+    "prompt": "가타카나 「カップ」를 작은 ッ의 크기와 위치를 지켜 히라가나로 옮긴 것을 고르세요.",
+    "answer": "かっぷ",
+    "explanationKo": "「カップ」의 작은 ッ를 작은 っ로 옮기면 「かっぷ」입니다.",
+    "choices": [
+      "かっぷ",
+      "かつぷ",
+      "かぷ",
+      "がっぷ"
+    ]
   },
   {
-    "id": "kata-2026w46-014",
+    "id": "kata-2026w47-014",
     "level": "N4",
     "skill": "reading",
     "subskill": "small-tsu",
     "responseMode": "choice",
-    "prompt": "가타카나 「ドッグ」를 작은 ッ의 크기와 위치를 지켜 히라가나로 옮긴 것을 고르세요.",
-    "answer": "どっぐ",
-    "explanationKo": "ド와 グ 사이의 작은 ッ를 작은 っ로 옮기면 「どっぐ」입니다.",
-    "choices": ["どっぐ", "どつぐ", "どぐ", "とっぐ"]
+    "prompt": "가타카나 「マッチ」를 작은 ッ의 크기와 위치를 지켜 히라가나로 옮긴 것을 고르세요.",
+    "answer": "まっち",
+    "explanationKo": "「マッチ」의 작은 ッ를 작은 っ로 옮기면 「まっち」입니다.",
+    "choices": [
+      "まっち",
+      "まつち",
+      "まち",
+      "まっじ"
+    ]
   },
   {
-    "id": "kata-2026w46-015",
+    "id": "kata-2026w47-015",
     "level": "N4",
     "skill": "reading",
     "subskill": "small-tsu",
     "responseMode": "choice",
-    "prompt": "가타카나 「ワッフル」를 작은 ッ의 크기와 위치를 지켜 히라가나로 옮긴 것을 고르세요.",
-    "answer": "わっふる",
-    "explanationKo": "ワ와 フ 사이의 작은 ッ를 작은 っ로 옮기면 「わっふる」입니다.",
-    "choices": ["わっふる", "わつふる", "わふる", "わっぷる"]
+    "prompt": "가타카나 「ポケット」를 작은 ッ의 크기와 위치를 지켜 히라가나로 옮긴 것을 고르세요.",
+    "answer": "ぽけっと",
+    "explanationKo": "「ポケット」의 작은 ッ를 작은 っ로 옮기면 「ぽけっと」입니다.",
+    "choices": [
+      "ぽけっと",
+      "ぽけつと",
+      "ぽけと",
+      "ぼけっと"
+    ]
   },
   {
-    "id": "kata-2026w46-016",
+    "id": "kata-2026w47-016",
     "level": "N5",
     "skill": "reading",
     "subskill": "small-tsu",
     "responseMode": "typing",
-    "prompt": "가타카나 「モップ」를 히라가나로 입력하세요. 작은 ッ는 작은 っ로 옮기세요.",
-    "answer": "もっぷ",
-    "explanationKo": "モ와 プ 사이의 작은 ッ를 작은 っ로 옮기면 「もっぷ」입니다."
+    "prompt": "가타카나 「コップ」를 히라가나로 입력하세요. 작은 ッ는 작은 っ로 옮기세요.",
+    "answer": "こっぷ",
+    "explanationKo": "「コップ」의 작은 ッ를 작은 っ로 옮기면 「こっぷ」입니다."
   },
   {
-    "id": "kata-2026w46-017",
+    "id": "kata-2026w47-017",
     "level": "N5",
     "skill": "reading",
     "subskill": "small-tsu",
     "responseMode": "typing",
-    "prompt": "가타카나 「スリッパ」를 히라가나로 입력하세요. 작은 ッ는 작은 っ로 옮기세요.",
-    "answer": "すりっぱ",
-    "explanationKo": "リ와 パ 사이의 작은 ッ를 작은 っ로 옮기면 「すりっぱ」입니다."
+    "prompt": "가타카나 「ヨット」를 히라가나로 입력하세요. 작은 ッ는 작은 っ로 옮기세요.",
+    "answer": "よっと",
+    "explanationKo": "「ヨット」의 작은 ッ를 작은 っ로 옮기면 「よっと」입니다."
   },
   {
-    "id": "kata-2026w46-018",
+    "id": "kata-2026w47-018",
     "level": "N5",
     "skill": "reading",
     "subskill": "small-tsu",
     "responseMode": "typing",
-    "prompt": "가타카나 「バット」를 히라가나로 입력하세요. 작은 ッ는 작은 っ로 옮기세요.",
-    "answer": "ばっと",
-    "explanationKo": "バ와 ト 사이의 작은 ッ를 작은 っ로 옮기면 「ばっと」입니다."
+    "prompt": "가타카나 「ペット」를 히라가나로 입력하세요. 작은 ッ는 작은 っ로 옮기세요.",
+    "answer": "ぺっと",
+    "explanationKo": "「ペット」의 작은 ッ를 작은 っ로 옮기면 「ぺっと」입니다."
   },
   {
-    "id": "kata-2026w46-019",
+    "id": "kata-2026w47-019",
     "level": "N4",
     "skill": "reading",
     "subskill": "small-tsu",
     "responseMode": "typing",
-    "prompt": "가타카나 「コットン」을 히라가나로 입력하세요. 작은 ッ는 작은 っ로 옮기세요.",
-    "answer": "こっとん",
-    "explanationKo": "コ와 ト 사이의 작은 ッ를 작은 っ로 옮기면 「こっとん」입니다."
+    "prompt": "가타카나 「ラケット」를 히라가나로 입력하세요. 작은 ッ는 작은 っ로 옮기세요.",
+    "answer": "らけっと",
+    "explanationKo": "「ラケット」의 작은 ッ를 작은 っ로 옮기면 「らけっと」입니다."
   },
   {
-    "id": "kata-2026w46-020",
+    "id": "kata-2026w47-020",
     "level": "N4",
     "skill": "reading",
     "subskill": "small-tsu",
     "responseMode": "typing",
-    "prompt": "가타카나 「ネット」를 히라가나로 입력하세요. 작은 ッ는 작은 っ로 옮기세요.",
-    "answer": "ねっと",
-    "explanationKo": "ネ와 ト 사이의 작은 ッ를 작은 っ로 옮기면 「ねっと」입니다."
+    "prompt": "가타카나 「ナット」를 히라가나로 입력하세요. 작은 ッ는 작은 っ로 옮기세요.",
+    "answer": "なっと",
+    "explanationKo": "「ナット」의 작은 ッ를 작은 っ로 옮기면 「なっと」입니다."
   },
   {
-    "id": "kata-2026w46-021",
+    "id": "kata-2026w47-021",
     "level": "N5",
     "skill": "reading",
     "subskill": "contracted-sound",
     "responseMode": "choice",
-    "prompt": "가타카나 「キャベツ」를 작은 ャ의 크기를 유지해 히라가나로 옮긴 것을 고르세요.",
-    "answer": "きゃべつ",
-    "explanationKo": "キ 뒤의 작은 ャ를 작은 ゃ로 옮겨 「きゃべつ」로 전사합니다.",
-    "choices": ["きゃべつ", "きやべつ", "きゅべつ", "ぎゃべつ"]
+    "prompt": "가타카나 「キョリ」를 작은 ョ의 크기를 유지해 히라가나로 옮긴 것을 고르세요.",
+    "answer": "きょり",
+    "explanationKo": "작은 ョ를 작은 ょ로 옮겨 「きょり」로 전사합니다.",
+    "choices": [
+      "きょり",
+      "きより",
+      "きゅり",
+      "ぎょり"
+    ]
   },
   {
-    "id": "kata-2026w46-022",
+    "id": "kata-2026w47-022",
     "level": "N5",
     "skill": "reading",
     "subskill": "contracted-sound",
     "responseMode": "choice",
-    "prompt": "가타카나 「シャツ」를 작은 ャ의 크기를 유지해 히라가나로 옮긴 것을 고르세요.",
-    "answer": "しゃつ",
-    "explanationKo": "シ 뒤의 작은 ャ를 작은 ゃ로 옮겨 「しゃつ」로 전사합니다.",
-    "choices": ["しゃつ", "しやつ", "しゅつ", "ちゃつ"]
+    "prompt": "가타카나 「リュウガク」를 작은 ュ의 크기를 유지해 히라가나로 옮긴 것을 고르세요.",
+    "answer": "りゅうがく",
+    "explanationKo": "작은 ュ를 작은 ゅ로 옮겨 「りゅうがく」로 전사합니다.",
+    "choices": [
+      "りゅうがく",
+      "りゆうがく",
+      "りょうがく",
+      "りゅうかく"
+    ]
   },
   {
-    "id": "kata-2026w46-023",
+    "id": "kata-2026w47-023",
+    "level": "N5",
+    "skill": "reading",
+    "subskill": "contracted-sound",
+    "responseMode": "choice",
+    "prompt": "가타카나 「チャイム」를 작은 ャ의 크기를 유지해 히라가나로 옮긴 것을 고르세요.",
+    "answer": "ちゃいむ",
+    "explanationKo": "작은 ャ를 작은 ゃ로 옮겨 「ちゃいむ」로 전사합니다.",
+    "choices": [
+      "ちゃいむ",
+      "ちやいむ",
+      "ちゅいむ",
+      "じゃいむ"
+    ]
+  },
+  {
+    "id": "kata-2026w47-024",
     "level": "N4",
     "skill": "reading",
     "subskill": "contracted-sound",
     "responseMode": "choice",
-    "prompt": "가타카나 「ジョギング」를 작은 ョ의 크기를 유지해 히라가나로 옮긴 것을 고르세요.",
-    "answer": "じょぎんぐ",
-    "explanationKo": "ジ 뒤의 작은 ョ를 작은 ょ로 옮겨 「じょぎんぐ」로 전사합니다.",
-    "choices": ["じょぎんぐ", "じよぎんぐ", "じゃぎんぐ", "しょぎんぐ"]
+    "prompt": "가타카나 「ギョウザ」를 작은 ョ의 크기를 유지해 히라가나로 옮긴 것을 고르세요.",
+    "answer": "ぎょうざ",
+    "explanationKo": "작은 ョ를 작은 ょ로 옮겨 「ぎょうざ」로 전사합니다.",
+    "choices": [
+      "ぎょうざ",
+      "ぎようざ",
+      "ぎゅうざ",
+      "きょうざ"
+    ]
   },
   {
-    "id": "kata-2026w46-024",
+    "id": "kata-2026w47-025",
     "level": "N4",
     "skill": "reading",
     "subskill": "contracted-sound",
     "responseMode": "choice",
-    "prompt": "가타카나 「ミュージカル」를 작은 ュ의 크기를 유지해 히라가나로 옮긴 것을 고르세요. ー는 직전 모음 글자로 풀어 씁니다.",
-    "answer": "みゅうじかる",
-    "explanationKo": "ミ 뒤의 작은 ュ를 작은 ゅ로 옮기고, ュ 뒤의 ー는 직전 모음 う로 풀어 「みゅうじかる」로 전사합니다.",
-    "choices": ["みゅうじかる", "みゆうじかる", "みょうじかる", "みゅうしかる"]
+    "prompt": "가타카나 「ニュアンス」를 작은 ュ의 크기를 유지해 히라가나로 옮긴 것을 고르세요.",
+    "answer": "にゅあんす",
+    "explanationKo": "작은 ュ를 작은 ゅ로 옮겨 「にゅあんす」로 전사합니다.",
+    "choices": [
+      "にゅあんす",
+      "にゆあんす",
+      "にょあんす",
+      "りゅあんす"
+    ]
   },
   {
-    "id": "kata-2026w46-025",
-    "level": "N4",
-    "skill": "reading",
-    "subskill": "contracted-sound",
-    "responseMode": "choice",
-    "prompt": "가타카나 「ウェブ」를 작은 ェ의 크기를 유지해 히라가나로 옮긴 것을 고르세요.",
-    "answer": "うぇぶ",
-    "explanationKo": "ウ 뒤의 작은 ェ를 작은 ぇ로 옮겨 「うぇぶ」로 전사합니다.",
-    "choices": ["うぇぶ", "うえぶ", "うぃぶ", "うぇぷ"]
-  },
-  {
-    "id": "kata-2026w46-026",
+    "id": "kata-2026w47-026",
     "level": "N5",
     "skill": "reading",
     "subskill": "contracted-sound",
     "responseMode": "typing",
-    "prompt": "가타카나 「パジャマ」를 히라가나로 입력하세요. 작은 ャ는 크기를 유지하세요.",
-    "answer": "ぱじゃま",
-    "explanationKo": "ジ 뒤의 작은 ャ를 작은 ゃ로 옮기면 「ぱじゃま」입니다."
+    "prompt": "가타카나 「リョコウ」를 히라가나로 입력하세요. 작은 ョ는 크기를 유지하세요.",
+    "answer": "りょこう",
+    "explanationKo": "작은 ョ를 작은 ょ로 옮기면 「りょこう」입니다."
   },
   {
-    "id": "kata-2026w46-027",
+    "id": "kata-2026w47-027",
     "level": "N5",
     "skill": "reading",
     "subskill": "contracted-sound",
     "responseMode": "typing",
-    "prompt": "가타카나 「ショップ」를 히라가나로 입력하세요. 작은 ョ와 ッ의 크기를 유지하세요.",
-    "answer": "しょっぷ",
-    "explanationKo": "작은 ョ는 작은 ょ로, 작은 ッ는 작은 っ로 옮기면 「しょっぷ」입니다."
+    "prompt": "가타카나 「ヒャク」를 히라가나로 입력하세요. 작은 ャ는 크기를 유지하세요.",
+    "answer": "ひゃく",
+    "explanationKo": "작은 ャ를 작은 ゃ로 옮기면 「ひゃく」입니다."
   },
   {
-    "id": "kata-2026w46-028",
+    "id": "kata-2026w47-028",
+    "level": "N5",
+    "skill": "reading",
+    "subskill": "contracted-sound",
+    "responseMode": "typing",
+    "prompt": "가타카나 「チョキ」를 히라가나로 입력하세요. 작은 ョ는 크기를 유지하세요.",
+    "answer": "ちょき",
+    "explanationKo": "작은 ョ를 작은 ょ로 옮기면 「ちょき」입니다."
+  },
+  {
+    "id": "kata-2026w47-029",
     "level": "N4",
     "skill": "reading",
     "subskill": "contracted-sound",
     "responseMode": "typing",
-    "prompt": "가타카나 「チェック」를 히라가나로 입력하세요. 작은 ェ와 ッ의 크기를 유지하세요.",
-    "answer": "ちぇっく",
-    "explanationKo": "작은 ェ는 작은 ぇ로, 작은 ッ는 작은 っ로 옮기면 「ちぇっく」입니다."
+    "prompt": "가타카나 「シュミ」를 히라가나로 입력하세요. 작은 ュ는 크기를 유지하세요.",
+    "answer": "しゅみ",
+    "explanationKo": "작은 ュ를 작은 ゅ로 옮기면 「しゅみ」입니다."
   },
   {
-    "id": "kata-2026w46-029",
+    "id": "kata-2026w47-030",
     "level": "N4",
     "skill": "reading",
     "subskill": "contracted-sound",
     "responseMode": "typing",
-    "prompt": "가타카나 「フィルム」를 히라가나로 입력하세요. 작은 ィ는 크기를 유지하세요.",
-    "answer": "ふぃるむ",
-    "explanationKo": "フ 뒤의 작은 ィ를 작은 ぃ로 옮기면 「ふぃるむ」입니다."
+    "prompt": "가타카나 「ピョコピョコ」를 히라가나로 입력하세요. 작은 ョ는 크기를 유지하세요.",
+    "answer": "ぴょこぴょこ",
+    "explanationKo": "작은 ョ를 작은 ょ로 옮기면 「ぴょこぴょこ」입니다."
   },
   {
-    "id": "kata-2026w46-030",
-    "level": "N4",
-    "skill": "reading",
-    "subskill": "contracted-sound",
-    "responseMode": "typing",
-    "prompt": "가타카나 「クッション」을 히라가나로 입력하세요. 작은 ョ와 ッ의 크기를 유지하세요.",
-    "answer": "くっしょん",
-    "explanationKo": "작은 ッ는 작은 っ로, 작은 ョ는 작은 ょ로 옮기면 「くっしょん」입니다."
-  },
-  {
-    "id": "kata-2026w46-031",
+    "id": "kata-2026w47-031",
     "level": "N5",
     "skill": "reading",
     "subskill": "lookalike",
     "responseMode": "choice",
-    "prompt": "구별 글자 「シ」의 획 방향을 살펴 가타카나 「シマ」를 히라가나로 옮긴 것을 고르세요.",
-    "answer": "しま",
-    "explanationKo": "「シマ」는 「しま」입니다. シ 짧은 획은 세로(위아래), ツ 짧은 획은 가로(좌우), ソ 긴 획은 위에서 시작, ン 긴 획은 아래에서 위로 갑니다.",
-    "choices": ["しま", "つま", "そま", "んま"]
+    "prompt": "구별 글자 「シ」의 획 방향을 살펴 가타카나 「シオ」를 히라가나로 옮긴 것을 고르세요.",
+    "answer": "しお",
+    "explanationKo": "「シオ」는 「しお」입니다. シ의 짧은 획은 가로에 가깝고 위아래로 배열되며, ツ의 짧은 획은 세로에 가깝고 좌우로 배열됩니다. ソ의 긴 획은 위에서 시작하고, ン의 긴 획은 아래에서 위로 갑니다.",
+    "choices": [
+      "しお",
+      "つお",
+      "そお",
+      "んお"
+    ]
   },
   {
-    "id": "kata-2026w46-032",
+    "id": "kata-2026w47-032",
     "level": "N5",
     "skill": "reading",
     "subskill": "lookalike",
     "responseMode": "choice",
-    "prompt": "구별 글자 「ツ」의 획 방향을 살펴 가타카나 「ツキ」를 히라가나로 옮긴 것을 고르세요.",
-    "answer": "つき",
-    "explanationKo": "「ツキ」는 「つき」입니다. シ 짧은 획은 세로(위아래), ツ 짧은 획은 가로(좌우), ソ 긴 획은 위에서 시작, ン 긴 획은 아래에서 위로 갑니다.",
-    "choices": ["つき", "しき", "そき", "んき"]
+    "prompt": "구별 글자 「ツ」의 획 방향을 살펴 가타카나 「ツナ」를 히라가나로 옮긴 것을 고르세요.",
+    "answer": "つな",
+    "explanationKo": "「ツナ」는 「つな」입니다. シ의 짧은 획은 가로에 가깝고 위아래로 배열되며, ツ의 짧은 획은 세로에 가깝고 좌우로 배열됩니다. ソ의 긴 획은 위에서 시작하고, ン의 긴 획은 아래에서 위로 갑니다.",
+    "choices": [
+      "つな",
+      "しな",
+      "そな",
+      "んな"
+    ]
   },
   {
-    "id": "kata-2026w46-033",
+    "id": "kata-2026w47-033",
     "level": "N5",
     "skill": "reading",
     "subskill": "lookalike",
     "responseMode": "choice",
-    "prompt": "구별 글자 「ソ」의 획 방향을 살펴 가타카나 「ソラ」를 히라가나로 옮긴 것을 고르세요.",
-    "answer": "そら",
-    "explanationKo": "「ソラ」는 「そら」입니다. シ 짧은 획은 세로(위아래), ツ 짧은 획은 가로(좌우), ソ 긴 획은 위에서 시작, ン 긴 획은 아래에서 위로 갑니다.",
-    "choices": ["そら", "んら", "しら", "つら"]
+    "prompt": "구별 글자 「ソ」의 획 방향을 살펴 가타카나 「ソト」를 히라가나로 옮긴 것을 고르세요.",
+    "answer": "そと",
+    "explanationKo": "「ソト」는 「そと」입니다. シ의 짧은 획은 가로에 가깝고 위아래로 배열되며, ツ의 짧은 획은 세로에 가깝고 좌우로 배열됩니다. ソ의 긴 획은 위에서 시작하고, ン의 긴 획은 아래에서 위로 갑니다.",
+    "choices": [
+      "そと",
+      "んと",
+      "しと",
+      "つと"
+    ]
   },
   {
-    "id": "kata-2026w46-034",
+    "id": "kata-2026w47-034",
     "level": "N5",
     "skill": "reading",
     "subskill": "lookalike",
     "responseMode": "choice",
-    "prompt": "구별 글자 「ン」의 획 방향을 살펴 가타카나 「パン」을 히라가나로 옮긴 것을 고르세요.",
-    "answer": "ぱん",
-    "explanationKo": "「パン」은 「ぱん」입니다. シ 짧은 획은 세로(위아래), ツ 짧은 획은 가로(좌우), ソ 긴 획은 위에서 시작, ン 긴 획은 아래에서 위로 갑니다.",
-    "choices": ["ぱん", "ぱそ", "ぱし", "ぱつ"]
+    "prompt": "구별 글자 「ン」의 획 방향을 살펴 가타카나 「カン」을 히라가나로 옮긴 것을 고르세요.",
+    "answer": "かん",
+    "explanationKo": "「カン」은 「かん」입니다. シ의 짧은 획은 가로에 가깝고 위아래로 배열되며, ツ의 짧은 획은 세로에 가깝고 좌우로 배열됩니다. ソ의 긴 획은 위에서 시작하고, ン의 긴 획은 아래에서 위로 갑니다.",
+    "choices": [
+      "かん",
+      "かそ",
+      "かし",
+      "かつ"
+    ]
   },
   {
-    "id": "kata-2026w46-035",
-    "level": "N4",
-    "skill": "reading",
-    "subskill": "lookalike",
-    "responseMode": "choice",
-    "prompt": "닮은 글자를 구별해 가타카나 「シンセツ」를 히라가나로 옮긴 것을 고르세요.",
-    "answer": "しんせつ",
-    "explanationKo": "글자 순서대로 읽으면 「しんせつ」입니다. シ 짧은 획은 세로(위아래), ツ 짧은 획은 가로(좌우), ソ 긴 획은 위에서 시작, ン 긴 획은 아래에서 위로 갑니다.",
-    "choices": ["しんせつ", "つそせし", "しそせつ", "つんせし"]
-  },
-  {
-    "id": "kata-2026w46-036",
-    "level": "N5",
-    "skill": "reading",
-    "subskill": "lookalike",
-    "responseMode": "typing",
-    "prompt": "닮은 글자의 획 방향을 구별해 가타카나 「ツミ」를 히라가나로 입력하세요.",
-    "answer": "つみ",
-    "explanationKo": "「ツミ」는 「つみ」입니다. シ 짧은 획은 세로(위아래), ツ 짧은 획은 가로(좌우), ソ 긴 획은 위에서 시작, ン 긴 획은 아래에서 위로 갑니다."
-  },
-  {
-    "id": "kata-2026w46-037",
-    "level": "N5",
-    "skill": "reading",
-    "subskill": "lookalike",
-    "responseMode": "typing",
-    "prompt": "닮은 글자의 획 방향을 구별해 가타카나 「ミソ」를 히라가나로 입력하세요.",
-    "answer": "みそ",
-    "explanationKo": "「ミソ」는 「みそ」입니다. シ 짧은 획은 세로(위아래), ツ 짧은 획은 가로(좌우), ソ 긴 획은 위에서 시작, ン 긴 획은 아래에서 위로 갑니다."
-  },
-  {
-    "id": "kata-2026w46-038",
-    "level": "N5",
-    "skill": "reading",
-    "subskill": "lookalike",
-    "responseMode": "typing",
-    "prompt": "닮은 글자의 획 방향을 구별해 가타카나 「セン」을 히라가나로 입력하세요.",
-    "answer": "せん",
-    "explanationKo": "「セン」은 「せん」입니다. シ 짧은 획은 세로(위아래), ツ 짧은 획은 가로(좌우), ソ 긴 획은 위에서 시작, ン 긴 획은 아래에서 위로 갑니다."
-  },
-  {
-    "id": "kata-2026w46-039",
+    "id": "kata-2026w47-035",
     "level": "N4",
     "skill": "reading",
     "subskill": "lookalike",
-    "responseMode": "typing",
-    "prompt": "닮은 글자의 획 방향을 구별해 가타카나 「ソシキ」를 히라가나로 입력하세요.",
-    "answer": "そしき",
-    "explanationKo": "「ソシキ」는 「そしき」입니다. シ 짧은 획은 세로(위아래), ツ 짧은 획은 가로(좌우), ソ 긴 획은 위에서 시작, ン 긴 획은 아래에서 위로 갑니다."
+    "responseMode": "choice",
+    "prompt": "닮은 글자의 획 방향을 구별해 가타카나 「シソ」를 히라가나로 옮긴 것을 고르세요.",
+    "answer": "しそ",
+    "explanationKo": "「シソ」는 「しそ」입니다. シ의 짧은 획은 가로에 가깝고 위아래로 배열되며, ツ의 짧은 획은 세로에 가깝고 좌우로 배열됩니다. ソ의 긴 획은 위에서 시작하고, ン의 긴 획은 아래에서 위로 갑니다.",
+    "choices": [
+      "しそ",
+      "つそ",
+      "しん",
+      "つん"
+    ]
   },
   {
-    "id": "kata-2026w46-040",
+    "id": "kata-2026w47-036",
+    "level": "N5",
+    "skill": "reading",
+    "subskill": "lookalike",
+    "responseMode": "typing",
+    "prompt": "닮은 글자의 획 방향을 구별해 가타카나 「マツ」를 히라가나로 입력하세요.",
+    "answer": "まつ",
+    "explanationKo": "「マツ」는 「まつ」입니다. シ의 짧은 획은 가로에 가깝고 위아래로 배열되며, ツ의 짧은 획은 세로에 가깝고 좌우로 배열됩니다. ソ의 긴 획은 위에서 시작하고, ン의 긴 획은 아래에서 위로 갑니다."
+  },
+  {
+    "id": "kata-2026w47-037",
+    "level": "N5",
+    "skill": "reading",
+    "subskill": "lookalike",
+    "responseMode": "typing",
+    "prompt": "닮은 글자의 획 방향을 구별해 가타카나 「コン」을 히라가나로 입력하세요.",
+    "answer": "こん",
+    "explanationKo": "「コン」은 「こん」입니다. シ의 짧은 획은 가로에 가깝고 위아래로 배열되며, ツ의 짧은 획은 세로에 가깝고 좌우로 배열됩니다. ソ의 긴 획은 위에서 시작하고, ン의 긴 획은 아래에서 위로 갑니다."
+  },
+  {
+    "id": "kata-2026w47-038",
+    "level": "N5",
+    "skill": "reading",
+    "subskill": "lookalike",
+    "responseMode": "typing",
+    "prompt": "닮은 글자의 획 방향을 구별해 가타카나 「ウシ」를 히라가나로 입력하세요.",
+    "answer": "うし",
+    "explanationKo": "「ウシ」는 「うし」입니다. シ의 짧은 획은 가로에 가깝고 위아래로 배열되며, ツ의 짧은 획은 세로에 가깝고 좌우로 배열됩니다. ソ의 긴 획은 위에서 시작하고, ン의 긴 획은 아래에서 위로 갑니다."
+  },
+  {
+    "id": "kata-2026w47-039",
     "level": "N4",
     "skill": "reading",
     "subskill": "lookalike",
     "responseMode": "typing",
-    "prompt": "닮은 글자의 획 방향을 구별해 가타카나 「シンブン」을 히라가나로 입력하세요.",
-    "answer": "しんぶん",
-    "explanationKo": "「シンブン」은 「しんぶん」입니다. シ 짧은 획은 세로(위아래), ツ 짧은 획은 가로(좌우), ソ 긴 획은 위에서 시작, ン 긴 획은 아래에서 위로 갑니다."
+    "prompt": "닮은 글자의 획 방향을 구별해 가타카나 「ソン」을 히라가나로 입력하세요.",
+    "answer": "そん",
+    "explanationKo": "「ソン」은 「そん」입니다. シ의 짧은 획은 가로에 가깝고 위아래로 배열되며, ツ의 짧은 획은 세로에 가깝고 좌우로 배열됩니다. ソ의 긴 획은 위에서 시작하고, ン의 긴 획은 아래에서 위로 갑니다."
   },
   {
-    "id": "kata-2026w46-041",
+    "id": "kata-2026w47-040",
+    "level": "N4",
+    "skill": "reading",
+    "subskill": "lookalike",
+    "responseMode": "typing",
+    "prompt": "닮은 글자의 획 방향을 구별해 가타카나 「ツンツン」을 히라가나로 입력하세요.",
+    "answer": "つんつん",
+    "explanationKo": "「ツンツン」은 「つんつん」입니다. シ의 짧은 획은 가로에 가깝고 위아래로 배열되며, ツ의 짧은 획은 세로에 가깝고 좌우로 배열됩니다. ソ의 긴 획은 위에서 시작하고, ン의 긴 획은 아래에서 위로 갑니다."
+  },
+  {
+    "id": "kata-2026w47-041",
     "level": "N5",
     "skill": "reading",
     "subskill": "daily-loanword",
     "responseMode": "choice",
-    "prompt": "일상 가타카나 표기 「テレビ」를 글자 순서대로 히라가나로 옮긴 것을 고르세요.",
-    "answer": "てれび",
-    "explanationKo": "テ・レ・ビ를 차례대로 대응시키면 「てれび」입니다.",
-    "choices": ["てれび", "でれび", "てねび", "てれぴ"]
+    "prompt": "일상 가타카나 표기 「カメラ」를 글자 순서대로 히라가나로 옮긴 것을 고르세요.",
+    "answer": "かめら",
+    "explanationKo": "「カメラ」의 글자를 순서대로 대응시키면 「かめら」입니다.",
+    "choices": [
+      "かめら",
+      "がめら",
+      "かぬら",
+      "かめろ"
+    ]
   },
   {
-    "id": "kata-2026w46-042",
+    "id": "kata-2026w47-042",
     "level": "N5",
     "skill": "reading",
     "subskill": "daily-loanword",
     "responseMode": "choice",
-    "prompt": "일상 가타카나 표기 「ホテル」를 글자 순서대로 히라가나로 옮긴 것을 고르세요.",
-    "answer": "ほてる",
-    "explanationKo": "ホ・テ・ル를 차례대로 대응시키면 「ほてる」입니다.",
-    "choices": ["ほてる", "ぼてる", "ほでる", "ほてろ"]
+    "prompt": "일상 가타카나 표기 「ラジオ」를 글자 순서대로 히라가나로 옮긴 것을 고르세요.",
+    "answer": "らじお",
+    "explanationKo": "「ラジオ」의 글자를 순서대로 대응시키면 「らじお」입니다.",
+    "choices": [
+      "らじお",
+      "らしお",
+      "らじあ",
+      "りじお"
+    ]
   },
   {
-    "id": "kata-2026w46-043",
+    "id": "kata-2026w47-043",
     "level": "N5",
     "skill": "reading",
     "subskill": "daily-loanword",
     "responseMode": "choice",
-    "prompt": "일상 가타카나 표기 「ドア」를 글자 순서대로 히라가나로 옮긴 것을 고르세요.",
-    "answer": "どあ",
-    "explanationKo": "ド・ア를 차례대로 대응시키면 「どあ」입니다.",
-    "choices": ["どあ", "とあ", "どお", "ぼあ"]
+    "prompt": "일상 가타카나 표기 「トマト」를 글자 순서대로 히라가나로 옮긴 것을 고르세요.",
+    "answer": "とまと",
+    "explanationKo": "「トマト」의 글자를 순서대로 대응시키면 「とまと」입니다.",
+    "choices": [
+      "とまと",
+      "どまと",
+      "とまど",
+      "とめと"
+    ]
   },
   {
-    "id": "kata-2026w46-044",
+    "id": "kata-2026w47-044",
     "level": "N5",
     "skill": "reading",
     "subskill": "daily-loanword",
     "responseMode": "choice",
-    "prompt": "일상 가타카나 표기 「バス」를 글자 순서대로 히라가나로 옮긴 것을 고르세요.",
-    "answer": "ばす",
-    "explanationKo": "バ・ス를 차례대로 대응시키면 「ばす」입니다.",
-    "choices": ["ばす", "ぱす", "ばず", "ばせ"]
+    "prompt": "일상 가타카나 표기 「ピアノ」를 글자 순서대로 히라가나로 옮긴 것을 고르세요.",
+    "answer": "ぴあの",
+    "explanationKo": "「ピアノ」의 글자를 순서대로 대응시키면 「ぴあの」입니다.",
+    "choices": [
+      "ぴあの",
+      "びあの",
+      "ぴおの",
+      "ぴあめ"
+    ]
   },
   {
-    "id": "kata-2026w46-045",
+    "id": "kata-2026w47-045",
     "level": "N4",
     "skill": "reading",
     "subskill": "daily-loanword",
     "responseMode": "choice",
-    "prompt": "일상 가타카나 표기 「ガラス」를 글자 순서대로 히라가나로 옮긴 것을 고르세요.",
-    "answer": "がらす",
-    "explanationKo": "ガ・ラ・ス를 차례대로 대응시키면 「がらす」입니다.",
-    "choices": ["がらす", "からす", "がろす", "がらず"]
+    "prompt": "일상 가타카나 표기 「マスク」를 글자 순서대로 히라가나로 옮긴 것을 고르세요.",
+    "answer": "ますく",
+    "explanationKo": "「マスク」의 글자를 순서대로 대응시키면 「ますく」입니다.",
+    "choices": [
+      "ますく",
+      "まずく",
+      "ましく",
+      "ますぐ"
+    ]
   },
   {
-    "id": "kata-2026w46-046",
+    "id": "kata-2026w47-046",
     "level": "N5",
     "skill": "reading",
     "subskill": "daily-loanword",
     "responseMode": "typing",
-    "prompt": "일상 가타카나 표기 「ペン」을 히라가나로 그대로 전사해 입력하세요.",
-    "answer": "ぺん",
-    "explanationKo": "ペ・ン을 순서대로 옮기면 「ぺん」입니다."
+    "prompt": "일상 가타카나 표기 「アニメ」를 히라가나로 그대로 전사해 입력하세요.",
+    "answer": "あにめ",
+    "explanationKo": "「アニメ」의 글자를 순서대로 옮기면 「あにめ」입니다."
   },
   {
-    "id": "kata-2026w46-047",
+    "id": "kata-2026w47-047",
     "level": "N5",
     "skill": "reading",
     "subskill": "daily-loanword",
     "responseMode": "typing",
-    "prompt": "일상 가타카나 표기 「メモ」를 히라가나로 그대로 전사해 입력하세요.",
-    "answer": "めも",
-    "explanationKo": "メ・モ를 순서대로 옮기면 「めも」입니다."
+    "prompt": "일상 가타카나 표기 「ゴム」를 히라가나로 그대로 전사해 입력하세요.",
+    "answer": "ごむ",
+    "explanationKo": "「ゴム」의 글자를 순서대로 옮기면 「ごむ」입니다."
   },
   {
-    "id": "kata-2026w46-048",
+    "id": "kata-2026w47-048",
     "level": "N5",
     "skill": "reading",
     "subskill": "daily-loanword",
     "responseMode": "typing",
-    "prompt": "일상 가타카나 표기 「タオル」를 히라가나로 그대로 전사해 입력하세요.",
-    "answer": "たおる",
-    "explanationKo": "タ・オ・ル를 순서대로 옮기면 「たおる」입니다."
+    "prompt": "일상 가타카나 표기 「ミルク」를 히라가나로 그대로 전사해 입력하세요.",
+    "answer": "みるく",
+    "explanationKo": "「ミルク」의 글자를 순서대로 옮기면 「みるく」입니다."
   },
   {
-    "id": "kata-2026w46-049",
+    "id": "kata-2026w47-049",
     "level": "N4",
     "skill": "reading",
     "subskill": "daily-loanword",
     "responseMode": "typing",
-    "prompt": "일상 가타카나 표기 「サラダ」를 히라가나로 그대로 전사해 입력하세요.",
-    "answer": "さらだ",
-    "explanationKo": "サ・ラ・ダ를 순서대로 옮기면 「さらだ」입니다."
+    "prompt": "일상 가타카나 표기 「レモン」을 히라가나로 그대로 전사해 입력하세요.",
+    "answer": "れもん",
+    "explanationKo": "「レモン」의 글자를 순서대로 옮기면 「れもん」입니다."
   },
   {
-    "id": "kata-2026w46-050",
+    "id": "kata-2026w47-050",
     "level": "N4",
     "skill": "reading",
     "subskill": "daily-loanword",
     "responseMode": "typing",
-    "prompt": "일상 가타카나 표기 「ボタン」을 히라가나로 그대로 전사해 입력하세요.",
-    "answer": "ぼたん",
-    "explanationKo": "ボ・タ・ン을 순서대로 옮기면 「ぼたん」입니다."
+    "prompt": "일상 가타카나 표기 「パソコン」을 히라가나로 그대로 전사해 입력하세요.",
+    "answer": "ぱそこん",
+    "explanationKo": "「パソコン」의 글자를 순서대로 옮기면 「ぱそこん」입니다."
   }
 ]
